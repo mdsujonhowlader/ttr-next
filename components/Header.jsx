@@ -23,7 +23,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <>
-      <header className="fixed top-0 px-4 sm:px-0 left-0 right-0 bg-background/50 backdrop-blur dark:bg-background/20 shadow-lg border-b border-b-primary z-50">
+      <header className="fixed top-0 px-4 sm:px-0 left-0 right-0 bg-background/50 backdrop-blur dark:bg-background/20 shadow-lg border-b border-b-primary z-[50]">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <div>
             <Link href="/">
@@ -65,13 +65,14 @@ export default function Header() {
             </button>
           </div>
         </div>
-        <Transition show={mobileMenuOpen} as={Fragment}>
+        <Transition show={mobileMenuOpen} as={Fragment} className="md:hidden">
           <Dialog
             open={mobileMenuOpen}
             onClose={setMobileMenuOpen}
             className="md:hidden "
           >
             <TransitionChild
+              onClick={() => setMobileMenuOpen(false)}
               as={Fragment}
               enter="transition-opacity ease-out duration-300"
               enterFrom="opacity-0"
@@ -82,17 +83,17 @@ export default function Header() {
             >
               <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" />
             </TransitionChild>
-            <div className="fixed inset-0 z-50 justify-end">
+            <div className="fixed inset-0 z-[50] flex justify-end">
               <TransitionChild
                 as={Fragment}
-                enter="transition ease-in-out duration-300 transform"
+                enter="transition-all ease-in-out duration-300 transform"
                 enterFrom="translate-x-full"
                 enterTo="translate-x-0"
-                leave="transition ease-in-out duration-300 transform"
+                leave="transition-all ease-in-out duration-300 transform"
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <DialogPanel className="fixed inset-y-0 w-full backdrop-blur bg-background/70 overflow-y-auto right-0 z-50 ">
+                <DialogPanel className="w-full max-w-xs backdrop-blur bg-background/70 h-full overflow-y-auto  ">
                   <div className="-mt-6 divide-y divide-gray-500/10">
                     <div className="space-y-2 py-6">
                       <button
