@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ThemeProvider from "@/components/ui/ThemeProvider";
 import { Jost } from "next/font/google";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         >
           <Header />
           <main> {children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

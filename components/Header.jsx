@@ -1,5 +1,6 @@
 "use client";
 import {
+  Button,
   Dialog,
   DialogPanel,
   Transition,
@@ -23,13 +24,13 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <>
-      <header className="fixed top-0 px-4 sm:px-0 left-0 right-0 bg-background/50 backdrop-blur dark:bg-background/20 shadow-lg border-b border-b-primary z-[50]">
+      <header className="fixed top-0 px-4 md:px-0  py-4 sm:px-0 left-0 right-0 bg-background/50 backdrop-blur dark:bg-background/20 shadow-lg border-b border-b-primary z-[50]">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <div>
             <Link href="/">
               <Image
-                className="w-15 "
-                src="/logo-our-final.png"
+                className="w-25 "
+                src="/logo-light.png"
                 width="900"
                 height="300"
                 alt="Brand"
@@ -39,7 +40,7 @@ export default function Header() {
           <div className="hidden sm:flex justify-center space-x-4">
             {menu.map((menuItem) => (
               <Link
-                className="hover:underline hover:text-primary  hover:underline-offset-4 font-medium"
+                className="hover:underline hover:text-primary transition-all duration-300  hover:underline-offset-4 font-medium"
                 key={menuItem.id}
                 href={menuItem.link}
               >
@@ -49,28 +50,20 @@ export default function Header() {
           </div>
           <div className="flex items-center space-x-2">
             <ThemeToggle />
-            <button
-              type="button"
-              className="hidden sm:flex text-foreground cursor-pointer hover:text-primary font-medium"
-            >
+            <Button className="hidden sm:flex text-foreground cursor-pointer hover:text-primary font-medium">
               Login <span aria-hidden="true">&rarr;</span>
-            </button>
+            </Button>
 
-            <button
+            <Button
               className="flex md:hidden"
-              type="button"
               onClick={() => setMobileMenuOpen(true)}
             >
               <Bars3Icon className="size-6" />
-            </button>
+            </Button>
           </div>
         </div>
-        <Transition show={mobileMenuOpen} as={Fragment} className="md:hidden">
-          <Dialog
-            open={mobileMenuOpen}
-            onClose={setMobileMenuOpen}
-            className="md:hidden "
-          >
+        <Transition show={mobileMenuOpen} as={Fragment}>
+          <Dialog onClose={setMobileMenuOpen} className="md:hidden ">
             <TransitionChild
               onClick={() => setMobileMenuOpen(false)}
               as={Fragment}
@@ -86,10 +79,10 @@ export default function Header() {
             <div className="fixed inset-0 z-[50] flex justify-end">
               <TransitionChild
                 as={Fragment}
-                enter="transition-all ease-in-out duration-300 transform"
-                enterFrom="translate-x-full"
-                enterTo="translate-x-0"
-                leave="transition-all ease-in-out duration-300 transform"
+                enter="transition ease-in-out duration-300 transform"
+                enterFrom="translate-x-full opacity-0"
+                enterTo="translate-x-0 opacity-100"
+                leave="transition ease-in-out duration-300 transform"
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
@@ -108,6 +101,7 @@ export default function Header() {
                             className=" dark:text-foreground hover:text-red-300"
                             key={menuItem.id}
                             href={menuItem.link}
+                            onClick={() => setMobileMenuOpen(false)}
                           >
                             {menuItem.title}
                           </Link>

@@ -1,6 +1,8 @@
+import { Button } from "@headlessui/react";
+
 export default function HeroSection() {
   return (
-    <section className="flex flex-col justify-center items-center space-y-8 md:space-y-4">
+    <section className="flex flex-col justify-center items-center space-y-8 md:space-y-4 ">
       <div className="bg-badge px-4 py-1 shadow-2xl rounded-lg border border-primary">
         <h4 className="text-xs md:text-md tracking-tight">
           Welcome to Tech Resoolver <span aria-hidden="true">&rarr;</span>
@@ -13,13 +15,13 @@ export default function HeroSection() {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint excepturi
         amet incidunt dolores soluta atque qui illum doloribus, quam, possimus.
       </p>
-      <div className="flex flex-col md:flex-row justify-center items-center gap-2 ">
-        <button className="bg-button  font-medium text-muted px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer transition ">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-2 w-full">
+        <Button className="bg-button w-full md:w-auto transition-all duration-300  font-medium text-muted px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer  ">
           Get Free Consultancy
-        </button>
-        <button className="text-foreground font-medium hover:text-muted border-1 px-5 py-2 md:px-4 md:py-2 rounded-lg border-button cursor-pointer hover:bg-button">
+        </Button>
+        <Button className="text-foreground w-full md:w-auto transition-all duration-300 font-medium hover:text-muted border-1 px-5 py-2 md:px-4 md:py-2 rounded-lg border-button cursor-pointer hover:bg-button">
           See running projects
-        </button>
+        </Button>
       </div>
       {/* <div className="mt-5">
         <h4 className="text-center">Our Expertise:</h4>
