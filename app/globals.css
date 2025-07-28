@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --animate-loop-scroll: loop-scroll 20s linear infinite;
+
+  @keyframes loop-scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -18,21 +31,22 @@
   --background: oklch(1 0 0);
   --foreground: oklch(0.2077 0.0412 282.21);
   --muted: oklch(1 0 0);
-  --primary: oklch(0.793 0.2466 139.12);
-  --badge-color: oklch(0.94 0 0);
+  --primary: oklch(0.7983 0.1971 150.16);
+  --badge-color: oklch(33.289% 0.00004 271.152);
   --button: oklch(0.2077 0.0412 282.21);
   --secondary: oklch(31.317% 0.00004 271.152);
   --card: oklch(0.962 0.004 286.32);
   --border: oklch(0.2077 0.0412 282.21);
+  --tw-gradient-stops: #4ade80, #3b82f6, #8b5cf6;
 }
 .dark {
   --background: oklch(0.235 0 0);
   --foreground: oklch(1 0 0);
   --secondary: oklch(0.9249 0.00011 271.152);
   --muted: oklch(1 0 0);
-  --primary: oklch(0.793 0.2466 139.12);
-  --badge-color: oklch(0.793 0.2466 139.12);
-  --button: oklch(0.793 0.2466 139.12);
+  --primary: oklch(50.905% 0.14521 144.564);
+  --badge-color: oklch(63.676% 0.00007 271.152);
+  --button: oklch(71.429% 0.18345 149.474);
   --card: oklch(0.2768 0 0);
   --border: oklch(0.793 0.2466 139.12);
 }

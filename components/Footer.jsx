@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-card py-8 border-t border-t-primary shadow-primary px-4 md:px-0">
       <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         <div className="flex flex-col space-y-4">
-          <h2 className="text-lg font-semibold text-foreground">Menu</h2>
+          <h2 className="text-lg font-semibold text-green-400">Menu</h2>
           <ul className="space-y-2">
             <li className="hover:underline">
               <Link href="#">Home</Link>
@@ -22,7 +22,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="flex flex-col space-y-3">
-          <h2 className="text-lg font-semibold text-foreground">Menu2</h2>
+          <h2 className="text-lg font-semibold text-green-400">Menu2</h2>
           <ul className="space-y-2">
             <li className="hover:underline">
               <Link href="#">Blogs</Link>
@@ -39,7 +39,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="flex flex-col justify-start items-start space-y-4">
-          <h2 className="text-lg font-semibold text-foreground">
+          <h2 className="text-lg font-semibold text-green-400">
             Office Location
           </h2>
           <div className="flex flex-col space-y-4">
@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex flex-col space-y-3 w-full">
-          <h2 className="text-lg font-semibold text-foreground">Subscribe</h2>
+          <h2 className="text-lg font-semibold text-green-400">Subscribe</h2>
           <input
             type="email"
             className="border border-primary bg-background text-foreground  px-4 py-3 outline-none rounded-lg w-full"

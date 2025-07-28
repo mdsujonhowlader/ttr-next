@@ -1,7 +1,7 @@
 export function NextIcon() {
   return (
     <svg
-      className="size-6  mx-auto sm:mx-0 -rotate-20"
+      className="size-10  mx-auto sm:mx-0 -rotate-20"
       width="48"
       height="48"
       viewBox="0 0 48 48"
@@ -25,7 +25,7 @@ export function NextIcon() {
 export function LaravelIcon() {
   return (
     <svg
-      className="size-6  mx-auto sm:mx-0 -rotate-32"
+      className="size-10  mx-auto sm:mx-0 -rotate-32"
       width="48"
       height="50"
       viewBox="0 0 48 50"

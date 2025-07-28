@@ -1,4 +1,5 @@
 import {
+  Button,
   Tab,
   TabGroup,
   TabList,
@@ -10,7 +11,6 @@ import Image from "next/image";
 import { Fragment } from "react";
 
 import ourproducts from "@/utils/ourproducts";
-import Link from "next/link";
 
 export default function OurProduct() {
   return (
@@ -25,20 +25,24 @@ export default function OurProduct() {
       <TabGroup className="grid grid-cols-1 md:grid-cols-3  gap-4 my-10">
         {/* Tab List */}
         <TabList className="flex bg-card rounded-lg text-white flex-row md:flex-col items-start gap-4 md:gap-2 overflow-x-auto md:overflow-visible whitespace-nowrap px-2 py-2">
-          {ourproducts.map(({ name }) => (
+          {ourproducts.map(({ icon, name, des }) => (
             <Tab
               key={name}
-              className="shrink-0 list-none bg-button px-4 py-2 md:w-full rounded-lg dark:bg-button cursor-pointer hover:bg-button/95 transition-all duration-300"
+              className="shrink-0 list-none bg-button p-5 md:w-full rounded-lg dark:bg-button cursor-pointer hover:bg-button/95 transition-all duration-300 data-selected:bg-button/70 data-selected:data-hover:bg-button/95"
             >
-              {name}
+              <div className="flex items-center space-x-3">
+                <span>{icon}</span>
+                <h5 className="text-sm font-medium">{name}</h5>
+              </div>
+              <p className="text-justify tex-wrap text-sm">{des}</p>
             </Tab>
           ))}
         </TabList>
 
         {/* Tab Panels */}
-        <TabPanels className="md:col-span-2 relative bg-card overflow-hidden min-h-[240px] md:min-h-[440px] rounded-lg bg-gradient-to-tr from-green-200 to-green-400">
-          {ourproducts.map(({ name, contents }) => (
-            <TabPanel key={name}>
+        <TabPanels className="md:col-span-2 overflow-hidden rounded-lg ">
+          {ourproducts.map(({ name, contents, des }) => (
+            <TabPanel key={name} className="flex justify-center items-center ">
               <Transition
                 as={Fragment}
                 appear
@@ -50,25 +54,38 @@ export default function OurProduct() {
                 leaveFrom="opacity-100 translate-y-0 scale-100"
                 leaveTo="opacity-0 translate-y-4 scale-95"
               >
-                <div className=" border-2 border-border rounded-lg absolute top-1/4 -right-1/3 left-1/6 w-full">
+                <div className="rounded-lg grid grid-cols-1 sm:grid-cols-2 gap-4 items-center p-4">
                   {contents.map((content) => (
-                    <Image
+                    <div
                       key={content.id}
-                      src={content.src}
-                      alt={name}
-                      width={1200}
-                      height={800}
-                      className="object-cover aspect-video rounded-sm"
-                    />
+                      className="relative group w-full overflow-hidden shadow-lg rounded-lg bg-card"
+                    >
+                      <Image
+                        src={content.src}
+                        alt={name}
+                        width={1200}
+                        height={800}
+                        className="object-cover aspect-square rounded-t-lg"
+                      />
+                      <div className="p-4">
+                        <h2 className="text-xl font-bold mb-2">
+                          {content.contentName}
+                        </h2>
+                        <span className="text-sm  text-center">{des}</span>
+                        <Button className="mt-4 px-4 py-2 w-full cursor-pointer bg-button text-white rounded hover:bg-button/70 transition-colors duration-300">
+                          Read Case Studies
+                        </Button>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </Transition>
-              <Link
+              {/*  <Link
                 className="float-end px-4 text-muted py-2 bg-button shadow-black shadow-2xl font-semibold hover:bg-button/70 rounded-lg mt-3 md:mt-5 mr-4"
                 href="#"
               >
                 preview
-              </Link>
+              </Link> */}
             </TabPanel>
           ))}
         </TabPanels>

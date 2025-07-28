@@ -1,4 +1,4 @@
-import { BriefcaseIcon } from "@heroicons/react/24/outline";
+import { Briefcase } from "lucide-react";
 import Link from "next/link";
 
 const categorySection = [
@@ -10,13 +10,13 @@ const categorySection = [
   },
   {
     id: 2,
-    title: "Ads Campaign",
+    title: "Web Design & Developement",
     desc: "We deliver end-to-end digital solutions to streamline operations, boost revenue, and drive long-term growth.",
     link: "/learn-more",
   },
   {
     id: 3,
-    title: "Bug Fixing",
+    title: "Meta Marketing",
     desc: "We deliver end-to-end digital solutions to streamline operations, boost revenue, and drive long-term growth.",
     link: "/learn-more",
   },
@@ -33,22 +33,22 @@ export default function WhatWeDoSection() {
       <h2 className=" tracking-wide text-3xl font-bold mb-2 text-left md:text-center">
         What We Do?
       </h2>
-      <p className="text-base   text-gray-600 mb-4 text-left  md:text-center">
+      <p className="text-base  text-gray-400 mb-4 text-left  md:text-center">
         From custom websites to performance marketing, our team follows a proven
         process to ensure efficiency.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 justify-items-center items-center md:gap-x-2 gap-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center  items-center gap-4">
         {categorySection.map((category) => (
           <div
             key={category.id}
-            className="bg-card flex flex-col justify-center items-start space-y-4 p-5 rounded-md border border-transparent transition-colors duration-300 hover:border-border dark:hover:border-border "
+            className="bg-card flex flex-col justify-center items-start space-y-4 h-full overflow-hidden p-4 rounded-md border border-transparent transition-colors duration-300 hover:border-primary dark:hover:border-border "
           >
-            <BriefcaseIcon className="w-6 h-6 text-primary" />
-            <h3 className="text-2xl font-semibold text-left">
+            <Briefcase className="w-6 h-6 text-primary dark:text-secondary" />
+            <h3 className="text-xl font-semibold tracking-tight text-left flex-grow">
               {category.title}
             </h3>
-            <p className="text-base text-secondary">{category.desc}</p>
+            <p className="text-base text-secondary ">{category.desc}</p>
             <Link className=" hover:underline" href={category.link}>
               Learn More
             </Link>

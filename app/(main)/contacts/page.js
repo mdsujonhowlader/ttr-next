@@ -3,12 +3,13 @@
 export default function ContactPage() {
   return (
     <section className=" relative py-32 px-4 bg-transparent">
+      <div className="absolute inset-0  bg-radial-[125%_125%_at_50%_90%] from-white  from-40% to-green-500  to-100% dark:[background:radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(16,185,129,0.25),transparent_80%),_#000000] -z-50"></div>
       {/* Title Section */}
       <div className="flex flex-col items-center gap-4 text-center">
         <h1 className="text-3xl sm:text-4xl md:text-5xl text-primary font-bold">
           Contact With Us
         </h1>
-        <p className="text-muted max-w-2xl">
+        <p className=" max-w-2xl">
           We’re here to help and answer any question you might have. Fill out
           the form and we’ll be in touch as soon as possible.
         </p>

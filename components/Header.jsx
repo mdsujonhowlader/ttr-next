@@ -6,7 +6,9 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+//import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Menu, X } from "lucide-react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useState } from "react";
@@ -50,15 +52,15 @@ export default function Header() {
           </div>
           <div className="flex items-center space-x-2">
             <ThemeToggle />
-            <Button className="hidden sm:flex text-foreground cursor-pointer hover:text-primary font-medium">
-              Login <span aria-hidden="true">&rarr;</span>
+            <Button className="hidden md:flex bg-button text-primary dark:text-secondary hover:bg-button/90 transition outline-none rounded-lg px-4 py-2  cursor-pointer  font-medium">
+              Schedule a Call
             </Button>
 
             <Button
               className="flex md:hidden"
               onClick={() => setMobileMenuOpen(true)}
             >
-              <Bars3Icon className="size-6" />
+              <Menu className="size-6" />
             </Button>
           </div>
         </div>
@@ -93,7 +95,7 @@ export default function Header() {
                         onClick={() => setMobileMenuOpen(false)}
                         className="rounded-md p-2.5 dark:text-foreground"
                       >
-                        <XMarkIcon className="size-6" />
+                        <X className="size-6" />
                       </button>
                       <div className="flex flex-col space-y-2 pl-2.5">
                         {menu.map((menuItem) => (
@@ -109,9 +111,9 @@ export default function Header() {
                       </div>
                     </div>
                     <div className="p-2.5">
-                      <button className="dark:text-foreground hover:text-primary">
-                        Login <span aria-hidden="true">&rarr;</span>
-                      </button>
+                      <Button className="dark:text-foreground hover:text-primary">
+                        Login
+                      </Button>
                     </div>
                   </div>
                 </DialogPanel>

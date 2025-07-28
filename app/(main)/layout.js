@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ThemeProvider from "@/components/ui/ThemeProvider";
 import { Jost } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const jostSans = Jost({
   variable: "--font-jost-sans",
@@ -28,7 +28,8 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           <Header />
-          <main> {children}</main>
+
+          <main>{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
