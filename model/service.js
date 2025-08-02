@@ -10,9 +10,9 @@ const ServiceSchema = new Schema(
       type: String,
       required: true,
     },
-    image: {
-      type: String,
-      required: true,
+    imageId: {
+      type: Schema.Types.ObjectId,
+      ref: "images",
     },
     description: {
       type: String,

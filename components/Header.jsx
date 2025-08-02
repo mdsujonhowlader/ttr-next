@@ -36,6 +36,7 @@ export default function Header() {
                 width="900"
                 height="300"
                 alt="Brand"
+                priority
               />
             </Link>
           </div>

@@ -1,9 +1,11 @@
 import ThemeProvider from "@/components/ui/ThemeProvider";
 import { Jost } from "next/font/google";
+import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import "../globals.css";
 import Header from "./_components/Header";
 import Sidebar from "./_components/Sidebar";
+import LoadingDashboard from "./loading";
 
 const jostSans = Jost({
   variable: "--font-jost-sans",
@@ -28,16 +30,18 @@ export default function DashboardRootLayout({ children }) {
           enableSystem="false"
           disableTransitionOnChange
         >
-          <div className="h-screen flex flex-row">
-            <div className="absolute inset-0  bg-radial-[125%_125%_at_50%_90%] from-white  from-40% to-green-500  to-100% dark:[background:radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(16,185,129,0.25),transparent_80%),_#000000] -z-50"></div>
-            <Sidebar />
-            <div className="flex flex-col w-full overflow-hidden">
-              <Header />
-              <main className="overflow-y-auto h-full shrink-0 w-full mx-auto ">
-                {children}
-              </main>
+          <Suspense fallback={<LoadingDashboard />}>
+            <div className="h-screen flex flex-row">
+              <div className="absolute inset-0  bg-radial-[125%_125%_at_50%_90%] from-white  from-40% to-green-500  to-100% dark:[background:radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(16,185,129,0.25),transparent_80%),_#000000] -z-50"></div>
+              <Sidebar />
+              <div className="flex flex-col w-full overflow-hidden">
+                <Header />
+                <main className="overflow-y-auto h-full shrink-0 w-full mx-auto ">
+                  {children}
+                </main>
+              </div>
             </div>
-          </div>
+          </Suspense>
         </ThemeProvider>
         <Toaster position="bottom-right" />
       </body>

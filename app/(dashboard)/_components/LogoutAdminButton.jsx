@@ -2,7 +2,7 @@
 import { Button } from "@headlessui/react";
 import { useRouter } from "next/navigation";
 
-import { logoutAdmin } from "@/app/actions/actions";
+import { logoutAdmin } from "@/actions/loginAction";
 export default function LogoutAdminButton() {
   const router = useRouter();
   async function handleLogout() {

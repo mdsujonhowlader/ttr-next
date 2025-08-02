@@ -1,5 +1,5 @@
+import { cn } from "@/lib/utils";
 import { Button } from "@headlessui/react";
-import clsx from "clsx";
 
 const busineses = [
   {
@@ -35,12 +35,12 @@ const busineses = [
 ];
 
 const styleMap = {
-  rose: "bg-rose-900/20 border-rose-400",
-  blue: "bg-blue-900/20 border-blue-400",
-  orange: "bg-orange-900/20 border-orange-400",
-  purple: "bg-purple-900/20 border-purple-400",
-  emerald: "bg-emerald-900/20 border-emerald-400",
-  white: "bg-white border-white",
+  rose: "dark:bg-rose-900/20 border-rose-400",
+  blue: "dark:bg-blue-900/20 border-blue-400",
+  orange: "dark:bg-orange-900/20 border-orange-400",
+  purple: "dark:bg-purple-900/20 border-purple-400",
+  emerald: "dark:bg-emerald-900/20 border-emerald-400",
+  white: "dark:bg-white border-white",
 };
 
 const textColorStyle = {
@@ -52,7 +52,7 @@ const textColorStyle = {
   white: "text-white",
 };
 
-export default function HeroSection() {
+export default function HeroSection({ appearances }) {
   return (
     <section className="flex flex-col justify-center items-center  space-y-10 md:space-y-8">
       <div className="dark:bg-badge/20 bg-badge px-4 py-1 text-white rounded-lg shadow">
@@ -64,21 +64,24 @@ export default function HeroSection() {
         </h4>
       </div>
       <h1 className="w-4/4 md:w-4/5  font-bold md:font-bold text-4xl tracking-tight  md:text-5xl leading-normal uppercase text-center">
-        Today Started Journey <span className="text-primary">with us</span>
+        Today Started Journey{" "}
+        {/* className={cn(`text-[${appearances.primaryColor || "#1d4ed8"}]`)} */}
+        <span style={{ color: appearances?.primaryColor || "#1d4ed8" }}>
+          with us
+        </span>
       </h1>
       <div>
-        {/*  `bg-${busines.color}-900/20 border-2 border-${busines.color}-400` */}
         <div className="grid grid-cols-2 overflow-x-auto md:grid-cols-6 justify-items-center items-center gap-x-3 gap-y-3 sm:gap-x-3 ">
           {busineses.map((busines) => (
             <div
               key={busines.id}
-              className={clsx(
+              className={cn(
                 "text-center rounded-full border-2  text-sm px-5 py-2 ",
                 styleMap[busines.color]
               )}
             >
               <h5
-                className={clsx(
+                className={cn(
                   "font-semibold text-md  tracking-tight",
                   textColorStyle[busines.color]
                 )}
@@ -97,7 +100,12 @@ export default function HeroSection() {
         <Button className="bg-button w-full md:w-auto transition-all duration-300  font-medium text-white px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer  ">
           Get Free Consultancy
         </Button>
-        <Button className=" w-full md:w-auto transition-all duration-300 font-medium  dark:text-black bg-white shadow px-5 py-2 md:px-4 md:py-2 rounded-lg border-button cursor-pointer hover:bg-button">
+        <Button
+          className={cn(
+            "w-full md:w-auto transition-all  duration-300 font-medium text-black  bg-white shadow hover:text-white px-5 py-2 md:px-4 md:py-2 rounded-lg border-button cursor-pointer hover:bg-button"
+          )}
+          style={{ color: appearances?.primaryColor || "#1d4ed8" }}
+        >
           See running projects
         </Button>
       </div>

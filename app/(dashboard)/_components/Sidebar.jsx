@@ -18,9 +18,10 @@ export default function Sidebar() {
           <Image
             className="w-25"
             src="/logo-light.png"
-            width="900"
-            height="300"
+            width={900}
+            height={300}
             alt="Brand"
+            priority
           />
         </Link>
       </div>

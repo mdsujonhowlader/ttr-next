@@ -1,4 +1,4 @@
-import { loginAdmin } from "@/app/actions/actions";
+import { loginAdmin } from "@/actions/loginAction";
 import LoginButton from "@/components/LoginButton";
 import { Field, Input, Label } from "@headlessui/react";
 import clsx from "clsx";

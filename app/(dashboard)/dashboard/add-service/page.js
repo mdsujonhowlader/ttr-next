@@ -1,13 +1,18 @@
 "use client";
 import { Button, Field, Input, Label, Textarea } from "@headlessui/react";
 import clsx from "clsx";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import ServiceImageModal from "../../_components/ServiceImageModal";
 
 export default function ServiceLayout() {
+  const [isOpen, setIsOpen] = useState(false);
+
   async function handleSubmitService(event) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const payload = Object.fromEntries(formData);
+
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/service`,
@@ -39,6 +44,7 @@ export default function ServiceLayout() {
 
   return (
     <section className="mt-5 mb-30 z-50 overflow-auto">
+      <ServiceImageModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <h2 className="text-3xl text-center font-medium mb-4">
         Add <span className="text-gray-400 dark:text-primary">Service</span>
       </h2>
@@ -78,7 +84,12 @@ export default function ServiceLayout() {
           </Label>
           <Input
             name="image"
-            type="text"
+            type="file"
+            readOnly
+            onClick={(e) => {
+              e.preventDefault();
+              setIsOpen(true);
+            }}
             className={clsx(
               "mt-3 block w-full rounded-lg border-none dark:bg-white/5  bg-black/10 px-3 py-1.5 text-sm/6 dark:text-white text-black",
               "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"

@@ -38,5 +38,5 @@ export async function loginAdmin(formData) {
 }
 
 export async function logoutAdmin() {
-  cookies().delete("admin-auth");
+  await cookies().delete("admin-auth");
 }

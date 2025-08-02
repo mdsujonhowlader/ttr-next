@@ -1,6 +1,9 @@
+import { getImages } from "@/actions/gellaryAction";
 import Gallery from "../../_components/Gallery";
+import UploadButton from "../../_components/UploadButton";
 
-export default function UploadFilePages() {
+export default async function UploadFilePages() {
+  const images = await getImages();
   return (
     <div className="mt-10 mb-30 px-4 z-20 overflow-auto ">
       <div className="space-y-6 ">
@@ -9,9 +12,7 @@ export default function UploadFilePages() {
           <h2 className="text-xl font-semibold tracking-tight">
             All uploaded files
           </h2>
-          <button className="inline-flex text-white bg-emerald-600  dark:bg-emerald-800/40 rounded-lg font-semibold tracking-tight hover:bg-emerald-800 hover:text-white  transition-colors duration-200 focus:outline-none px-4 py-2 dark:text-emerald-500">
-            Upload New File
-          </button>
+          <UploadButton />
         </div>
 
         {/* Gallery Grid */}
@@ -23,15 +24,7 @@ export default function UploadFilePages() {
               <h4>Search Image by Name</h4>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <Gallery />
-            <Gallery />
-            <Gallery />
-            <Gallery />
-            <Gallery />
-            <Gallery />
-            <Gallery />
-          </div>
+          <Gallery images={images} />
         </div>
       </div>
     </div>
