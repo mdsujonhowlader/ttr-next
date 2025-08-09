@@ -13,7 +13,8 @@ export default function LoginButton() {
         pending ? " cursor-not-allowed" : " hover:bg-button/90"
       )}
     >
-      {pending ? "Logging in..." : "Login"}
+      {pending ? "Logging in..." : "Login "}
+      {/* test */}
     </button>
   );
 }
