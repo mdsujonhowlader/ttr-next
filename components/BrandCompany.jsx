@@ -17,37 +17,37 @@ export default function BrandCompany() {
         </h2>
       </div>
 
-      <div className="flex overflow-hidden space-x-16 ">
+      <div className=" flex overflow-hidden  space-x-16 [mask-image:linear-gradient(to_left,transparent,black_25%,black_85%,transparent)]">
         <div className="md:my-4 animate-loop-scroll flex items-center  space-x-16 min-w-0">
           {logos.map((src, i) => (
             <div
               key={i}
-              className="bg-card fill-white px-3 rounded-lg self-center py-1 flex-shrink-0"
-            >
-              <Image
-                src={src}
-                width={2000}
-                height={1000}
-                className="w-44 filter  grayscale brightness-125 contrast-125"
-                alt="company"
-              />
-            </div>
-          ))}
-        </div>
-        <div
-          className="md:my-4 animate-loop-scroll flex items-center space-x-16 min-w-0 opacity-0"
-          aria-hidden="true"
-        >
-          {logos.map((src, i) => (
-            <div
-              key={i}
-              className="bg-card fill-white px-3 rounded-lg self-center py-1 flex-shrink-0"
+              className="bg-white  dark:border-gray-800 border-1 border-gray-100 shadow-sm fill-white px-3 rounded-lg self-center py-1 flex-shrink-0"
             >
               <Image
                 src={src}
                 width={2000}
                 height={1000}
                 className="w-44 "
+                alt="company"
+              />
+            </div>
+          ))}
+        </div>
+        <div
+          className="md:my-4 flex items-center space-x-16 min-w-0 opacity-0"
+          aria-hidden="true"
+        >
+          {logos.map((src, i) => (
+            <div
+              key={i}
+              className="bg-white fill-white  px-3 rounded-lg self-center py-1 flex-shrink-0"
+            >
+              <Image
+                src={src}
+                width={2000}
+                height={1000}
+                className="w-44 object-contain"
                 alt="company"
               />
             </div>

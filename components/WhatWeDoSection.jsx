@@ -26,11 +26,23 @@ const categorySection = [
     desc: "We deliver end-to-end digital solutions to streamline operations, boost revenue, and drive long-term growth.",
     link: "/learn-more",
   },
+  {
+    id: 5,
+    title: "AI  Solution",
+    desc: "We deliver end-to-end digital solutions to streamline operations, boost revenue, and drive long-term growth.",
+    link: "/learn-more",
+  },
+  {
+    id: 6,
+    title: "Busienss Consultancy",
+    desc: "We deliver end-to-end digital solutions to streamline operations, boost revenue, and drive long-term growth.",
+    link: "/learn-more",
+  },
 ];
 export default function WhatWeDoSection() {
   return (
-    <section className="my-12 flex flex-col space-y-5">
-      <h2 className=" tracking-wide text-3xl font-bold mb-2 text-left md:text-center">
+    <section className="mb-20">
+      <h2 className="tracking-tight text-5xl font-bold mb-2 text-left md:text-center">
         What We Do?
       </h2>
       <p className="text-base  text-gray-400 mb-4 text-left  md:text-center">
@@ -42,7 +54,7 @@ export default function WhatWeDoSection() {
         {categorySection.map((category) => (
           <div
             key={category.id}
-            className="bg-card flex flex-col justify-center items-start space-y-4 h-full overflow-hidden p-4 rounded-md border border-transparent transition-colors duration-300 hover:border-primary dark:hover:border-border "
+            className="bg-white shadow-sm  flex flex-col justify-center items-start space-y-4 h-full overflow-hidden p-4 rounded-lg border border-gray-200 transition-colors duration-300 hover:border-primary  dark:bg-black dark:border-gray-800"
           >
             <Briefcase className="w-6 h-6 text-primary dark:text-secondary" />
             <h3 className="text-xl font-semibold tracking-tight text-left flex-grow">

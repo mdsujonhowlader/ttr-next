@@ -2,7 +2,11 @@ import mongoose, { model, models } from "mongoose";
 
 const AppearanceSchema = new mongoose.Schema(
   {
-    primaryColor: {
+    type: {
+      type: String,
+      required: true,
+    },
+    value: {
       type: String,
       required: true,
     },

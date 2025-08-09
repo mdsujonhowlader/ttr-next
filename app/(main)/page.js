@@ -9,6 +9,7 @@ import { NextIcon } from "@/utils/svg-util";
 import Image from "next/image";
 export default async function Home() {
   const appearances = await getAppearances();
+
   return (
     <>
       <div className="relative h-screen">

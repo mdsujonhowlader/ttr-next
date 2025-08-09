@@ -6,13 +6,15 @@ const ServiceSchema = new Schema(
       type: String,
       required: true,
     },
-    icon: {
-      type: String,
+    iconId: {
+      type: Schema.Types.ObjectId,
+      ref: "images",
       required: true,
     },
     imageId: {
       type: Schema.Types.ObjectId,
       ref: "images",
+      required: true,
     },
     description: {
       type: String,
@@ -22,4 +24,6 @@ const ServiceSchema = new Schema(
   { timestamps: true, versionKey: false }
 );
 
-export default models.Services || model("Services", ServiceSchema);
+const serviceModel = models.Services || model("Services", ServiceSchema);
+
+export default serviceModel;

@@ -6,10 +6,10 @@ import { revalidatePath } from "next/cache";
 import path from "path";
 export async function uploadImages(formData) {
   const file = formData.get("image");
+
   if (!file || typeof file === "string") {
     return { success: false, message: "No file uploaded" };
   }
-  console.log(file);
 
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
@@ -30,7 +30,6 @@ export async function uploadImages(formData) {
     });
     return { success: true, url };
   } catch (e) {
-    console.error("File upload failed:", e);
     return { success: false, message: "File upload failed" };
   }
 }
@@ -38,9 +37,14 @@ export async function uploadImages(formData) {
 export async function getImages() {
   try {
     await connectMongo();
-    const images = await imageModel.find();
-    return images;
+    const images = await imageModel.find({}, "_id filename path").lean();
+    return images.map((img) => ({
+      _id: img._id.toString(),
+      filename: img.filename,
+      path: img.path,
+    }));
   } catch (e) {
     console.log(e);
+    return [];
   }
 }

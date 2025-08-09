@@ -1,6 +1,6 @@
 import { postAppearance } from "@/actions/appearanceAction";
+import { cn } from "@/lib/utils";
 import { Button, Field, Input, Label } from "@headlessui/react";
-import clsx from "clsx";
 export default function SettingsPage() {
   return (
     <section className="mt-5 mb-30 z-50 overflow-auto">
@@ -14,14 +14,53 @@ export default function SettingsPage() {
         action={postAppearance}
         className="flex flex-col justify-center items-center mx-auto w-1/2 bg-card p-4 rounded-lg"
       >
-        <Field as="div" className="flex flex-col w-full mb-5">
+        <Field as="div" className="flex flex-col w-full ">
           <Label className="text-sm/6 font-medium dark:text-white text-black">
             Primary Color
           </Label>
           <Input
-            name="primaryColor"
+            name="type[]"
             type="text"
-            className={clsx(
+            value="primaryColor"
+            hidden
+            readOnly
+            className={cn(
+              "mt-3 block w-full rounded-lg border-none dark:bg-white/5  bg-black/10 px-3 py-1.5 text-sm/6 dark:text-white text-black",
+              "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"
+            )}
+          />
+        </Field>
+        <Field as="div" className="flex flex-col w-full mb-5">
+          <Input
+            name="value[]"
+            type="text"
+            className={cn(
+              "mt-3 block w-full rounded-lg border-none dark:bg-white/5  bg-black/10 px-3 py-1.5 text-sm/6 dark:text-white text-black",
+              "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"
+            )}
+          />
+        </Field>
+        <Field as="div" className="flex flex-col w-full ">
+          <Label className="text-sm/6 font-medium dark:text-white text-black">
+            Secondary Color
+          </Label>
+          <Input
+            name="type[]"
+            type="text"
+            value="secondaryColor"
+            hidden
+            readOnly
+            className={cn(
+              "mt-3 block w-full rounded-lg border-none dark:bg-white/5  bg-black/10 px-3 py-1.5 text-sm/6 dark:text-white text-black",
+              "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"
+            )}
+          />
+        </Field>
+        <Field as="div" className="flex flex-col w-full mb-5">
+          <Input
+            name="value[]"
+            type="text"
+            className={cn(
               "mt-3 block w-full rounded-lg border-none dark:bg-white/5  bg-black/10 px-3 py-1.5 text-sm/6 dark:text-white text-black",
               "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"
             )}

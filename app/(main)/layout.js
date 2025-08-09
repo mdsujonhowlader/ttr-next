@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ThemeProvider from "@/components/ui/ThemeProvider";
 import { Jost } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "../globals.css";
 
 const jostSans = Jost({
@@ -23,13 +24,16 @@ export default function RootLayout({ children }) {
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem="false"
+          defaultTheme="system"
+          enableSystem="true"
           disableTransitionOnChange
         >
           <Header />
 
-          <main>{children}</main>
+          <main>
+            {children}
+            <Toaster position="bottom-right" />
+          </main>
           <Footer />
         </ThemeProvider>
       </body>

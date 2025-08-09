@@ -14,9 +14,9 @@ import ourproducts from "@/utils/ourproducts";
 
 export default function OurProduct() {
   return (
-    <section className="py-8 ">
+    <section className="my-10">
       <div className="text-center max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold mb-2">Our Creative Works</h1>
+        <h1 className="text-5xl font-bold mb-2">Our Creative Works</h1>
         <p className="text-secondary">
           We provide powerful digital solutions tailored for various industries.
         </p>

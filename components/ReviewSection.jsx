@@ -45,11 +45,11 @@ const client = [
 
 export default function ReviewSection() {
   return (
-    <section className="grid justify-items-center gap-5 my-10 px-4">
+    <section className="flex flex-col justify-center items-center my-20 px-4">
       {/* Header */}
-      <div className="space-y-3 max-w-3xl text-center">
-        <h1 className="text-3xl font-bold">What our Clients Say</h1>
-        <p className="text-pretty tracking-tight text-base text-gray-500">
+      <div className="space-y-3 max-w-3xl">
+        <h1 className="text-5xl font-bold text-center">What our Clients Say</h1>
+        <p className="text-pretty tracking-tight text-base text-gray-500 text-center">
           Our honorable clients reviewed our work. Read this before placing your
           order.
         </p>
@@ -67,11 +67,11 @@ export default function ReviewSection() {
           },
         }}
         modules={[Autoplay]}
-        className="w-full max-w-6xl mt-8"
+        className="w-full max-w-6xl my-8"
       >
         {client.map((clientData) => (
           <SwiperSlide key={clientData.id}>
-            <div className="bg-card p-5 rounded-lg shadow-md h-full space-y-4">
+            <div className="bg-white border border-gray-100 shadow-xs  p-5 rounded-lg h-full space-y-4 dark:bg-black dark:border-gray-800">
               <div className="flex items-center space-x-3">
                 <Image
                   src={clientData.src}

@@ -2,19 +2,30 @@
 
 import connectMongo from "@/lib/mongoose";
 import AppearanceModel from "@/model/appearance";
-// get color:name-> primaryColor
+
 export async function postAppearance(formData) {
-  const primaryColor = formData.get("primaryColor")?.toString();
+  const types = formData.getAll("type[]");
+  const values = formData.getAll("value[]");
+
+  const appearances = types.map((type, i) => ({
+    type,
+    value: values[i],
+  }));
+
+  console.log(appearances);
+
   try {
     await connectMongo();
-
-    const appearances = await AppearanceModel.create({ primaryColor });
+    await AppearanceModel.insertMany(appearances);
     return {
       success: true,
-      appearances: JSON.parse(JSON.stringify(appearances)),
     };
-  } catch (e) {
-    console.log(e.message);
+  } catch (err) {
+    console.error("Failed to save appearance:", err.message);
+    return {
+      success: false,
+      message: err.message,
+    };
   }
 }
 
