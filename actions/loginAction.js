@@ -7,8 +7,6 @@ import { cookies } from "next/headers";
 export async function loginAdmin(formData) {
   const email = formData.get("email");
   const password = formData.get("password");
- 
-  
 
   try {
     await connectMongo();
@@ -27,12 +25,13 @@ export async function loginAdmin(formData) {
       value: "true",
       httpOnly: true,
       path: "/",
+
       maxAge: 60 * 60 * 24,
     });
-    redirect("/dashboard");
-  } catch (e) {
-    console.log(e.message);
-    return { error: "Something went wrong" };
+    return { success: true };
+  } catch (error) {
+    console.error("Login action failed:", error);
+    return { error: "An unexpected error occurred. Please try again later." };
   }
 }
 

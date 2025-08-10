@@ -11,6 +11,9 @@ export default function LoginPage() {
     if (res.error) {
       console.log(res.error);
       toast.error(res.error);
+    } else if (res.success) {
+      toast.success("Login successfully");
+      window.location.href = "/dashboard";
     }
 
     // if (res) {
