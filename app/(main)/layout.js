@@ -1,12 +1,12 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ThemeProvider from "@/components/ui/ThemeProvider";
-import { Jost } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "../globals.css";
 
-const jostSans = Jost({
-  variable: "--font-jost-sans",
+const interSans = Inter({
+  variable: "--font-inter-sans",
   subsets: ["latin"],
 });
 
@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${jostSans.variable}  antialiased`}
+        className={`${interSans.variable}  antialiased`}
         cz-shortcut-listen="true"
       >
         <ThemeProvider
@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           <Header />
-
+          <div className="absolute inset-0 -z-10 bg-radial-[125%_125%_at_50%_50%] from-white  from-40% to-green-500  to-100% dark:[background:radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(16,185,129,0.25),transparent_80%),_#000000] md:mask-b-from-60%"></div>
           <main>
             {children}
             <Toaster position="bottom-right" />

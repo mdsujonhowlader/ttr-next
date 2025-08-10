@@ -11,6 +11,7 @@ import IconUploaderButton from "./IconUploaderButton";
 export default function ServiceFormClient({ safeImages }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const [editorContent, setEditorContent] = useState("");
   return (
     <form
       action={async (formData) => {
@@ -19,6 +20,7 @@ export default function ServiceFormClient({ safeImages }) {
           toast.success(res.msg);
           setSelectedImage(null);
           setSelectedIcon(null);
+          setEditorContent("");
         } else if (res.errors) {
           Object.values(res.errors).forEach((err) => {
             toast.error(typeof err === "string" ? err : err.message);
@@ -54,7 +56,7 @@ export default function ServiceFormClient({ safeImages }) {
         <Label className="font-medium  text-gray-500">Description</Label>
 
         <Textarea
-          name="description"
+          name="shortdescription"
           placeholder="Service Description"
           className={cn(
             "mt-1 block w-full rounded-lg border-none  bg-black/5 px-3 py-2 text-md text-gray-600",
@@ -65,7 +67,13 @@ export default function ServiceFormClient({ safeImages }) {
       </Field>
       <div className="w-full mb-5">
         <div className="font-medium text-gray-500">Long Description</div>
-        <TiptapEditor />
+        <TiptapEditor onContentChange={setEditorContent} />
+        <textarea
+          name="longDescription"
+          value={editorContent}
+          className="hidden"
+          readOnly
+        />
       </div>
       <Button
         type="submit"

@@ -2,15 +2,15 @@ import languagesAndTools from "@/utils/languageandtools";
 import Image from "next/image";
 export default function LanguagesAndTools() {
   return (
-    <section className="py-8">
+    <section className="mb-20">
       <div className="text-center max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold mb-2">Language and Tools</h1>
+        <h1 className="text-5xl font-bold mb-2">Language and Tools</h1>
         <p className="text-secondary">
           We provide powerful digital solutions tailored for various industries.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 my-8 ">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mt-8">
         {languagesAndTools.map((lt) => (
           <div
             key={lt.id}

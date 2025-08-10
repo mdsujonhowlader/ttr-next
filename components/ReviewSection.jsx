@@ -7,45 +7,45 @@ import { Swiper, SwiperSlide } from "swiper/react";
 const client = [
   {
     id: 1,
-    name: "Tanvirul Islam",
-    designation: "Co Founder & CEO",
-    company: "YOYO Ltd.",
-    src: "/review/icon.webp",
+    name: "John Anderson",
+    designation: "CEO ",
+    company: "BrightWave Solutions",
+    src: "/review/jhon.jpg",
     reviewDes:
-      "We deliver end-to-end digital solutions to streamline operations, boost revenue, and drive long-term growth.",
+      "Working with The Tech Resolver has been an outstanding experience. Their team is highly professional and always delivers projects on time. From website design to functionality, their expertise is clearly visible. Thank you for your excellent service!",
   },
   {
     id: 2,
-    name: "Himel Nakib",
-    designation: "Co Founder & CEO",
-    company: "ZOZO Ltd.",
+    name: "Maria Lopez",
+    designation: "Marketing Director",
+    company: "GreenLeaf Enterprises",
     src: "/review/icon.webp",
     reviewDes:
-      "We deliver end-to-end digital solutions to streamline operations, boost revenue, and drive long-term growth.",
+      "The Tech Resolver created a modern, fast-loading website for our business that significantly enhanced our online presence. Their support service is excellent, providing quick assistance whenever needed.",
   },
   {
     id: 3,
-    name: "Sujon Howlader",
-    designation: "Founder & CEO",
-    company: "Mega Digital",
-    src: "/review/sujon.jpg",
+    name: "David Kim",
+    designation: "CTO ",
+    company: "NextGen Innovations",
+    src: "/review/david.jpg",
     reviewDes:
-      "We deliver end-to-end digital solutions to streamline operations, boost revenue, and drive long-term growth.",
+      "Prompt communication, reliability, and exceptional service are what make The Tech Resolver stand out. Their work quality exceeded our expectations. I look forward to collaborating with them again in the future.",
   },
   {
     id: 4,
-    name: "Sujon Howlader",
-    designation: "Founder & CEO",
-    company: "Mega Digital",
-    src: "/review/sujon.jpg",
+    name: "Samantha Patel",
+    designation: "Head of Digital Marketing",
+    company: "UrbanX Corp",
+    src: "/review/samanta.jpg",
     reviewDes:
-      "We deliver end-to-end digital solutions to streamline operations, boost revenue, and drive long-term growth.",
+      "Choosing The Tech Resolver for our digital marketing campaign and website development was the right decision. They completed the project on time and within budget. I highly recommend their services",
   },
 ];
 
 export default function ReviewSection() {
   return (
-    <section className="flex flex-col justify-center items-center my-20 px-4">
+    <section className="flex flex-col justify-center items-center mb-20 px-4">
       {/* Header */}
       <div className="space-y-3 max-w-3xl">
         <h1 className="text-5xl font-bold text-center">What our Clients Say</h1>
@@ -78,7 +78,7 @@ export default function ReviewSection() {
                   alt="reviewer"
                   width={40}
                   height={40}
-                  className="w-10 h-10 rounded-full"
+                  className="w-10 h-10 object-cover rounded-full"
                 />
                 <div className="flex flex-col">
                   <h4 className="text-sm font-medium">{clientData.name}</h4>
@@ -87,7 +87,7 @@ export default function ReviewSection() {
                   </p>
                 </div>
               </div>
-              <div className="text-sm text-gray-700 dark:text-gray-300 italic">
+              <div className="text-sm text-gray-700 dark:text-gray-300 italic line-clamp-3">
                 “{clientData.reviewDes}”
               </div>
               <p className="text-sm text-primary font-semibold">

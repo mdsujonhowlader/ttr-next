@@ -16,7 +16,11 @@ const ServiceSchema = new Schema(
       ref: "images",
       required: true,
     },
-    description: {
+    shortdescription: {
+      type: String,
+      required: true,
+    },
+    longDescription: {
       type: String,
       required: true,
     },

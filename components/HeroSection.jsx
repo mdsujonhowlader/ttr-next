@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@headlessui/react";
+import Link from "next/link";
 
 const busineses = [
   {
@@ -97,9 +98,12 @@ export default function HeroSection({ appearances }) {
         amet incidunt dolores soluta atque qui illum doloribus, quam, possimus.
       </p>
       <div className="flex flex-col md:flex-row justify-center items-center gap-2 w-full">
-        <Button className="bg-button w-full md:w-auto transition-all duration-300  font-medium text-white px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer  ">
+        <Link
+          href="/contacts"
+          className="bg-button w-full md:w-auto transition-all duration-300  font-medium text-white px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer  "
+        >
           Get Free Consultancy
-        </Button>
+        </Link>
         <Button
           className={cn(
             "w-full md:w-auto transition-all  duration-300 font-medium text-black  bg-white shadow hover:text-white px-5 py-2 md:px-4 md:py-2 rounded-lg border-button cursor-pointer hover:bg-button"

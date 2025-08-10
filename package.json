@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
+    "@tiptap/extension-highlight": "^3.0.9",
+    "@tiptap/extension-text-align": "^3.0.9",
     "@tiptap/pm": "^3.0.9",
     "@tiptap/react": "^3.0.9",
     "@tiptap/starter-kit": "^3.0.9",
@@ -28,6 +30,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.16",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
     "tailwindcss": "^4"

@@ -1,5 +1,6 @@
 "use server";
 import connectMongo from "@/lib/mongoose";
+import "@/model/image";
 import serviceModel from "@/model/service";
 import { serviceSchema } from "@/validation/serviceSchema";
 export async function postServices(formData) {
@@ -7,7 +8,8 @@ export async function postServices(formData) {
     title: formData.get("title"),
     iconId: formData.get("iconId"),
     imageId: formData.get("imageId"),
-    description: formData.get("description"),
+    shortdescription: formData.get("shortdescription"),
+    longDescription: formData.get("longDescription"),
   };
 
   const validation = serviceSchema.safeParse(data);
@@ -28,5 +30,35 @@ export async function postServices(formData) {
   } catch (err) {
     const msg = err.message;
     return { success: false, msg };
+  }
+}
+
+export async function getServices() {
+  try {
+    await connectMongo();
+
+    const servicedata = await serviceModel
+      .find({}, "_id iconId shortdescription")
+      .populate("iconId", "path")
+      .lean();
+    return servicedata;
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+}
+
+export async function getServicesById(id) {
+  try {
+    await connectMongo();
+    const service = await serviceModel
+      .findById(id)
+      .populate("iconId", "path")
+      .populate("imageId", "path")
+      .lean();
+    return service;
+  } catch (error) {
+    console.log(error);
+    return { error };
   }
 }

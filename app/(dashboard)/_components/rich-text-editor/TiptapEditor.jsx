@@ -1,26 +1,49 @@
 "use client";
+
+import Highlight from "@tiptap/extension-highlight";
+import TextAlign from "@tiptap/extension-text-align";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { useState } from "react";
 import MenuBar from "./MenuBar";
 
-export default function TiptapEditor() {
+export default function TiptapEditor({ onContentChange }) {
+  const [_, setForceUpdate] = useState(0);
+
   const editor = useEditor({
-    extensions: [StarterKit],
-    content: "<p>Hello World! </p>",
+    extensions: [
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3, 4],
+        },
+      }),
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
+      Highlight,
+    ],
+    immediatelyRender: false,
+    content: "",
     editorProps: {
       attributes: {
         class:
-          "mt-1 block w-full rounded-lg border-none min-h-[150px] bg-black/5 px-3 py-2 text-md text-gray-600",
+          "prose dark:prose-invert prose-sm sm:prose-base m-5 focus:outline-none",
       },
     },
-    // Don't render immediately on the server to avoid SSR issues
-    immediatelyRender: false,
+    onUpdate: ({ editor }) => {
+      if (onContentChange) {
+        onContentChange(editor.getHTML());
+      } else {
+        onContentChange("");
+      }
+      setForceUpdate(Date.now());
+    },
   });
 
   return (
-    <>
+    <div className="rounded-lg border border-gray-200 dark:border-gray-700">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-    </>
+    </div>
   );
 }
