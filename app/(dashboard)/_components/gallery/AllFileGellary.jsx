@@ -65,7 +65,7 @@ export default function AllFileGellary({
                       onClick={() => onSelect(img)}
                     >
                       <Image
-                        src={img.path}
+                        src={img.url}
                         alt={img.filename}
                         width={100}
                         height={100}

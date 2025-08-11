@@ -49,7 +49,7 @@ export default function IconUploaderButton({
         {selectedIcon ? (
           <div className="mt-2 border border-primary w-1/4 rounded-lg">
             <Image
-              src={selectedIcon.path}
+              src={selectedIcon.url}
               alt={selectedIcon.filename}
               width={300}
               height={300}

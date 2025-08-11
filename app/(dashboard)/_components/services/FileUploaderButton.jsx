@@ -49,7 +49,7 @@ export default function FileUploaderButton({
         {selectedImage ? (
           <div className="mt-2 border border-primary w-1/4 rounded-lg">
             <Image
-              src={selectedImage.path}
+              src={selectedImage.url}
               alt="kkk"
               width={300}
               height={300}

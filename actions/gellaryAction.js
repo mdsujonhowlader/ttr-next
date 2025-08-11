@@ -1,9 +1,14 @@
 "use server";
 import connectMongo from "@/lib/mongoose";
 import imageModel from "@/model/image";
-import { writeFile } from "fs/promises";
+import { v2 as cloudinary } from "cloudinary";
 import { revalidatePath } from "next/cache";
-import path from "path";
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 export async function uploadImages(formData) {
   const file = formData.get("image");
 
@@ -11,25 +16,33 @@ export async function uploadImages(formData) {
     return { success: false, message: "No file uploaded" };
   }
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-
-  const uploadDir = path.join(process.cwd(), "public", "uploads");
-  const fileName = `${Date.now()}-${Math.random()
-    .toString(36)
-    .substring(2)}-${file.name.replace(/\s+/g, "_")}`;
-  const filePath = path.join(uploadDir, fileName);
-  const url = `/uploads/${fileName}`;
   try {
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    // Upload to Cloudinary
+    const uploadResult = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream({ folder: "my_uploads" }, (error, result) => {
+          if (error) return reject(error);
+          resolve(result);
+        })
+        .end(buffer);
+    });
+
+    // Save to MongoDB
     await connectMongo();
-    await writeFile(filePath, buffer);
-    revalidatePath("/");
     await imageModel.create({
       filename: file.name,
-      path: url,
+      url: uploadResult.secure_url, // Cloudinary URL
+      public_id: uploadResult.public_id, // For delete later
     });
-    return { success: true, url };
+
+    revalidatePath("/");
+
+    return { success: true, url: uploadResult.secure_url };
   } catch (e) {
+    console.error("Upload Error:", e);
     return { success: false, message: "File upload failed" };
   }
 }
@@ -37,11 +50,11 @@ export async function uploadImages(formData) {
 export async function getImages() {
   try {
     await connectMongo();
-    const images = await imageModel.find({}, "_id filename path").lean();
+    const images = await imageModel.find({}, "_id filename url").lean();
     return images.map((img) => ({
       _id: img._id.toString(),
       filename: img.filename,
-      path: img.path,
+      url: img.url,
     }));
   } catch (e) {
     console.log(e);

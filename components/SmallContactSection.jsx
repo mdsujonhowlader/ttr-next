@@ -12,7 +12,7 @@ export default function SmallContactSection() {
         From custom websites to performance marketing, our team follows a proven
         process to ensure efficiency.
       </p>
-      <div className="bg-green-300 dark:bg-green-900 relative max-w-5xl mx-auto overflow-hidden sm:rounded-2xl">
+      <div className="bg-green-300 dark:bg-green-900 relative max-w-5xl mx-auto overflow-hidden rounded-2xl">
         <Image
           className="absolute inset-0 h-full w-full object-cover opacity-30"
           src="/developer-team.jpg"
@@ -22,7 +22,7 @@ export default function SmallContactSection() {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-green-300 via-green-300 dark:from-green-900 dark:via-green-900 to-transparent opacity-90"></div>
         <div className="relative mx-auto py-16 px-6 ">
-          <div className="flex justify-between items-start">
+          <div className="flex flex-col sm:flex-row gap-4 justify-between items-start">
             <div>
               <h2 className="text-3xl font-extrabold text-black dark:text-gray-100 sm:text-4xl">
                 <span className="block">Our Main Goal is to</span>

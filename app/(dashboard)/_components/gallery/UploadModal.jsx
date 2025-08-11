@@ -10,10 +10,11 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import { Fragment, useTransition } from "react";
+import { Fragment, useRef, useTransition } from "react";
 import toast from "react-hot-toast";
 export default function UploadModal({ isOpen, setIsOpen }) {
   const [isPending, startTransition] = useTransition();
+  const inputRef = useRef(null);
 
   async function handleFormSubmit(formData) {
     const res = await uploadImages(formData);
@@ -27,6 +28,12 @@ export default function UploadModal({ isOpen, setIsOpen }) {
   function onSubmitComplete() {
     toast.success("Upload successful!");
     setIsOpen(false);
+  }
+
+  function handleButtonClick() {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
   }
   return (
     <Transition show={isOpen} as={Fragment}>
@@ -63,9 +70,13 @@ export default function UploadModal({ isOpen, setIsOpen }) {
                 Upload Image
               </DialogTitle>
               <form action={handleFormSubmit}>
-                <Field>
-                  <Label className=" font-medium text-gray-500"></Label>
+                <Field className="border-2 border-dashed border-gray-300 flex justify-center items-center flex-col gap-4 py-8 rounded-2xl">
+                  <Label className="font-semibold text-md tracking-tight">
+                    Choose a File from your Gellary
+                  </Label>
+                  <p className="text-gray-600 text-sm">JPG,PNG,JPEG</p>
                   <Input
+                    ref={inputRef}
                     type="file"
                     name="image"
                     accept="image/*"
@@ -75,9 +86,28 @@ export default function UploadModal({ isOpen, setIsOpen }) {
                       });
                     }}
                     disabled={isPending}
+                    required
+                    className="hidden"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleButtonClick}
+                    disabled={isPending}
+                    className="px-3 py-1 bg-white shadow-xs border-2 cursor-pointer border-gray-200 text-black rounded-xl hover:bg-gray-100 transition duration-200 disabled:text-gray-300"
+                  >
+                    {isPending ? "File Uploading...." : "Browse File"}
+                  </button>
+                </Field>
+                {/* <Field>
+                  <Input
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    disabled={isPending}
+                    required
                     className="bg-none border-none text-gray-500 p-2 rounded-lg cursor-pointer hover:text-gray-600 hover:underline transition-colors duration-200"
                   />
-                </Field>
+                </Field> */}
               </form>
 
               <div className="flex gap-4 ">

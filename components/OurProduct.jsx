@@ -34,7 +34,9 @@ export default function OurProduct() {
                 <span>{icon}</span>
                 <h5 className="text-sm font-medium">{name}</h5>
               </div>
-              <p className="text-justify tex-wrap text-sm">{des}</p>
+              <p className=" text-wrap text-left text-sm text-gray-400">
+                {des}
+              </p>
             </Tab>
           ))}
         </TabList>
@@ -58,7 +60,7 @@ export default function OurProduct() {
                   {contents.map((content) => (
                     <div
                       key={content.id}
-                      className="relative group w-full overflow-hidden shadow-lg rounded-lg bg-card"
+                      className="relative group w-full overflow-hidden shadow-sm rounded-lg bg-card"
                     >
                       <Image
                         src={content.src}

@@ -32,7 +32,7 @@ const experiances = [
 
 export default function AboutPage() {
   return (
-    <section className="my-20 mx-auto space-y-8">
+    <section className="my-20 mx-auto space-y-8 overflow-hidden">
       <div className="bg-green-600 relative max-w-5xl mx-auto overflow-hidden sm:rounded-2xl">
         <Image
           className="absolute inset-0 h-full w-full object-cover opacity-30"
@@ -72,9 +72,12 @@ export default function AboutPage() {
         </div>
       </div>
       <div className="bg-green-600">
-        <div className="max-w-5xl grid grid-cols-4 py-8 gap-4 mx-auto">
+        <div className="max-w-5xl grid grid-cols-2  items-center sm:grid-cols-4 sm:py-8 gap-4 mx-auto p-7 ">
           {experiances.map((experiance) => (
-            <div className="flex items-center gap-3" key={experiance.id}>
+            <div
+              className="flex justify-center flex-col sm:flex-row items-start gap-3"
+              key={experiance.id}
+            >
               <div className="bg-green-900 rounded-2xl p-2">
                 {experiance.icon}
               </div>
@@ -93,18 +96,18 @@ export default function AboutPage() {
         </div>
       </div>
       <div className="max-w-5xl mx-auto my-30">
-        <div className="grid grid-cols-2 justify-items-between items-start gap-4 mb-40">
-          <div className="relative">
+        <div className="grid grid-cols-1  sm:grid-cols-2 justify-items-between items-center gap-4 mb-40">
+          <div className="sm:relative">
             <Image
               src="/teams/tanvir.jpg"
               alt="Tanvir"
               width={1000}
               height={1000}
-              className="w-[400px] h-[400px] relative object-cover rounded-2xl z-10"
+              className="sm:w-[400px] sm:h-[400px] sm:relative object-cover rounded-2xl z-10"
             />
-            <div className="absolute bg-green-300 w-[400px] h-[400px] left-[10%] bottom-[10%] rounded-2xl"></div>
+            <div className="sm:absolute bg-green-300 sm:w-[400px] sm:h-[400px] sm:left-[10%] sm:bottom-[10%] rounded-2xl"></div>
           </div>
-          <div className="border-l-2 border-green-600 p-4">
+          <div className="sm:border-l-2 sm:border-green-600 p-4 text-center sm:text-start">
             <p>
               The future of software development is bright and filled with
               limitless possibilities. Emerging technologies like artificial
@@ -127,8 +130,8 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-2 justify-end items-start gap-6 mb-40">
-          <div className="border-r-2 border-green-600 p-6">
+        <div className="grid sm:grid-cols-2 grid-cols-1 sm:justify-end items-center gap-6 mb-40">
+          <div className="sm:border-r-2 sm:border-green-600 p-6 text-center sm:text-start">
             <p>
               The landscape of software development is evolving rapidly, driven
               by groundbreaking innovations and emerging technologies. With
@@ -158,14 +161,14 @@ export default function AboutPage() {
             height={1000}
             className="w-[400px] h-[400px]  object-cover rounded-2xl  z-10"
           /> */}
-          <div className="relative self-end">
-            <div className="relative bg-green-300 w-[400px] h-[400px] left-[10%] right-[10] top-[10%] rounded-2xl"></div>
+          <div className="sm:relative sm:self-end">
+            <div className="sm:relative bg-green-300 sm:w-[400px] sm:h-[400px] sm:left-[10%] sm:right-[10] sm:top-[10%] rounded-2xl"></div>
             <Image
               src="/teams/sujon.jpg"
               alt="Sujon"
               width={1000}
               height={1000}
-              className="w-[400px] grayscale h-[400px] absolute object-cover rounded-2xl left-[20%] -right-[10] -top-[10%] z-10"
+              className="sm:w-[400px] grayscale sm:h-[400px] sm:absolute object-cover rounded-2xl sm:left-[20%] sm:-right-[10] sm:-top-[10%] z-10"
             />
           </div>
         </div>

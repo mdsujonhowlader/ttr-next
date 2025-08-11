@@ -6,7 +6,11 @@ const imagesSchema = new Schema(
       type: String,
       required: true,
     },
-    path: {
+    url: {
+      type: String,
+      required: true,
+    },
+    public_id: {
       type: String,
       required: true,
     },
