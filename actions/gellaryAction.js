@@ -51,6 +51,7 @@ export async function getImages() {
   try {
     await connectMongo();
     const images = await imageModel.find({}, "_id filename url").lean();
+
     return images.map((img) => ({
       _id: img._id.toString(),
       filename: img.filename,
@@ -59,5 +60,22 @@ export async function getImages() {
   } catch (e) {
     console.log(e);
     return [];
+  }
+}
+
+export async function deleteImageAction(imageId) {
+  try {
+    await connectMongo();
+    const image = await imageModel.findById(imageId);
+    if (!image) {
+      return { success: false, message: "Image not found" };
+    }
+
+    await cloudinary.uploader.destroy(image.public_id);
+    await imageModel.findByIdAndDelete(imageId);
+    return { success: true };
+  } catch (err) {
+    console.error("Delete failed:", err);
+    return { success: false, message: "Delete failed" };
   }
 }

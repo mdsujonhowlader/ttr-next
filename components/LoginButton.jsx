@@ -9,7 +9,7 @@ export default function LoginButton() {
       type="submit"
       disabled={pending}
       className={clsx(
-        "inline-flex w-full justify-center cursor-pointer bg-button items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold text-white shadow-inner shadow-white/10",
+        "inline-flex w-full justify-center cursor-pointer bg-button  items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold text-white shadow-inner shadow-white/10",
         pending ? " cursor-not-allowed" : " hover:bg-button/90"
       )}
     >

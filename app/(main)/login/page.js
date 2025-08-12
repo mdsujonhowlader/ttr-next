@@ -1,13 +1,19 @@
 "use client";
 import { loginAdmin } from "@/actions/loginAction";
+import FullScreenLoader from "@/app/(dashboard)/_components/ui-common/FullscreenLoader";
 import LoginButton from "@/components/LoginButton";
 import { cn } from "@/lib/utils";
 import { Field, Input, Label } from "@headlessui/react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function LoginPage() {
+  const [loading, setLoading] = useState(false);
+
   async function clientAction(formData) {
+    setLoading(true);
     const res = await loginAdmin(formData);
+    setLoading(false);
     if (res.error) {
       console.log(res.error);
       toast.error(res.error);
@@ -16,6 +22,7 @@ export default function LoginPage() {
       window.location.href = "/dashboard";
     }
   }
+  loading && <FullScreenLoader loading={loading} />;
 
   return (
     <section className="flex  flex-col justify-center items-center my-32">

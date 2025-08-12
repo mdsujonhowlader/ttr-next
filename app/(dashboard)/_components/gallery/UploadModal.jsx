@@ -12,7 +12,7 @@ import {
 } from "@headlessui/react";
 import { Fragment, useRef, useTransition } from "react";
 import toast from "react-hot-toast";
-export default function UploadModal({ isOpen, setIsOpen }) {
+export default function UploadModal({ isOpen, setIsOpen, onUploadSuccess }) {
   const [isPending, startTransition] = useTransition();
   const inputRef = useRef(null);
 
@@ -20,6 +20,7 @@ export default function UploadModal({ isOpen, setIsOpen }) {
     const res = await uploadImages(formData);
 
     if (res.success) {
+      onUploadSuccess(res);
       onSubmitComplete();
     } else {
       toast.error("Upload failed!");

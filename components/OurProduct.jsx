@@ -24,7 +24,7 @@ export default function OurProduct() {
 
       <TabGroup className="grid grid-cols-1 md:grid-cols-3  gap-4 my-10">
         {/* Tab List */}
-        <TabList className="flex bg-card rounded-lg text-white flex-row md:flex-col items-start gap-4 md:gap-2 overflow-x-auto md:overflow-visible whitespace-nowrap px-2 py-2">
+        <TabList className="flex border-gray-200 shadow-sm dark:bg-black border dark:border-gray-800  rounded-lg text-white flex-row md:flex-col items-start gap-4 md:gap-2 overflow-x-auto md:overflow-visible whitespace-nowrap px-2 py-2">
           {ourproducts.map(({ icon, name, des }) => (
             <Tab
               key={name}
@@ -34,7 +34,7 @@ export default function OurProduct() {
                 <span>{icon}</span>
                 <h5 className="text-sm font-medium">{name}</h5>
               </div>
-              <p className=" text-wrap text-left text-sm text-gray-400">
+              <p className=" text-wrap text-left text-sm text-gray-400 dark:text-gray-200 mt-2">
                 {des}
               </p>
             </Tab>
@@ -42,7 +42,7 @@ export default function OurProduct() {
         </TabList>
 
         {/* Tab Panels */}
-        <TabPanels className="md:col-span-2 overflow-hidden rounded-lg ">
+        <TabPanels className="md:col-span-2 overflow-hidden rounded-lg bg-white border border-gray-300 dark:border-gray-800 dark:bg-black">
           {ourproducts.map(({ name, contents, des }) => (
             <TabPanel key={name} className="flex justify-center items-center ">
               <Transition
@@ -56,18 +56,18 @@ export default function OurProduct() {
                 leaveFrom="opacity-100 translate-y-0 scale-100"
                 leaveTo="opacity-0 translate-y-4 scale-95"
               >
-                <div className="rounded-lg grid grid-cols-1 sm:grid-cols-2 gap-4 items-center p-4">
+                <div className="rounded-lg grid grid-cols-1 sm:grid-cols-2 gap-4 items-center p-4 ">
                   {contents.map((content) => (
                     <div
                       key={content.id}
-                      className="relative group w-full overflow-hidden shadow-sm rounded-lg bg-card"
+                      className="relative group w-full overflow-hidden shadow-sm rounded-lg border bg-white border-gray-200 dark:border-gray-800  dark:bg-black"
                     >
                       <Image
                         src={content.src}
                         alt={name}
                         width={1200}
                         height={800}
-                        className="object-cover aspect-square rounded-t-lg"
+                        className="object-cover   aspect-video rounded-t-lg"
                       />
                       <div className="p-4">
                         <h2 className="text-xl font-bold mb-2">

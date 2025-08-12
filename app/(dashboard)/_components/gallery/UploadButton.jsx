@@ -2,7 +2,7 @@
 import { useState } from "react";
 import UploadModal from "./UploadModal";
 
-export default function UploadButton() {
+export default function UploadButton({ onUploadSuccess }) {
   let [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
@@ -10,7 +10,11 @@ export default function UploadButton() {
   };
   return (
     <>
-      <UploadModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <UploadModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        onUploadSuccess={onUploadSuccess}
+      />
       <button
         onClick={handleModal}
         className="inline-flex text-white bg-emerald-600  dark:bg-emerald-800/40 rounded-lg font-semibold tracking-tight hover:bg-emerald-800 hover:text-white  transition-colors duration-200 focus:outline-none px-4 py-2 dark:text-emerald-500"

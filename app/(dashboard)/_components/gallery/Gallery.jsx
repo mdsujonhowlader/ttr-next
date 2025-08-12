@@ -1,34 +1,54 @@
+"use client";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
-import ImageAction from "./ImageAction";
+import { useState } from "react";
+import FileAction from "./FileAction";
 
 export default function Gallery({ images }) {
-  return (
-    <div className="drop-shadow-xs py-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {images?.map((image) => (
-        <div
-          key={image._id}
-          className="bg-white/20 cursor-pointer border hover:border-primary flex flex-col justify-center items-center py-2 border-gray-300 rounded-lg"
-        >
-          <div className="relative w-50 h-30 rounded-md group ">
-            <Image
-              src={image.url}
-              width={160}
-              height={120}
-              alt={`${image.filename} image`}
-              className="object-cover w-full h-full rounded-md group-hover:bg-gray-50"
-              priority
-            />
-            <div className="absolute inset-0 bg-black/20 bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md"></div>
+  const [allImage, setAllImages] = useState(images);
 
-            <div className="absolute right-2 top-1/5 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <ImageAction />
+  function handleDelete(imageId) {
+    setAllImages((prev) => prev.filter((img) => img._id !== imageId));
+  }
+  return (
+    <>
+      <div
+        className={cn(
+          "drop-shadow-xs py-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        )}
+      >
+        {allImage.length > 0 ? (
+          allImage?.map((image) => (
+            <div
+              key={image._id}
+              className="bg-white/20 cursor-pointer border hover:border-primary flex flex-col justify-center items-center py-2 border-gray-300 rounded-lg"
+            >
+              <div className="relative w-50 h-30 rounded-md group ">
+                <Image
+                  src={image.url}
+                  width={160}
+                  height={120}
+                  alt={`${image.filename} image`}
+                  className="object-cover w-full h-full rounded-md group-hover:bg-gray-50"
+                  priority
+                />
+                <div className="absolute inset-0 bg-black/20 bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md"></div>
+
+                <div className="absolute right-2 top-1/5 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <FileAction imageId={image._id} onDelete={handleDelete} />
+                </div>
+              </div>
+              <h3 className="mt-2 px-4 text-sm text-gray-500 break-words w-full line-clamp-2">
+                {image.filename}
+              </h3>
             </div>
-          </div>
-          <h3 className="mt-2 px-4 text-sm text-gray-500 break-words w-full line-clamp-2">
-            {image.filename}
-          </h3>
-        </div>
-      ))}
-    </div>
+          ))
+        ) : (
+          <p className="text-red text-center flex-11/12">
+            Your Gellary is Empty
+          </p>
+        )}
+      </div>
+    </>
   );
 }
