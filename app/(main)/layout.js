@@ -32,6 +32,7 @@ export default function RootLayout({ children }) {
           <div className="absolute inset-0 -z-10 bg-radial-[125%_125%_at_50%_50%] from-white  from-40% to-green-500  to-100% dark:[background:radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(16,185,129,0.25),transparent_80%),_#000000] md:mask-b-from-60%"></div>
           <main>
             {children}
+
             <Toaster position="bottom-right" />
           </main>
           <Footer />

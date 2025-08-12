@@ -38,8 +38,8 @@ export async function getServices() {
     await connectMongo();
 
     const servicedata = await serviceModel
-      .find({}, "_id iconId shortdescription")
-      .populate("iconId", "path")
+      .find({}, "_id title iconId shortdescription")
+      .populate("iconId", "url")
       .lean();
     return servicedata;
   } catch (error) {
@@ -53,8 +53,8 @@ export async function getServicesById(id) {
     await connectMongo();
     const service = await serviceModel
       .findById(id)
-      .populate("iconId", "path")
-      .populate("imageId", "path")
+      .populate("iconId", "url")
+      .populate("imageId", "url")
       .lean();
     return service;
   } catch (error) {

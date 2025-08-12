@@ -1,5 +1,5 @@
+import { ToastAlertProvider } from "@/context";
 import { Jost } from "next/font/google";
-import { Toaster } from "react-hot-toast";
 import "../globals.css";
 import Header from "./_components/Header";
 import Sidebar from "./_components/Sidebar";
@@ -28,7 +28,8 @@ export default function DashboardRootLayout({ children }) {
           <div className="flex flex-col basis-4/5 overflow-hidden">
             <Header />
             <main className="overflow-y-auto  h-full shrink-0 ">
-              <Toaster position="bottom-right" />
+              {/* <Toaster position="bottom-right" /> */}
+              <ToastAlertProvider position="bottom-right" />
               {children}
             </main>
           </div>

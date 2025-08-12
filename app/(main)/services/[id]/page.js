@@ -11,13 +11,13 @@ export default async function SingleServicePage({ params }) {
 
   return (
     <section className="my-32 overflow-auto max-w-5xl mx-auto">
-      <div className="bg-white rounded-lg shadow-md">
-        <h2 className="text-3xl text-center font-medium mb-4">
+      <div className="dark:bg-black bg-white text-black dark:text-white rounded-lg shadow-md py-7 border dark:border-gray-800 px-4">
+        <h2 className="text-3xl text-center  font-medium mb-4">
           {service.title}
         </h2>
         <div className="flex justify-center mb-4">
           <Image
-            src={service.imageId.path}
+            src={service.imageId.url}
             alt={service.title}
             width={500}
             height={300}
@@ -26,7 +26,7 @@ export default async function SingleServicePage({ params }) {
         </div>
         <div className="flex items-center mb-4">
           <Image
-            src={service.iconId.path}
+            src={service.iconId.url}
             alt={`${service.title} icon`}
             width={50}
             height={50}

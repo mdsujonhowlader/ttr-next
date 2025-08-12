@@ -1,5 +1,6 @@
 "use client";
 import { uploadImages } from "@/actions/gellaryAction";
+import { toastify } from "@/lib/toastalert";
 import {
   Dialog,
   DialogPanel,
@@ -11,7 +12,6 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { Fragment, useRef, useTransition } from "react";
-import toast from "react-hot-toast";
 export default function UploadModal({ isOpen, setIsOpen, onUploadSuccess }) {
   const [isPending, startTransition] = useTransition();
   const inputRef = useRef(null);
@@ -23,11 +23,11 @@ export default function UploadModal({ isOpen, setIsOpen, onUploadSuccess }) {
       onUploadSuccess(res);
       onSubmitComplete();
     } else {
-      toast.error("Upload failed!");
+      toastify.error("Upload failed!");
     }
   }
   function onSubmitComplete() {
-    toast.success("Upload successful!");
+    toastify.success("Upload successful!");
     setIsOpen(false);
   }
 

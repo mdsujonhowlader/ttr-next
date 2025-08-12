@@ -44,7 +44,10 @@ export default function OurProduct() {
         {/* Tab Panels */}
         <TabPanels className="md:col-span-2 overflow-hidden rounded-lg bg-white border border-gray-300 dark:border-gray-800 dark:bg-black">
           {ourproducts.map(({ name, contents, des }) => (
-            <TabPanel key={name} className="flex justify-center items-center ">
+            <TabPanel
+              key={name}
+              className="flex justify-start flex-row items-center "
+            >
               <Transition
                 as={Fragment}
                 appear
@@ -56,18 +59,18 @@ export default function OurProduct() {
                 leaveFrom="opacity-100 translate-y-0 scale-100"
                 leaveTo="opacity-0 translate-y-4 scale-95"
               >
-                <div className="rounded-lg grid grid-cols-1 sm:grid-cols-2 gap-4 items-center p-4 ">
+                <div className="rounded-lg flex justify-start items-start flex-row gap-4 overflow-x-auto overflow-visible no-scrollbar p-4 ">
                   {contents.map((content) => (
                     <div
                       key={content.id}
-                      className="relative group w-full overflow-hidden shadow-sm rounded-lg border bg-white border-gray-200 dark:border-gray-800  dark:bg-black"
+                      className=" self-start relative group min-w-[300px] w-full max-w-xs overflow-hidden shadow-sm rounded-lg border bg-white border-gray-200 dark:border-gray-800  dark:bg-black"
                     >
                       <Image
                         src={content.src}
                         alt={name}
                         width={1200}
                         height={800}
-                        className="object-cover   aspect-video rounded-t-lg"
+                        className="object-cover aspect-video rounded-t-lg"
                       />
                       <div className="p-4">
                         <h2 className="text-xl font-bold mb-2">

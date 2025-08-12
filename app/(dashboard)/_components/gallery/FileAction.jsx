@@ -1,10 +1,10 @@
 "use client";
 import { deleteImageAction } from "@/actions/gellaryAction";
 import ConfirmModal from "@/components/common/ConfirmModal";
+import { toastify } from "@/lib/toastalert";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { BadgeAlert, EllipsisVertical, Trash } from "lucide-react";
 import { useState, useTransition } from "react";
-import toast from "react-hot-toast";
 
 export default function FileAction({ imageId, onDelete }) {
   const [openConfirm, setOpenConfirm] = useState(false);
@@ -15,7 +15,7 @@ export default function FileAction({ imageId, onDelete }) {
       await deleteImageAction(imageId);
       setOpenConfirm(false);
       if (onDelete) onDelete(imageId);
-      toast.success("Deleted successfully");
+      toastify.error("Deleted successfully");
     });
   }
   return (

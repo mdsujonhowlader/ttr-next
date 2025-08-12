@@ -13,7 +13,7 @@ export default function Card({ title, shortdescription, iconUrl, id }) {
           className="object-contain"
         />
 
-        <h3 className="text-xl font-semibold tracking-tight text-left line-clamp">
+        <h3 className="text-xl font-semibold tracking-tight text-left line-clamp-1">
           {title}
         </h3>
         <p className="text-base text-secondary line-clamp-2">

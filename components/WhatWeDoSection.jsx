@@ -19,9 +19,9 @@ export default async function WhatWeDoSection() {
           <Card
             key={service._id}
             id={service._id}
-            title={service.title}
+            title={service?.title}
             shortdescription={service.shortdescription}
-            iconUrl={service.iconId?.path}
+            iconUrl={service.iconId?.url}
           />
         ))}
       </div>

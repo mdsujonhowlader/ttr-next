@@ -15,6 +15,11 @@ const ourProducts = [
         contentName: "Scedule Time System",
         src: "/products/billing.webp",
       },
+      {
+        id: 3,
+        contentName: "Scedule Time System",
+        src: "/products/billing.webp",
+      },
     ],
   },
   {
@@ -23,19 +28,20 @@ const ourProducts = [
     des: "Track inventory and manage stock efficiently.",
     contents: [
       {
-        id: 3,
+        id: 4,
         contentName: "Inventory",
         src: "/products/form-builder.webp",
       },
     ],
   },
+
   {
     name: "Education",
     icon: <CodeIcon size="18" />,
     des: "Track inventory and manage stock efficiently.",
     contents: [
       {
-        id: 4,
+        id: 5,
         contentName: "Pos System",
         src: "/products/job-manager.webp",
       },

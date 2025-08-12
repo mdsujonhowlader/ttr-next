@@ -52,6 +52,9 @@
   --border: oklch(0.793 0.2466 139.12);
 }
 
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
 @layer base {
   body {
     @apply bg-background text-foreground font-sans;
