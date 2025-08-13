@@ -8,7 +8,7 @@ import {
 } from "@headlessui/react";
 import Image from "next/image";
 import { Fragment, Suspense } from "react";
-import CardSkleton from "../ui-common/CardSkleton";
+import FullScreenLoader from "../ui-common/FullscreenLoader";
 
 export default function AllFileGellary({
   images,
@@ -59,7 +59,7 @@ export default function AllFileGellary({
 
               <div className="grid grid-cols-4 gap-4">
                 {images.map((img) => (
-                  <Suspense key={img._id} fallback={<CardSkleton />}>
+                  <Suspense key={img._id} fallback={<FullScreenLoader />}>
                     <div
                       className="cursor-pointer bg-white shadow-sm border border-gray-200 rounded-md hover:ring-2 ring-primary"
                       onClick={() => onSelect(img)}

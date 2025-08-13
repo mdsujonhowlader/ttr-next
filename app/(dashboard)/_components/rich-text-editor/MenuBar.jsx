@@ -10,6 +10,7 @@ import {
   Heading3,
   Heading4,
   Highlighter,
+  Image,
   Italic,
   List,
   ListOrdered,
@@ -20,6 +21,7 @@ import {
   Strikethrough,
   Undo,
 } from "lucide-react";
+import { useCallback } from "react";
 
 const MenuButton = ({ onClick, isActive, title, children }) => (
   <button
@@ -37,6 +39,14 @@ const MenuButton = ({ onClick, isActive, title, children }) => (
 );
 
 export default function MenuBar({ editor }) {
+  const addImage = useCallback(() => {
+    const url = window.prompt("URL");
+
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
+    }
+  }, [editor]);
+
   if (!editor) {
     return null;
   }
@@ -179,6 +189,9 @@ export default function MenuBar({ editor }) {
         title="Redo"
       >
         <Redo className="w-5 h-5" />
+      </MenuButton>
+      <MenuButton onClick={addImage}>
+        <Image className="w-5 h-5 stroke-blue-600 stroke-2" />
       </MenuButton>
     </div>
   );

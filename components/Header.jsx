@@ -40,10 +40,10 @@ export default function Header() {
               />
             </Link>
           </div>
-          <div className="hidden sm:flex justify-center space-x-4">
+          <div className="hidden sm:flex justify-center space-x-3">
             {menu.map((menuItem) => (
               <Link
-                className="hover:underline hover:text-primary transition-all duration-300  hover:underline-offset-4 font-medium"
+                className="dark:hover:bg-white/5 dark:hover:text-white hover:bg-slate-950 hover:text-white text-slate-800 dark:text-white px-3 py-2 rounded-lg transition-all duration-300  hover:underline-offset-4 font-medium"
                 key={menuItem.id}
                 href={menuItem.link}
               >

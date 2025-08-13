@@ -3,6 +3,7 @@ import connectMongo from "@/lib/mongoose";
 import "@/model/image";
 import serviceModel from "@/model/service";
 import { serviceSchema } from "@/validation/serviceSchema";
+import { revalidatePath } from "next/cache";
 export async function postServices(formData) {
   const data = {
     title: formData.get("title"),
@@ -25,7 +26,7 @@ export async function postServices(formData) {
     await connectMongo();
 
     await serviceModel.create(validation.data);
-
+    revalidatePath("/");
     return { success: true, msg: "Services Created Successfully" };
   } catch (err) {
     const msg = err.message;

@@ -16,7 +16,62 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+const sideMenu = [
+  {
+    id: 1,
+    menuName: "Dashboard",
+    href: "/dashboard",
+    icon: <LayoutDashboard className="size-5 stroke-2" aria-hidden />,
+    children: [],
+  },
+  {
+    id: 2,
+    menuName: "Services",
+    href: "/dashboard/services",
+    icon: <FolderCog className="size-5 stroke-2" aria-hidden />,
+    children: [
+      {
+        id: 50,
+        menuName: "Add Service",
+        href: "/dashboard/services/add-service",
+        icon: <Plus size="15" className="stroke-2" />,
+      },
+      {
+        id: 51,
+        menuName: "View Services",
+        href: "/dashboard/services/view-services",
+        icon: <Eye size="15" />,
+      },
+    ],
+  },
+  {
+    id: 3,
+    menuName: "Settings",
+    href: "/dashboard/settings",
+    icon: <Settings className="size-5 stroke-2" aria-hidden />,
+    children: [],
+  },
+  {
+    id: 4,
+    menuName: "Upload Files",
+    href: "/dashboard/upload-files",
+    icon: <FileImage className="size-5 stroke-2" aria-hidden />,
+    children: [],
+  },
+  {
+    id: 5,
+    menuName: "Blogs",
+    icon: <FolderCog className="size-5 stroke-2" aria-hidden />,
+    children: [
+      {
+        id: 52,
+        menuName: "Create Blogs",
+        href: "/dashboard/blogs/create-blog",
+        icon: <Plus size="15" className="stroke-2" />,
+      },
+    ],
+  },
+];
 export default function Sidebar() {
   return (
     <div
@@ -39,70 +94,50 @@ export default function Sidebar() {
 
       {/* Navigation */}
       <ul className="space-y-2 px-4 pb-6">
-        <li>
-          <Link
-            href="/dashboard"
-            className="flex items-center gap-2 font-medium tracking-tight py-2 hover:text-primary"
-          >
-            <LayoutDashboard className="size-5 stroke-2 " aria-hidden />
-            Dashboard
-          </Link>
-        </li>
-
-        <Disclosure>
-          <DisclosureButton className="group flex justify-between items-center w-full py-2 text-left transition-transform duration-500 font-medium hover:text-primary overflow-hidden focus:outline-none">
-            <div className="font-medium tracking-tight flex items-center gap-2">
-              <FolderCog className="size-5 stroke-2" aria-hidden />
-              Service
-            </div>
-            <ChevronDown className="size-5 transition-transform duration-500 group-data-open:rotate-180" />
-          </DisclosureButton>
-          <DisclosurePanel
-            transition
-            as="ul"
-            className="ml-4 pl-2 border-l-2 border-primary space-y-2  transition duration-500 ease-out data-closed:-translate-y-6 data-closed:opacity-0"
-          >
-            <li>
-              <Link
-                href="/dashboard/add-service"
-                className="block py-1 font-medium hover:text-primary"
-              >
-                <span className="flex items-center gap-2">
-                  <Plus size="15" className="stroke-2" /> Add Service
-                </span>
-              </Link>
+        {sideMenu.map((menu) => {
+          return (
+            <li key={menu.id} className="transition-colors duration-300 ">
+              {menu.children.length > 0 ? (
+                <Disclosure>
+                  <DisclosureButton className="group flex justify-between items-center w-full py-2 text-left transition-transform duration-500 font-medium hover:text-primary overflow-hidden focus:outline-none">
+                    <div className="font-medium tracking-tight flex items-center gap-2">
+                      {menu.icon}
+                      {menu.menuName}
+                    </div>
+                    <ChevronDown className="size-5 transition-transform duration-500 group-data-open:rotate-180" />
+                  </DisclosureButton>
+                  <DisclosurePanel
+                    transition
+                    as="ul"
+                    className="ml-4 pl-2 border-l-2 border-primary space-y-2  transition duration-500 ease-out data-closed:-translate-y-6 data-closed:opacity-0"
+                  >
+                    <li className="transition-colors duration-300 ">
+                      {menu.children.map((child) => (
+                        <Link
+                          key={child.id}
+                          href={child.href}
+                          className="block py-1 font-medium hover:text-primary"
+                        >
+                          <span className="flex items-center gap-2">
+                            {child.icon} {child.menuName}
+                          </span>
+                        </Link>
+                      ))}
+                    </li>
+                  </DisclosurePanel>
+                </Disclosure>
+              ) : (
+                <Link
+                  href="/dashboard"
+                  className="flex items-center gap-2 font-medium tracking-tight py-2 hover:text-primary"
+                >
+                  {menu.icon}
+                  {menu.menuName}
+                </Link>
+              )}
             </li>
-            <li>
-              <Link
-                href="/dashboard/services"
-                className="block py-1 font-medium hover:text-primary"
-              >
-                <span className="flex items-center gap-2">
-                  <Eye size="15" /> View Service
-                </span>
-              </Link>
-            </li>
-          </DisclosurePanel>
-        </Disclosure>
-
-        <li className="transition-colors duration-300 ">
-          <Link
-            href="/dashboard/settings"
-            className=" py-2 font-medium flex items-center gap-2 tracking-tight hover:text-primary"
-          >
-            <Settings className="size-5 stroke-2" aria-hidden />
-            Settings
-          </Link>
-        </li>
-        <li className="transition-colors duration-300">
-          <Link
-            href="/dashboard/upload-files"
-            className=" py-2 font-medium hover:text-primary  flex items-center gap-2"
-          >
-            <FileImage className="size-5 stroke-2" aria-hidden />
-            Upload Files
-          </Link>
-        </li>
+          );
+        })}
       </ul>
     </div>
   );

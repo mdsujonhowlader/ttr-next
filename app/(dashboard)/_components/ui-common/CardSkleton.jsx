@@ -1,6 +1,7 @@
+"use client";
 export default function CardSkleton() {
   return (
-    <div className="flex items-center w-sm justify-center bg-white dark:bg-black bg-opacity-70 backdrop-blur-sm z-50">
+    <div className="flex items-center justify-center bg-white dark:bg-black bg-opacity-70 ">
       <div className="flex flex-col items-center">
         <svg
           fill="hsl(228, 97%, 42%)"

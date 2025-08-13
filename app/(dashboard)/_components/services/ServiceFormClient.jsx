@@ -2,7 +2,7 @@
 import { postServices } from "@/actions/servicAction";
 import { cn } from "@/lib/utils";
 import { Button, Field, Input, Label, Textarea } from "@headlessui/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import TiptapEditor from "../rich-text-editor/TiptapEditor";
 import FileUploaderButton from "./FileUploaderButton";
@@ -11,6 +11,7 @@ import IconUploaderButton from "./IconUploaderButton";
 export default function ServiceFormClient({ safeImages }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const editorRef = useRef(null);
   const [editorContent, setEditorContent] = useState("");
   return (
     <form
@@ -20,7 +21,9 @@ export default function ServiceFormClient({ safeImages }) {
           toast.success(res.msg);
           setSelectedImage(null);
           setSelectedIcon(null);
-          setEditorContent("");
+          if (editorRef.current) {
+            editorRef.current.commands.clearContent();
+          }
         } else if (res.errors) {
           Object.values(res.errors).forEach((err) => {
             toast.error(typeof err === "string" ? err : err.message);
@@ -67,7 +70,10 @@ export default function ServiceFormClient({ safeImages }) {
       </Field>
       <div className="w-full mb-5">
         <div className="font-medium text-gray-500">Long Description</div>
-        <TiptapEditor onContentChange={setEditorContent} />
+        <TiptapEditor
+          onContentChange={setEditorContent}
+          editorRef={editorRef}
+        />
         <textarea
           name="longDescription"
           value={editorContent}

@@ -31,7 +31,7 @@ export default function LoginPage() {
       </h2>
       <form
         action={clientAction}
-        className="bg-white border border-gray-50 shadow-sm dark:bg-black/50 dark:border-gray-800 rounded-lg w-full md:w-1/3 p-5 flex flex-col gap-4"
+        className="bg-white border border-gray-50 shadow-sm dark:bg-black dark:border-gray-800 rounded-lg w-full md:w-1/3 p-5 flex flex-col gap-4"
       >
         <Field as="div" className="flex flex-col">
           <Label className=" font-medium dark:text-white">

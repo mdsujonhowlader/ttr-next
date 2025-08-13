@@ -15,15 +15,19 @@ export default async function WhatWeDoSection() {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4">
-        {services.map((service) => (
-          <Card
-            key={service._id}
-            id={service._id}
-            title={service?.title}
-            shortdescription={service.shortdescription}
-            iconUrl={service.iconId?.url}
-          />
-        ))}
+        {services.length > 0 ? (
+          services.map((service) => (
+            <Card
+              key={service._id}
+              id={service._id}
+              title={service?.title}
+              shortdescription={service.shortdescription}
+              iconUrl={service.iconId?.url}
+            />
+          ))
+        ) : (
+          <p>Not service Found</p>
+        )}
       </div>
     </section>
   );
