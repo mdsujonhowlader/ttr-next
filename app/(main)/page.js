@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="relative h-screen">
+      <div className="relative pt-28">
         <div className="absolute top-1/8 sm:top-2/5  md:top-2/5  left-2/6 sm:left-1/3 lg:left-1/7  z-10 shadow-2xl">
           <Image
             src="/icons/js.svg"

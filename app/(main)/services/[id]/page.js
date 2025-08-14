@@ -2,7 +2,7 @@ import { getServicesById } from "@/actions/servicAction";
 import Image from "next/image";
 
 export default async function SingleServicePage({ params }) {
-  const { id } = await params;
+  const { id } =  params;
   const service = await getServicesById(id);
 
   if (!service) {
