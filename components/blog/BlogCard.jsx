@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function BlogCard({ blog }) {
   return (
     <>
-      <div className="bg-card w-full rounded-lg">
+      <div className="dark:bg-black border bg-white dark:border-gray-800 border-gray-300 w-full rounded-lg">
         <Image
           src={blog?.imageId?.url}
           alt="blog Image"
