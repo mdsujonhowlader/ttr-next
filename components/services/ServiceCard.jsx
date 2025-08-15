@@ -1,9 +1,17 @@
+"use client";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Card({ title, shortdescription, iconUrl, id }) {
+export default function ServiceCard({ title, shortdescription, iconUrl, id }) {
   return (
-    <div className="bg-white shadow-sm p-4 rounded-lg border border-gray-200 transition-colors duration-300 hover:border-primary  dark:bg-black dark:border-gray-800 ">
+    <motion.div
+      initial={{ opacity: 0, translateY: 50 }}
+      whileInView={{ opacity: 1, translateY: 0 }}
+      viewport={{ once: false }}
+      transition={{ duration: 0.8 }}
+      className="bg-white shadow-xs p-4 rounded-lg border border-gray-200 transition-colors duration-300 hover:border-primary  dark:bg-black dark:border-gray-800 "
+    >
       <div className="flex flex-col justify-between items-start  space-y-2">
         <Image
           src={iconUrl}
@@ -23,6 +31,6 @@ export default function Card({ title, shortdescription, iconUrl, id }) {
           Learn More
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 }

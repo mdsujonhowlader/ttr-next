@@ -1,18 +1,17 @@
 import { cn } from "@/lib/utils";
 import { Button, Field, Input, Textarea } from "@headlessui/react";
 import Image from "next/image";
-
 export default function SmallContactSection() {
   return (
-    <section className="mb-20">
-      <h2 className="tracking-tight text-5xl font-bold mb-2 text-left md:text-center">
+    <section className="my-10">
+      <h2 className="tracking-tight text-5xl font-bold mb-2 text-center">
         Join with us
       </h2>
       <p className="text-base  text-gray-400 mb-4 text-left  md:text-center">
         From custom websites to performance marketing, our team follows a proven
         process to ensure efficiency.
       </p>
-      <div className="bg-green-300 dark:bg-green-900 relative max-w-5xl mx-auto overflow-hidden rounded-2xl">
+      <div className="bg-green-300 dark:bg-green-900 relative max-w-6xl mx-auto overflow-hidden rounded-2xl">
         <Image
           className="absolute inset-0 h-full w-full object-cover opacity-30"
           src="/developer-team.jpg"

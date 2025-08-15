@@ -2,6 +2,7 @@
 
 import connectMongo from "@/lib/mongoose";
 import AppearanceModel from "@/model/appearance";
+import { replaceMongoIdInArray } from "@/utils/data-utils";
 
 export async function postAppearance(formData) {
   const types = formData.getAll("type[]");
@@ -32,8 +33,8 @@ export async function postAppearance(formData) {
 export async function getAppearances() {
   try {
     await connectMongo();
-    const primaryColor = await AppearanceModel.find();
-    return primaryColor;
+    const primaryColor = await AppearanceModel.find().lean();
+    return replaceMongoIdInArray(primaryColor);
   } catch (e) {
     console.log(e);
   }

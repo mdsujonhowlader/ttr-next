@@ -33,7 +33,7 @@ const experiances = [
 export default function AboutPage() {
   return (
     <section className="my-20 mx-auto space-y-8 overflow-hidden">
-      <div className="bg-green-600 relative max-w-5xl mx-auto overflow-hidden sm:rounded-2xl">
+      <div className="bg-green-600 relative max-w-6xl mx-auto overflow-hidden sm:rounded-2xl">
         <Image
           className="absolute inset-0 h-full w-full object-cover opacity-30"
           src="/developer-team.jpg"
@@ -72,7 +72,7 @@ export default function AboutPage() {
         </div>
       </div>
       <div className="bg-green-600">
-        <div className="max-w-5xl grid grid-cols-2  items-center sm:grid-cols-4 sm:py-8 gap-4 mx-auto p-7 ">
+        <div className="max-w-6xl grid grid-cols-2  items-center sm:grid-cols-4 sm:py-8 gap-4 mx-auto p-7 ">
           {experiances.map((experiance) => (
             <div
               className="flex justify-center flex-col sm:flex-row items-start gap-3"
@@ -95,7 +95,7 @@ export default function AboutPage() {
           ))}
         </div>
       </div>
-      <div className="max-w-5xl mx-auto my-30">
+      <div className="max-w-6xl mx-auto my-30">
         <div className="grid grid-cols-1  sm:grid-cols-2 justify-items-between items-center gap-4 mb-40">
           <div className="sm:relative">
             <Image
@@ -176,7 +176,7 @@ export default function AboutPage() {
       {/* Our Vision, mission, Goal section here */}
       {/* Our Ethics Excelence here */}
       {/* Our Excelent Team  here(optional) */}
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <ReviewSection />
       </div>
     </section>

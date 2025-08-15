@@ -2,6 +2,7 @@
 import connectMongo from "@/lib/mongoose";
 import "@/model/image";
 import serviceModel from "@/model/service";
+import { replaceMongoIdInArray } from "@/utils/data-utils";
 import { serviceSchema } from "@/validation/serviceSchema";
 import { revalidatePath } from "next/cache";
 export async function postServices(formData) {
@@ -42,7 +43,8 @@ export async function getServices() {
       .find({}, "_id title iconId shortdescription")
       .populate("iconId", "url")
       .lean();
-    return servicedata;
+
+    return replaceMongoIdInArray(servicedata);
   } catch (error) {
     console.log(error);
     return { error };

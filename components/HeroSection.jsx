@@ -1,5 +1,7 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Button } from "@headlessui/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 
 const busineses = [
@@ -56,63 +58,91 @@ const textColorStyle = {
 export default function HeroSection({ appearances }) {
   return (
     <section className="flex flex-col justify-center items-center  space-y-10 md:space-y-8">
-      <div className="dark:bg-badge/20 bg-badge px-4 py-1 text-white rounded-lg shadow">
+      <motion.div
+        initial={{ opacity: 0, translateY: 10 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.8 }}
+        className="dark:bg-badge/20 bg-badge px-4 py-1 text-white rounded-lg shadow"
+      >
         <h4 className="text-sm md:text-md tracking-tight font-medium">
           Welcome to Tech Resoolver{" "}
           <span className="ml-2" aria-hidden="true">
             &rarr;
           </span>
         </h4>
-      </div>
-      <h1 className="w-4/4 md:w-4/5  font-bold md:font-bold text-4xl tracking-tight  md:text-5xl leading-normal uppercase text-center">
+      </motion.div>
+      <motion.h1
+        initial={{ opacity: 0, translateY: 20 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.8 }}
+        className="w-4/4 md:w-4/5  font-bold md:font-bold text-4xl tracking-tight  md:text-5xl leading-normal uppercase text-center"
+      >
         Today Started Journey{" "}
         {/* className={cn(`text-[${appearances.primaryColor || "#1d4ed8"}]`)} */}
         <span style={{ color: appearances?.primaryColor || "#1d4ed8" }}>
           with us
         </span>
-      </h1>
-      <div>
-        <div className="grid grid-cols-2 overflow-x-auto md:grid-cols-6 justify-items-center items-center gap-x-3 gap-y-3 sm:gap-x-3 ">
-          {busineses.map((busines) => (
-            <div
-              key={busines.id}
+      </motion.h1>
+      <motion.div
+        initial={{ opacity: 0, translateY: 30 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.8 }}
+        className="grid grid-cols-2 overflow-x-auto md:grid-cols-6 justify-items-center items-center gap-x-3 gap-y-3 sm:gap-x-3 "
+      >
+        {busineses.map((busines) => (
+          <div
+            key={busines.id}
+            className={cn(
+              "text-center rounded-full border-2  text-sm px-5 py-2 ",
+              styleMap[busines.color]
+            )}
+          >
+            <h5
               className={cn(
-                "text-center rounded-full border-2  text-sm px-5 py-2 ",
-                styleMap[busines.color]
+                "font-semibold text-md  tracking-tight",
+                textColorStyle[busines.color]
               )}
             >
-              <h5
-                className={cn(
-                  "font-semibold text-md  tracking-tight",
-                  textColorStyle[busines.color]
-                )}
-              >
-                {busines.businessName}
-              </h5>
-            </div>
-          ))}
-        </div>
-      </div>
-      <p className="text-lg md:text-xl w-8/9 md:w-3/4 tracking-tight text-center text-secondary ">
+              {busines.businessName}
+            </h5>
+          </div>
+        ))}
+      </motion.div>
+      <motion.p
+        initial={{ opacity: 0, translateY: 40 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.8 }}
+        className="text-lg md:text-xl w-8/9 md:w-3/4 tracking-tight text-center text-secondary "
+      >
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint excepturi
         amet incidunt dolores soluta atque qui illum doloribus, quam, possimus.
-      </p>
-      <div className="flex flex-col md:flex-row justify-center items-center gap-2 w-full">
+      </motion.p>
+      <motion.div
+        initial={{ opacity: 0, translateY: 50 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.8 }}
+        className="flex flex-row justify-center items-center gap-6 w-full"
+      >
         <Link
           href="/contacts"
-          className="bg-button w-full md:w-auto transition-all duration-300  font-medium text-white px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer  "
+          className="bg-button w-full inline-flex justify-center items-center md:w-auto transition-all duration-300 text-center font-semibold text-white px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer  "
         >
           Get Free Consultancy
         </Link>
         <Button
           className={cn(
-            "w-full md:w-auto transition-all  duration-300 font-medium text-black  bg-white shadow hover:text-white px-5 py-2 md:px-4 md:py-2 rounded-lg border-button cursor-pointer hover:bg-button"
+            "w-full md:w-auto transition-all  duration-300 font-semibold text-black  bg-white shadow hover:text-white px-5 py-2 md:px-4 md:py-2 rounded-lg border-button cursor-pointer hover:bg-button"
           )}
           style={{ color: appearances?.primaryColor || "#1d4ed8" }}
         >
           See running projects
         </Button>
-      </div>
+      </motion.div>
     </section>
   );
 }

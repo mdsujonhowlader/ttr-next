@@ -5,7 +5,7 @@ export default async function BlogsPage() {
   const blogs = await getBlogs();
 
   return (
-    <section className="max-w-5xl mx-auto py-20">
+    <section className="max-w-6xl mx-auto py-20">
       <div className="rounded-lg p-4 leading-10 relative">
         <div className="relative z-20">
           <h1 className="text-left sm:text-center text--3xl sm:text-4xl md:text-5xl font-bold tracking-tight">

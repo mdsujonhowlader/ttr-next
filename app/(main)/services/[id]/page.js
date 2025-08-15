@@ -2,7 +2,7 @@ import { getServicesById } from "@/actions/servicAction";
 import Image from "next/image";
 
 export default async function SingleServicePage({ params }) {
-  const { id } =  params;
+  const { id } = params;
   const service = await getServicesById(id);
 
   if (!service) {
@@ -10,7 +10,7 @@ export default async function SingleServicePage({ params }) {
   }
 
   return (
-    <section className="my-32 overflow-auto max-w-5xl mx-auto">
+    <section className="my-32 overflow-auto max-w-6xl mx-auto">
       <div className="dark:bg-black bg-white text-black dark:text-white rounded-lg shadow-md py-7 border dark:border-gray-800 px-4">
         <h2 className="text-3xl text-center  font-medium mb-4">
           {service.title}

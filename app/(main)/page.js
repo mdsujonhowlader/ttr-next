@@ -5,7 +5,7 @@ import LanguagesAndTools from "@/components/LanguagesAndTools";
 import OurProduct from "@/components/OurProduct";
 import ReviewSection from "@/components/ReviewSection";
 import SmallContactSection from "@/components/SmallContactSection";
-import WhatWeDoSection from "@/components/WhatWeDoSection";
+import WhatWeDoSection from "@/components/services/WhatWeDoSection";
 import { NextIcon } from "@/utils/svg-util";
 import Image from "next/image";
 export default async function Home() {
@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="relative pt-28">
+      <div className="relative h-screen">
         <div className="absolute top-1/8 sm:top-2/5  md:top-2/5  left-2/6 sm:left-1/3 lg:left-1/7  z-10 shadow-2xl">
           <Image
             src="/icons/js.svg"
@@ -30,7 +30,7 @@ export default async function Home() {
           <HeroSection appearances={appearances} />
         </div>
       </div>
-      <div className="max-w-5xl mx-auto px-4 md:px-0 ">
+      <div className="max-w-6xl mx-auto px-4 md:px-0 ">
         <BrandCompany />
         <WhatWeDoSection />
         <OurProduct />

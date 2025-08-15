@@ -27,7 +27,7 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 px-4 md:px-0  py-4 sm:px-0 left-0 right-0 bg-background/50 backdrop-blur dark:bg-background/20 shadow-lg border-b border-b-primary z-[50]">
-        <div className="max-w-5xl mx-auto flex justify-between items-center">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div>
             <Link href="/">
               <Image
