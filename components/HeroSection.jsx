@@ -4,7 +4,7 @@ import { Button } from "@headlessui/react";
 import { motion } from "motion/react";
 import Link from "next/link";
 
-const busineses = [
+const businesses = [
   {
     id: 1,
     businessName: "Corporate",
@@ -27,7 +27,7 @@ const busineses = [
   },
   {
     id: 5,
-    businessName: "Ecommerce ",
+    businessName: "Ecommerce",
     color: "emerald",
   },
   {
@@ -56,57 +56,62 @@ const textColorStyle = {
 };
 
 export default function HeroSection({ appearances }) {
+  const appearanceMap = Object.fromEntries(
+    appearances.map((item) => [item.type, item.value])
+  );
   return (
-    <section className="flex flex-col justify-center items-center  space-y-10 md:space-y-8">
+    <section className="flex flex-col justify-center items-center space-y-8 md:space-y-8">
       <motion.div
         initial={{ opacity: 0, translateY: 10 }}
         whileInView={{ opacity: 1, translateY: 0 }}
-        viewport={{ once: false }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="dark:bg-badge/20 bg-badge px-4 py-1 text-white rounded-lg shadow"
+        className="dark:bg-primary/50  bg-zinc-100 px-4 py-1 rounded-full"
       >
-        <h4 className="text-sm md:text-md tracking-tight font-medium">
+        <h4 className="text-sm md:text-md dark:text-white text-black tracking-tight font-bold">
+          <span>⚡</span>
           Welcome to Tech Resoolver{" "}
           <span className="ml-2" aria-hidden="true">
             &rarr;
           </span>
         </h4>
       </motion.div>
+
       <motion.h1
         initial={{ opacity: 0, translateY: 20 }}
         whileInView={{ opacity: 1, translateY: 0 }}
-        viewport={{ once: false }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="w-4/4 md:w-4/5  font-bold md:font-bold text-4xl tracking-tight  md:text-5xl leading-normal uppercase text-center"
+        className="w-4/4 md:w-4/5 font-black  text-4xl tracking-tight md:text-6xl leading-normal uppercase text-center"
       >
-        Today Started Journey{" "}
-        {/* className={cn(`text-[${appearances.primaryColor || "#1d4ed8"}]`)} */}
-        <span style={{ color: appearances?.primaryColor || "#1d4ed8" }}>
+        {/* className="bg-gradient-to-r from-emerald-800 via-emerald-600/80 to-emerald-400/60 bg-clip-text text-transparent" */}
+        <span>Today Started Journey</span>{" "}
+        <span style={{ color: appearanceMap?.primaryColor || "red" }}>
           with us
         </span>
       </motion.h1>
       <motion.div
         initial={{ opacity: 0, translateY: 30 }}
         whileInView={{ opacity: 1, translateY: 0 }}
-        viewport={{ once: false }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="grid grid-cols-2 overflow-x-auto md:grid-cols-6 justify-items-center items-center gap-x-3 gap-y-3 sm:gap-x-3 "
+        className="grid grid-cols-3 overflow-x-auto md:grid-cols-6 justify-items-center items-center gap-x-2 gap-y-2 sm:gap-x-2 "
       >
-        {busineses.map((busines) => (
+        {businesses.map((business) => (
           <div
-            key={busines.id}
+            key={business.id}
             className={cn(
-              "text-center rounded-full border-2  text-sm px-5 py-2 ",
-              styleMap[busines.color]
+              "text-center rounded-full border-2  px-4 py-2",
+              styleMap[business.color]
             )}
           >
             <h5
               className={cn(
-                "font-semibold text-md  tracking-tight",
-                textColorStyle[busines.color]
+                "font-semibold text-xs tracking-tight",
+                textColorStyle[business.color]
               )}
             >
-              {busines.businessName}
+              {business.businessName}
             </h5>
           </div>
         ))}
@@ -114,9 +119,9 @@ export default function HeroSection({ appearances }) {
       <motion.p
         initial={{ opacity: 0, translateY: 40 }}
         whileInView={{ opacity: 1, translateY: 0 }}
-        viewport={{ once: false }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-lg md:text-xl w-8/9 md:w-3/4 tracking-tight text-center text-secondary "
+        className="text-lg md:text-md w-8/9 md:w-3/4 tracking-tight text-center text-secondary"
       >
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint excepturi
         amet incidunt dolores soluta atque qui illum doloribus, quam, possimus.
@@ -124,7 +129,7 @@ export default function HeroSection({ appearances }) {
       <motion.div
         initial={{ opacity: 0, translateY: 50 }}
         whileInView={{ opacity: 1, translateY: 0 }}
-        viewport={{ once: false }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         className="flex flex-row justify-center items-center gap-6 w-full"
       >
@@ -138,7 +143,7 @@ export default function HeroSection({ appearances }) {
           className={cn(
             "w-full md:w-auto transition-all  duration-300 font-semibold text-black  bg-white shadow hover:text-white px-5 py-2 md:px-4 md:py-2 rounded-lg border-button cursor-pointer hover:bg-button"
           )}
-          style={{ color: appearances?.primaryColor || "#1d4ed8" }}
+          style={{ color: appearanceMap?.secondaryColor || "red" }}
         >
           See running projects
         </Button>

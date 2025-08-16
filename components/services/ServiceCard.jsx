@@ -8,11 +8,11 @@ export default function ServiceCard({ title, shortdescription, iconUrl, id }) {
     <motion.div
       initial={{ opacity: 0, translateY: 50 }}
       whileInView={{ opacity: 1, translateY: 0 }}
-      viewport={{ once: false }}
+      viewport={{ once: true }}
       transition={{ duration: 0.8 }}
       className="bg-white shadow-xs p-4 rounded-lg border border-gray-200 transition-colors duration-300 hover:border-primary  dark:bg-black dark:border-gray-800 "
     >
-      <div className="flex flex-col justify-between items-start  space-y-2">
+      <div className="flex flex-col justify-between items-start space-y-2">
         <Image
           src={iconUrl}
           alt={`${title} icon`}
