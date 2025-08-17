@@ -33,7 +33,6 @@ export default function BlogdFromClient({ safeImages }) {
     setIsSlugEdited(true);
   };
 
-  // Add tag on comma or Enter
   const handleTagKeyDown = (e) => {
     if ((e.key === "Enter" || e.key === ",") && tagInput.trim()) {
       e.preventDefault();
@@ -45,7 +44,6 @@ export default function BlogdFromClient({ safeImages }) {
     }
   };
 
-  // Remove tag
   const removeTag = (tagToRemove) => {
     setTags(tags.filter((tag) => tag !== tagToRemove));
   };
@@ -61,9 +59,9 @@ export default function BlogdFromClient({ safeImages }) {
             if (editorRef.current) {
               editorRef.current.commands.clearContent();
             }
-            setTitle(""); // Clear title
-            setSlug(""); // Clear slug
-            setIsSlugEdited(false); // Reset slug edited state
+            setTitle("");
+            setSlug("");
+            setIsSlugEdited(false);
             setTags([]);
           } else if (res.errors) {
             Object.values(res.errors).forEach((err) => {

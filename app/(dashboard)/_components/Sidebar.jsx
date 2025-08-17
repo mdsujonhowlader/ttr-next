@@ -128,7 +128,7 @@ export default function Sidebar() {
                 </Disclosure>
               ) : (
                 <Link
-                  href="/dashboard"
+                  href={menu.href}
                   className="flex items-center gap-2 font-medium tracking-tight py-2 hover:text-primary"
                 >
                   {menu.icon}

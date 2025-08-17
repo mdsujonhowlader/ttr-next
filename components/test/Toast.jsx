@@ -1,9 +1,5 @@
 "use client";
 import { motion } from "motion/react";
-// Define the props for our Icon components
-// interface IconProps {
-//   className?: string;
-// }
 
 // Information Icon SVG
 const InfoIcon = ({ className }) => (

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@headlessui/react";
 import { motion } from "motion/react";
 import Link from "next/link";
+import TestButton from "./test/Button";
 
 const businesses = [
   {
@@ -82,7 +83,7 @@ export default function HeroSection({ appearances }) {
         whileInView={{ opacity: 1, translateY: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="w-4/4 md:w-4/5 font-black  text-4xl tracking-tight md:text-6xl leading-normal uppercase text-center"
+        className="w-4/4 md:w-4/5 font-black  text-4xl tracking-tight md:text-6xl leading-normal  text-center"
       >
         {/* className="bg-gradient-to-r from-emerald-800 via-emerald-600/80 to-emerald-400/60 bg-clip-text text-transparent" */}
         <span>Today Started Journey</span>{" "}
@@ -147,6 +148,7 @@ export default function HeroSection({ appearances }) {
         >
           See running projects
         </Button>
+        <TestButton>Hello Button</TestButton>
       </motion.div>
     </section>
   );

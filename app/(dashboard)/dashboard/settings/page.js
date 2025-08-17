@@ -1,79 +1,21 @@
-import { postAppearance } from "@/actions/appearanceAction";
-import { cn } from "@/lib/utils";
-import { Button, Field, Input, Label } from "@headlessui/react";
-export default function SettingsPage() {
-  return (
-    <section className="mt-5 mb-30 z-50 overflow-auto">
-      <h2 className="text-3xl text-center font-medium mb-4">
-        Add{" "}
-        <span className="text-gray-400 dark:text-primary">
-          Appearance your UI
-        </span>
-      </h2>
-      <form
-        action={postAppearance}
-        className="flex flex-col justify-center items-center mx-auto w-1/2 bg-card p-4 rounded-lg"
-      >
-        <Field as="div" className="flex flex-col w-full ">
-          <Label className="text-sm/6 font-medium dark:text-white text-black">
-            Primary Color
-          </Label>
-          <Input
-            name="type[]"
-            type="text"
-            value="primaryColor"
-            hidden
-            readOnly
-            className={cn(
-              "mt-3 block w-full rounded-lg border-none dark:bg-white/5  bg-black/10 px-3 py-1.5 text-sm/6 dark:text-white text-black",
-              "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"
-            )}
-          />
-        </Field>
-        <Field as="div" className="flex flex-col w-full mb-5">
-          <Input
-            name="value[]"
-            type="text"
-            className={cn(
-              "mt-3 block w-full rounded-lg border-none dark:bg-white/5  bg-black/10 px-3 py-1.5 text-sm/6 dark:text-white text-black",
-              "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"
-            )}
-          />
-        </Field>
-        <Field as="div" className="flex flex-col w-full ">
-          <Label className="text-sm/6 font-medium dark:text-white text-black">
-            Secondary Color
-          </Label>
-          <Input
-            name="type[]"
-            type="text"
-            value="secondaryColor"
-            hidden
-            readOnly
-            className={cn(
-              "mt-3 block w-full rounded-lg border-none dark:bg-white/5  bg-black/10 px-3 py-1.5 text-sm/6 dark:text-white text-black",
-              "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"
-            )}
-          />
-        </Field>
-        <Field as="div" className="flex flex-col w-full mb-5">
-          <Input
-            name="value[]"
-            type="text"
-            className={cn(
-              "mt-3 block w-full rounded-lg border-none dark:bg-white/5  bg-black/10 px-3 py-1.5 text-sm/6 dark:text-white text-black",
-              "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"
-            )}
-          />
-        </Field>
+import { getAppearances } from "@/actions/appearanceAction";
+import { getImages } from "@/actions/gellaryAction";
+import SiteForm from "../../_components/settings/SiteForm";
 
-        <Button
-          type="submit"
-          className="inline-flex w-full justify-center cursor-pointer items-center gap-2 rounded-md bg-button px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-button/90 data-open:bg-button/95"
-        >
-          Submit Service
-        </Button>
-      </form>
-    </section>
+export default async function SettingsPage() {
+  const safeImages = await getImages();
+  const appearances = await getAppearances();
+  return (
+    <>
+      <section className="mt-5 mb-30 z-50 overflow-auto">
+        <h2 className="text-3xl text-center font-medium mb-4">
+          Add{" "}
+          <span className="text-gray-400 dark:text-primary">
+            Appearance your UI
+          </span>
+        </h2>
+        <SiteForm safeImages={safeImages} getAppearances={appearances} />
+      </section>
+    </>
   );
 }
