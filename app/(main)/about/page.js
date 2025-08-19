@@ -71,8 +71,8 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
-      <div className="bg-green-600">
-        <div className="max-w-6xl grid grid-cols-2  items-center sm:grid-cols-4 sm:py-8 gap-4 mx-auto p-7 ">
+      <div className="bg-green-600 my-10">
+        <div className="max-w-6xl grid grid-cols-2 items-center sm:grid-cols-4 sm:py-8 gap-4 mx-auto p-7 ">
           {experiances.map((experiance) => (
             <div
               className="flex justify-center flex-col sm:flex-row items-start gap-3"

@@ -69,6 +69,12 @@ const sideMenu = [
         href: "/dashboard/blogs/create-blog",
         icon: <Plus size="15" className="stroke-2" />,
       },
+      {
+        id: 53,
+        menuName: "View Blogs",
+        href: "/dashboard/blogs/view-blogs",
+        icon: <Eye size="15" className="stroke-2" />,
+      },
     ],
   },
 ];

@@ -30,12 +30,11 @@ export async function uploadImages(formData) {
         .end(buffer);
     });
 
-    // Save to MongoDB
     await connectMongo();
     await imageModel.create({
       filename: file.name,
-      url: uploadResult.secure_url, // Cloudinary URL
-      public_id: uploadResult.public_id, // For delete later
+      url: uploadResult.secure_url,
+      public_id: uploadResult.public_id,
     });
 
     revalidatePath("/");

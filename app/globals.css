@@ -61,3 +61,28 @@
     @apply bg-background text-foreground font-sans;
   }
 }
+
+@keyframes fill-bar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-fill-bar {
+  animation: fill-bar 2s ease-in-out forwards;
+}
+@keyframes loadingBar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+.animate-loadingBar {
+  animation: loadingBar 2s linear infinite;
+  will-change: transform;
+}

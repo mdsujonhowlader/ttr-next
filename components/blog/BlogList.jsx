@@ -6,7 +6,7 @@ export default function BlogList({ blogs }) {
     <>
       {blogs.length > 0 ? (
         blogs.map((blog) => (
-          <Suspense key={blog._id} fallback={<p>Loading...</p>}>
+          <Suspense key={blog.id} fallback={<p>Loading...</p>}>
             <BlogCard blog={blog} />
           </Suspense>
         ))

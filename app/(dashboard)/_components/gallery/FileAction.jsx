@@ -18,6 +18,7 @@ export default function FileAction({ imageId, onDelete }) {
       toastify.error("Deleted successfully");
     });
   }
+
   return (
     <>
       <div>

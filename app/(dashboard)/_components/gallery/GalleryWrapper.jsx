@@ -1,7 +1,7 @@
 "use client";
 import { getImages } from "@/actions/gellaryAction";
 import { useEffect, useState } from "react";
-import FullScreenLoader from "../ui-common/FullscreenLoader";
+import FullScreeenLoading from "../ui-common/FullScreeenLoading";
 import Gallery from "./Gallery";
 import UploadButton from "./UploadButton";
 
@@ -25,7 +25,7 @@ export default function GalleryWrapper() {
   }
 
   if (loading) {
-    return <FullScreenLoader loading={loading} />;
+    return <FullScreeenLoading />;
   }
 
   return (

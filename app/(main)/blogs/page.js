@@ -3,7 +3,6 @@ import BlogList from "@/components/blog/BlogList";
 
 export default async function BlogsPage() {
   const blogs = await getBlogs();
-  console.log(blogs);
 
   return (
     <section className="max-w-6xl mx-auto py-20">

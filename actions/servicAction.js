@@ -3,7 +3,7 @@ import connectMongo from "@/lib/mongoose";
 import "@/model/image";
 import serviceModel from "@/model/service";
 import { replaceMongoIdInArray } from "@/utils/data-utils";
-import { serviceSchema } from "@/validation/serviceSchema";
+import { serviceSchema } from "@/validation/validationSchema";
 import { revalidatePath } from "next/cache";
 export async function postServices(formData) {
   const data = {

@@ -15,6 +15,7 @@ export const metadata = {
 };
 
 export default function DashboardRootLayout({ children }) {
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <body

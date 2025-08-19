@@ -36,6 +36,7 @@ export default function UploadModal({ isOpen, setIsOpen, onUploadSuccess }) {
       inputRef.current.click();
     }
   }
+
   return (
     <Transition show={isOpen} as={Fragment}>
       <Dialog

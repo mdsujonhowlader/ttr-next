@@ -2,7 +2,8 @@
 import connectMongo from "@/lib/mongoose";
 import blogModel from "@/model/blogs";
 import "@/model/image";
-import { blogSchema } from "@/validation/serviceSchema";
+import { replaceMongoIdInArray } from "@/utils/data-utils";
+import { blogSchema } from "@/validation/validationSchema";
 
 export async function createBlog(formData) {
   const tags = JSON.parse(formData.get("tags") || "[]");
@@ -43,7 +44,7 @@ export async function getBlogs() {
       .find({}, "_id title slug imageId tags blogshortdesc")
       .populate("imageId", "url")
       .lean();
-    return blogData;
+    return replaceMongoIdInArray(blogData);
   } catch (error) {
     console.log(error);
     return { error };
@@ -65,6 +66,17 @@ export async function getBlogBySlug(slug) {
     }
 
     return blogData;
+  } catch (error) {
+    console.error("MongoDB Error:", error);
+    return { error: error.message || "Something went wrong" };
+  }
+}
+
+export async function deleteBlogById(id) {
+  try {
+    await connectMongo();
+    const deleteBlog = await blogModel.findByIdAndDelete({ id });
+    return deleteBlog;
   } catch (error) {
     console.error("MongoDB Error:", error);
     return { error: error.message || "Something went wrong" };

@@ -12,7 +12,6 @@ export default function SiteForm({ safeImages, getAppearances }) {
   const appearanceMap = Object.fromEntries(
     getAppearances.map((item) => [item.type, item.value])
   );
-  console.log(appearanceMap.headerLogo);
 
   const handleOpenGellary = (e) => {
     e.preventDefault();

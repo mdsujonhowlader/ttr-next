@@ -14,7 +14,7 @@ export default function ServiceCard({ title, shortdescription, iconUrl, id }) {
     >
       <div className="flex flex-col justify-between items-start space-y-2">
         <Image
-          src={iconUrl}
+          src={iconUrl || "/icons/next.svg"}
           alt={`${title} icon`}
           width={24}
           height={24}
