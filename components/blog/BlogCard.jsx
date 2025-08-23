@@ -24,8 +24,9 @@ export default function BlogCard({ blog }) {
             : null}
         </div>
         <div className="px-4 mb-2 flex flex-col shadow-primary space-y-2 inset-shadow-gray-700">
+          {/* href={`services/${id}`} */}
           <Link
-            href={`blogs/${blog?.slug}`}
+            href={`blogs/${blog.slug}`}
             className="text-md tracking-tight text-wrap font-bold hover:text-primary hover:underline hover:underline-offset-5"
           >
             {blog.title}

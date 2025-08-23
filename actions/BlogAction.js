@@ -66,7 +66,6 @@ export async function getBlogBySlug(slug) {
       .lean();
 
     if (!blogData) {
-      // No blog found with that slug
       return { error: "Blog not found" };
     }
 

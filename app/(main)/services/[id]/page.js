@@ -5,8 +5,6 @@ export default async function SingleServicePage({ params }) {
   const { id } = await params;
   const service = await getServicesById(id);
 
-  console.log(service.imageId.url);
-
   if (!service) {
     return <div>Service not found</div>;
   }
