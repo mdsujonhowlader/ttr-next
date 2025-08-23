@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { getBlogBySlug } from "@/actions/BlogAction";
 import Image from "next/image";
 
