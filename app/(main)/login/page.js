@@ -22,7 +22,7 @@ export default function LoginPage() {
       window.location.href = "/dashboard";
     }
   }
-  loading && <FullScreenLoader loading={loading} />;
+  loading && <FullScreenLoader />;
 
   return (
     <section className="flex  flex-col justify-center items-center my-32">

@@ -2,8 +2,10 @@ import { getServicesById } from "@/actions/servicAction";
 import Image from "next/image";
 
 export default async function SingleServicePage({ params }) {
-  const { id } = params;
+  const { id } = await params;
   const service = await getServicesById(id);
+
+  console.log(service.imageId.url);
 
   if (!service) {
     return <div>Service not found</div>;
@@ -11,13 +13,13 @@ export default async function SingleServicePage({ params }) {
 
   return (
     <section className="my-32 overflow-auto max-w-6xl mx-auto">
-      <div className="dark:bg-black bg-white text-black dark:text-white rounded-lg shadow-md py-7 border dark:border-gray-800 px-4">
+      <div className="dark:bg-black bg-white text-black dark:text-white rounded-lg shadow-sm py-7 border border-gray-300 dark:border-gray-800 px-4">
         <h2 className="text-3xl text-center  font-medium mb-4">
           {service.title}
         </h2>
         <div className="flex justify-center mb-4">
           <Image
-            src={service.imageId.url}
+            src={service?.imageId?.url || "/bg-zigzag.jpg"}
             alt={service.title}
             width={500}
             height={300}
@@ -26,7 +28,7 @@ export default async function SingleServicePage({ params }) {
         </div>
         <div className="flex items-center mb-4">
           <Image
-            src={service.iconId.url}
+            src={service?.iconId?.url || "/bg-zigzag.jpg"}
             alt={`${service.title} icon`}
             width={50}
             height={50}

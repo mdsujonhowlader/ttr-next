@@ -13,7 +13,7 @@ export default function LogoutAdminButton() {
   return (
     <Button
       onClick={handleLogout}
-      className=" bg-rose-600 justify-center hover:bg-rose-600/80 text-white inline-flex items-center rounded-lg gap-2 cursor-pointer font-semibold w-full px-4 py-2 text-center"
+      className=" bg-rose-100 border-2 text-rose-500 border-rose-500 justify-center hover:bg-rose-600/30 hover:text-black  inline-flex items-center rounded-lg gap-2 cursor-pointer font-semibold w-full text-sn px-4 py-1 text-center"
     >
       Logout
       <LogOut className="size-5 stroke-2" />

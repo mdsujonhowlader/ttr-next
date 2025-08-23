@@ -7,7 +7,7 @@ export default async function BlogPage({ params }) {
 
   return (
     <article className="my-32 overflow-auto max-w-6xl mx-auto">
-      <div className="dark:bg-black bg-white text-black dark:text-white rounded-lg shadow-md py-7 border dark:border-gray-800 px-4">
+      <div className="dark:bg-black bg-white text-black dark:text-white rounded-lg shadow-md py-7 border border-gray-300 dark:border-gray-800 px-4">
         <h2 className="text-3xl text-center  font-medium mb-4">{blog.title}</h2>
         <div className="flex justify-center mb-4">
           <Image

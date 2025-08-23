@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { generateSlug } from "@/utils/slugUtils";
 import { Button, Field, Input, Label, Textarea } from "@headlessui/react";
 import { useRef, useState } from "react";
-import toast from "react-hot-toast";
 import TiptapEditor from "../rich-text-editor/TiptapEditor";
 import ThumbnailUpload from "./ThumbnailUploaderButton";
 
@@ -65,7 +64,7 @@ export default function BlogdFromClient({ safeImages }) {
             setTags([]);
           } else if (res.errors) {
             Object.values(res.errors).forEach((err) => {
-              toast.error(typeof err === "string" ? err : err.message);
+              toastify.error(typeof err === "string" ? err : err.message);
             });
           }
         }}
