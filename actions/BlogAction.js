@@ -2,7 +2,10 @@
 import connectMongo from "@/lib/mongoose";
 import blogModel from "@/model/blogs";
 import imageModel from "@/model/image";
-import { replaceMongoIdInArray } from "@/utils/data-utils";
+import {
+  replaceMongoIdInArray,
+  replaceMongoIdInObject,
+} from "@/utils/data-utils";
 import { blogSchema } from "@/validation/validationSchema";
 
 export async function createBlog(formData) {
@@ -62,14 +65,18 @@ export async function getBlogBySlug(slug) {
 
     const blogData = await blogModel
       .findOne({ slug })
-      .populate("imageId", "url")
+      .populate({
+        path: "imageId",
+        select: "url",
+        model: imageModel,
+      })
       .lean();
 
     if (!blogData) {
       return { error: "Blog not found" };
     }
 
-    return blogData;
+    return replaceMongoIdInObject(blogData);
   } catch (error) {
     console.error("MongoDB Error:", error);
     return { error: error.message || "Something went wrong" };

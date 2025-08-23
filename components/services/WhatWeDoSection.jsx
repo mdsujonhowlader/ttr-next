@@ -1,5 +1,4 @@
 import { getServices } from "@/actions/servicAction";
-
 import ServiceCard from "./ServiceCard";
 export default async function WhatWeDoSection() {
   const services = await getServices();
