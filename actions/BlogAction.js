@@ -1,7 +1,7 @@
 "use server";
 import connectMongo from "@/lib/mongoose";
 import blogModel from "@/model/blogs";
-import "@/model/image";
+import imageModel from "@/model/image";
 import { replaceMongoIdInArray } from "@/utils/data-utils";
 import { blogSchema } from "@/validation/validationSchema";
 
@@ -41,8 +41,13 @@ export async function getBlogs() {
     await connectMongo();
 
     const blogData = await blogModel
-      .find({}, "_id title slug imageId tags blogshortdesc")
-      .populate("imageId", "url")
+      .find({})
+      .select(["_id", "title", "slug", "imageId", "tags", "blogshortdesc"])
+      .populate({
+        path: "imageId",
+        select: "url",
+        model: imageModel,
+      })
       .lean();
     return replaceMongoIdInArray(blogData);
   } catch (error) {

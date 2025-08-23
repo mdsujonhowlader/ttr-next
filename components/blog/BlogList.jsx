@@ -1,15 +1,10 @@
-import { Suspense } from "react";
 import BlogCard from "./BlogCard";
 
 export default function BlogList({ blogs }) {
   return (
     <>
       {blogs.length > 0 ? (
-        blogs.map((blog) => (
-          <Suspense key={blog.id} fallback={<p>Loading...</p>}>
-            <BlogCard blog={blog} />
-          </Suspense>
-        ))
+        blogs.map((blog) => <BlogCard key={blog.id} blog={blog} />)
       ) : (
         <p>Blog is Empty</p>
       )}
