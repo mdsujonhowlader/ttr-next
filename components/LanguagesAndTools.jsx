@@ -14,15 +14,29 @@ export default function LanguagesAndTools() {
         {languagesAndTools.map((lt) => (
           <div
             key={lt.id}
-            className="flex justify-center items-center border border-primary dark:border-white p-5 hover:bg-card transition duration-300"
+            className="flex flex-col justify-center gap-3 items-center border border-primary dark:border-white p-5 hover:bg-card transition duration-300"
           >
-            <Image
-              src={lt.imageSrc}
-              alt="languageandtools"
-              width="1000"
-              height="1000"
-              className="w-[100px] "
-            />
+            <div className="block dark:hidden w-[50px] h-[50px]">
+              <Image
+                src={lt.imageSrc.light || "/file.svg"}
+                alt={lt.name || "languageandtools"}
+                width={1000}
+                height={1000}
+                className="w-full h-full"
+              />
+            </div>
+            <div className="hidden dark:block w-[50px] h-[50px]">
+              <Image
+                src={lt.imageSrc.dark || "/file.svg"}
+                alt={lt.name || "languageandtools"}
+                width={1000}
+                height={1000}
+                className="w-full h-full"
+              />
+            </div>
+            <h3 className="text-black dark:text-white text-md font-medium">
+              {lt.name}
+            </h3>
           </div>
         ))}
       </div>
