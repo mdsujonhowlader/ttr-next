@@ -20,6 +20,7 @@ const menu = [
   { id: 3, title: "Blogs", link: "/blogs" },
   { id: 4, title: "Contact", link: "/contacts" },
   { id: 5, title: "About", link: "/about" },
+  { id: 6, title: "Digital Marketing", link: "/digitalmarketing" },
 ];
 
 export default function Header() {
@@ -98,7 +99,7 @@ export default function Header() {
                       >
                         <X className="size-6" />
                       </button>
-                      <div className="flex flex-col space-y-2 pl-2.5">
+                      <div className="flex flex-col space-y-8 pl-2.5">
                         {menu.map((menuItem) => (
                           <Link
                             className=" dark:text-foreground hover:text-red-300"
@@ -110,11 +111,6 @@ export default function Header() {
                           </Link>
                         ))}
                       </div>
-                    </div>
-                    <div className="p-2.5">
-                      <Button className="dark:text-foreground hover:text-primary">
-                        Login
-                      </Button>
                     </div>
                   </div>
                 </DialogPanel>

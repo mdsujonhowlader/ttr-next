@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-card py-8 border-t border-t-primary shadow-primary px-4 md:px-0 mt-10">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         <div className="flex flex-col space-y-4">
           <h2 className="text-lg font-semibold text-green-400">Menu</h2>
           <ul className="space-y-2">
