@@ -132,11 +132,11 @@ export default function HeroSection({ appearances }) {
         whileInView={{ opacity: 1, translateY: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="flex flex-row justify-center items-center gap-6 w-full"
+        className="flex flex-row   justify-center items-center gap-6 w-full"
       >
         <Link
           href="/contacts"
-          className="bg-button w-full inline-flex justify-center items-center md:w-auto transition-all duration-300 text-center font-semibold text-white px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer  "
+          className="bg-button  w-full inline-flex  justify-center items-center md:w-auto transition-all duration-300 text-center font-semibold text-white px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer  "
         >
           Get Free Consultancy
         </Link>
@@ -148,7 +148,6 @@ export default function HeroSection({ appearances }) {
         >
           See running projects
         </Button>
-        <TestButton>Hello Button</TestButton>
       </motion.div>
     </section>
   );
