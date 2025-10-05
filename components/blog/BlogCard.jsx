@@ -27,7 +27,6 @@ export default function BlogCard({ blog }) {
           {/* href={`services/${id}`} */}
           <Link
             href={`blogs/${blog.slug}`}
-            prefetch={false}
             className="text-md tracking-tight text-wrap font-bold hover:text-primary hover:underline hover:underline-offset-5"
           >
             {blog.title}

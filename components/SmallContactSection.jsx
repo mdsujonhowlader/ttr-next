@@ -3,7 +3,7 @@ import { Button, Field, Input, Textarea } from "@headlessui/react";
 import Image from "next/image";
 export default function SmallContactSection() {
   return (
-    <section className="my-10">
+    <section className="mb-20">
       <h2 className="tracking-tight text-5xl font-bold mb-2 text-center">
         Join with us
       </h2>

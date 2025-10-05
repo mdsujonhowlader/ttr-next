@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import { Button } from "@headlessui/react";
 import { motion } from "motion/react";
 import Link from "next/link";
-import TestButton from "./test/Button";
 
 const businesses = [
   {
@@ -67,12 +66,12 @@ export default function HeroSection({ appearances }) {
         whileInView={{ opacity: 1, translateY: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="dark:bg-primary/50  bg-zinc-100 px-4 py-1 rounded-full"
+        className="dark:bg-primary/50  bg-zinc-100 border border-zinc-200 dark:border-primary/80 px-4 py-1 rounded-full"
       >
-        <h4 className="text-sm md:text-md dark:text-white text-black tracking-tight font-bold">
+        <h4 className="text-sm md:text-md dark:text-white text-black font-medium">
           <span>⚡</span>
           Welcome to Tech Resoolver{" "}
-          <span className="ml-2" aria-hidden="true">
+          <span className="ml-2 font-bold" aria-hidden="true">
             &rarr;
           </span>
         </h4>
@@ -83,7 +82,7 @@ export default function HeroSection({ appearances }) {
         whileInView={{ opacity: 1, translateY: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="w-4/4 md:w-4/5 font-black  text-4xl tracking-tight md:text-6xl leading-normal  text-center"
+        className=" font-black text-4xl tracking-tight md:text-6xl leading-normal  text-center"
       >
         {/* className="bg-gradient-to-r from-emerald-800 via-emerald-600/80 to-emerald-400/60 bg-clip-text text-transparent" */}
         <span>Today Started Journey</span>{" "}
@@ -122,29 +121,29 @@ export default function HeroSection({ appearances }) {
         whileInView={{ opacity: 1, translateY: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-lg md:text-md w-8/9 md:w-3/4 tracking-tight text-center text-secondary"
+        className="text-lg md:text-md w-8/9 md:w-3/4 leading-relaxed text-center text-secondary"
       >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint excepturi
-        amet incidunt dolores soluta atque qui illum doloribus, quam, possimus.
+        We’re a full-service web and digital agency helping businesses grow
+        through custom websites, marketing, and tech automation.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, translateY: 50 }}
         whileInView={{ opacity: 1, translateY: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="flex flex-row   justify-center items-center gap-6 w-full"
+        className="flex flex-col md:flex-row justify-center items-center gap-6 w-full"
       >
         <Link
           href="/contacts"
-          className="bg-button  w-full inline-flex  justify-center items-center md:w-auto transition-all duration-300 text-center font-semibold text-white px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer  "
+          className="bg-button w-full inline-flex  justify-center items-center md:w-auto transition-all duration-300 text-center font-semibold text-white px-5 py-2 md:px-4 md:py-2 rounded-lg hover:bg-button/90 cursor-pointer  "
         >
           Get Free Consultancy
         </Link>
+        {/* style={{ color: appearanceMap?.secondaryColor || "red" }} */}
         <Button
           className={cn(
             "w-full md:w-auto transition-all  duration-300 font-semibold text-black  bg-white shadow hover:text-white px-5 py-2 md:px-4 md:py-2 rounded-lg border-button cursor-pointer hover:bg-button"
           )}
-          style={{ color: appearanceMap?.secondaryColor || "red" }}
         >
           See running projects
         </Button>

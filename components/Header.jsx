@@ -9,8 +9,10 @@ import {
 //import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Menu, X } from "lucide-react";
 
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Fragment, useState } from "react";
 import ThemeToggle from "./ui/ThemeToggle";
 
@@ -25,6 +27,8 @@ const menu = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
   return (
     <>
       <header className="fixed top-0 px-4 md:px-0  py-4 sm:px-0 left-0 right-0 bg-background/50 backdrop-blur dark:bg-background/20 shadow-sm dark:border-b-gray-800 border-b border-b-gray-300 z-[50]">
@@ -44,7 +48,12 @@ export default function Header() {
           <div className="hidden sm:flex justify-center space-x-3">
             {menu.map((menuItem) => (
               <Link
-                className="dark:hover:bg-white/5 dark:hover:text-white hover:bg-slate-950 hover:text-white text-slate-800 dark:text-white px-3 py-2 rounded-lg transition-all duration-300  hover:underline-offset-4 font-medium"
+                className={cn(
+                  "dark:hover:bg-white/5 dark:hover:text-white hover:bg-slate-950 hover:text-white text-slate-800 dark:text-white px-3 py-2 rounded-lg transition-all duration-300  hover:underline-offset-4 font-medium",
+                  pathname === menuItem.link
+                    ? "dark:bg-white/5 bg-slate-950 text-white"
+                    : ""
+                )}
                 key={menuItem.id}
                 href={menuItem.link}
               >

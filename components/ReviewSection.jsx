@@ -48,7 +48,7 @@ export default function ReviewSection() {
     <section className="flex flex-col justify-center items-center mb-20 px-4">
       {/* Header */}
       <div className="space-y-3 max-w-3xl">
-        <h1 className="text-5xl font-bold text-center">What our Clients Say</h1>
+        <h1 className="text-4xl font-bold text-center">What our Clients Say</h1>
         <p className="text-pretty tracking-tight text-base text-gray-500 text-center">
           Our honorable clients reviewed our work. Read this before placing your
           order.

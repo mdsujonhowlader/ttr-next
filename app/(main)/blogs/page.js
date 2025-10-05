@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import { getBlogs } from "@/actions/BlogAction";
 import LoadingFullApp from "@/app/(dashboard)/Loading";
 import BlogHeroSection from "@/components/blog/BlogHeroSection";
