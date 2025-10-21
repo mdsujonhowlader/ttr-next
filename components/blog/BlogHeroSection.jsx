@@ -11,7 +11,7 @@ export default function BlogHeroSection() {
         whileInView={{ opacity: 1, translateY: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="rounded-lg border-2 border-green-300 dark:border-gray-700 grid grid-cols-1 md:grid-cols-2 gap-6 px-6 py-10 bg-green-50 dark:bg-black/50 relative mb-10"
+        className="rounded-lg border-1 border-zinc-300 dark:border-gray-800 grid grid-cols-1 md:grid-cols-2 gap-6 px-6 py-10 bg-zinc-50 dark:bg-black/50 relative mb-10"
       >
         {/* Text Section */}
         <div className="space-y-4 sm:mt-4">
@@ -24,7 +24,7 @@ export default function BlogHeroSection() {
           </p>
           <Button
             className={cn(
-              "inline-flex px-4 py-2 font-semibold items-center justify-center bg-green-50 dark:bg-green-900 border-2 border-green-500 text-green-600 rounded-lg hover:bg-green-500 hover:text-white transition-colors duration-300"
+              "inline-flex px-4 py-2 font-semibold items-center justify-center bg-green-50 dark:bg-green-900 border-2 border-green-500 text-green-500 rounded-lg hover:bg-green-500 hover:text-white transition-colors duration-300"
             )}
           >
             Learn More

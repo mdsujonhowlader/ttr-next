@@ -9,7 +9,7 @@ export default async function BlogsPage() {
   const blogs = await getBlogs();
 
   return (
-    <section className="max-w-6xl mx-auto py-20">
+    <section className="max-w-6xl mx-auto py-20 mt-4">
       <BlogHeroSection />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-16">
         <Suspense fallback={<LoadingFullApp />}>
