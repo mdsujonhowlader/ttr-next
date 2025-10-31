@@ -1,7 +1,7 @@
 "use client";
 import { getImages } from "@/actions/gellaryAction";
 import { cn } from "@/lib/utils";
-import { Button } from "@headlessui/react";
+import { Button, Input, Select } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import FullScreeenLoading from "../ui-common/FullScreeenLoading";
 import Gallery from "./Gallery";
@@ -40,10 +40,25 @@ export default function GalleryWrapper() {
       </div>
 
       <div className="bg-white border border-gray-300  rounded-lg p-5 overflow-auto">
+        <h3 className="text-gray-500 mb-5">All Files</h3>
         <div className="flex justify-between gap-4 space-y-4">
-          <h3 className="text-gray-500">All Files</h3>
+          <div>
+            <Select
+              className="
+          block w-full appearance-none rounded-lg border border-gray-200 bg-white
+          px-4 py-2 pr-10 text-sm font-medium text-gray-700
+          shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent
+          transition-shadow duration-150
+        "
+            >
+              <option value="default">Sort By</option>
+              <option value="date">Date Uploaded</option>
+              <option value="name">File Name</option>
+              <option value="size">File Size</option>
+            </Select>
+          </div>
           <div className="flex justify-between gap-2">
-            <input
+            <Input
               className={cn(
                 "mt-1 block w-full rounded-lg border-none  bg-black/5 px-3 py-2 text-md text-gray-600",
                 "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"
@@ -53,7 +68,7 @@ export default function GalleryWrapper() {
             />
             <Button
               type="submit"
-              className="inline-flex justify-center cursor-pointer items-center gap-2 rounded-md bg-button px-4  text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-button/90 data-open:bg-button/95"
+              className="cursor-pointer items-center gap-2 rounded-md bg-button px-3  text-sm font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-button/90 data-open:bg-button/95"
             >
               Search
             </Button>

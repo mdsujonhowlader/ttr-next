@@ -63,9 +63,13 @@ export default function Header() {
           </div>
           <div className="flex items-center space-x-2">
             <ThemeToggle />
-            <Button className="hidden md:flex bg-button text-primary dark:text-secondary hover:bg-button/90 transition outline-none rounded-lg px-4 py-2  cursor-pointer  font-medium">
+            <Link
+              href="https://calendar.app.google/BuX1BTtuvSeTsbGN6"
+              className="hidden md:flex bg-button text-primary dark:text-secondary hover:bg-button/90 transition outline-none rounded-lg px-4 py-2  cursor-pointer  font-medium"
+              target="_blank"
+            >
               Schedule a Call
-            </Button>
+            </Link>
 
             <Button
               className="flex md:hidden"

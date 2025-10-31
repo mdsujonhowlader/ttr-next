@@ -31,31 +31,33 @@ export default function LoginPage() {
       </h2>
       <form
         action={clientAction}
-        className="bg-white border border-gray-50 shadow-sm dark:bg-black dark:border-gray-800 rounded-lg w-full md:w-1/3 p-5 flex flex-col gap-4"
+        className="bg-white border border-gray-50 shadow-sm dark:bg-black dark:border-gray-800 rounded-lg w-full md:w-2/4 p-5 flex flex-col space-y-6"
       >
-        <Field as="div" className="flex flex-col">
+        <Field as="div" className="flex flex-col space-y-2">
           <Label className=" font-medium dark:text-white">
             Enter your email
           </Label>
           <Input
             name="email"
             type="email"
+            placeholder="Enter your email..."
             className={cn(
-              "mt-3 block w-full rounded-lg border-1 dark:border-gray-700 border-gray-300 bg-white/5  px-3 py-1.5  dark:text-white",
+              " block w-full rounded-lg border-1 dark:border-gray-700 border-gray-300 bg-white/5  px-3 py-1.5  dark:text-white",
               "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
             )}
             required
           />
         </Field>
-        <Field as="div" className="flex flex-col">
+        <Field as="div" className="flex flex-col space-y-2">
           <Label className=" font-medium dark:text-white">
             Enter your Password
           </Label>
           <Input
             name="password"
             type="password"
+            placeholder="Enter your password..."
             className={cn(
-              "mt-3 block w-full rounded-lg border-1 font-bold dark:border-gray-700 border-gray-300 bg-white/5 px-3 py-1.5  dark:text-white",
+              "block w-full rounded-lg border-1  dark:border-gray-700 border-gray-300 bg-white/5 px-3 py-1.5  dark:text-white",
               "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
             )}
             required

@@ -81,11 +81,11 @@ const sideMenu = [
 export default function Sidebar() {
   return (
     <div
-      className="hidden  h-full
+      className="hidden w-1/5 bg-white
      md:flex flex-col space-y-5  shadow-sm"
     >
       {/* Logo */}
-      <div className="self-center p-4">
+      <div className="p-4">
         <Link href="/dashboard">
           <Image
             className="w-30 object-cover"

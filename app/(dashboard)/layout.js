@@ -15,7 +15,6 @@ export const metadata = {
 };
 
 export default function DashboardRootLayout({ children }) {
-  
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -23,10 +22,8 @@ export default function DashboardRootLayout({ children }) {
         cz-shortcut-listen="true"
       >
         <div className="h-screen w-full flex flex-row">
-          <div className="basis-1/5 bg-white">
-            <Sidebar />
-          </div>
-          <div className="flex flex-col basis-4/5 overflow-hidden">
+          <Sidebar />
+          <div className="flex flex-col w-full md:w-4/5 overflow-hidden">
             <Header />
             <main className="overflow-y-auto  h-full shrink-0 ">
               {/* <Toaster position="bottom-right" /> */}

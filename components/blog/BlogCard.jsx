@@ -19,7 +19,7 @@ export default function BlogCard({ blog }) {
             ? blog.tags.map((tagArray, index) => (
                 <div
                   key={index}
-                  className="bg-zinc-50 border-zinc-200 dark:bg-zinc-900 border dark:border-zinc-600 text-gray-40 font-medium  text-xs px-3 py-1 rounded-full mb-2"
+                  className="bg-zinc-50 truncate border-zinc-200 dark:bg-zinc-900 border dark:border-zinc-600 text-gray-40 font-medium  text-xs px-3 py-1 rounded-full mb-2"
                 >
                   {tagArray}
                 </div>

@@ -61,7 +61,6 @@ export async function getImages() {
     return [];
   }
 }
-
 export async function deleteImageAction(imageId) {
   try {
     await connectMongo();

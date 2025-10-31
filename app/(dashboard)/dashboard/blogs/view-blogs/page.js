@@ -1,6 +1,4 @@
 import { getBlogs } from "@/actions/BlogAction";
-import { Button } from "@headlessui/react";
-import { Ellipsis } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,57 +8,58 @@ export default async function BlogsPage() {
   return (
     <>
       <div className="flex flex-col justify-center items-center my-10 px-4">
-        <div className="bg-green-400/20 px-4 py-4 rounded-2xl border-2 border-green-500 w-full flex justify-center items-center">
-          <h3 className="text-xl font-bold tracking-tight text-green-500">
-            Blog list
+        <div className="bg-green-400/20 px-4 py-4 rounded-md border-2 border-green-500 w-full flex justify-center items-center shadow-sm">
+          <h3 className="text-xl font-bold tracking-tight text-green-600">
+            Blog List
           </h3>
         </div>
 
-        <div className="grid grid-cols-4 gap-4  mt-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 w-full max-w-6xl">
           {blogs.length > 0 ? (
             blogs.map((blog) => (
-              <div
+              <Link
                 key={blog.id}
-                className="flex justify-center flex-col items-center bg-white border-1 border-gray-200 rounded-2xl p-4"
+                href={`blogs/${blog?.slug}`}
+                className="flex bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
               >
-                <Button className="cursor-pointer self-end py-2">
-                  <Ellipsis />
-                </Button>
-                <div>
+                <div className="w-2/5 h-40 sm:h-auto relative">
                   <Image
                     src={blog?.imageId?.url}
                     alt={`${blog.title} blog`}
-                    width={600}
-                    height={600}
-                    className="w-[200px] h-[100px] object-cover rounded-2xl"
+                    fill
+                    className="object-cover object-center"
                   />
                 </div>
-                <div className="mt-5">
-                  <div className="flex justify-center items-center gap-4 text-gray-600 dark:text-gray-200">
-                    {blog.tags?.length > 0
-                      ? blog.tags.map((tagArray, index) => (
+                <div className="w-3/5 p-4 flex flex-col justify-between">
+                  <div>
+                    <div className="block my-1 text-base sm:text-lg font-semibold hover:text-green-600 line-clamp-2">
+                      {blog.title}
+                    </div>
+                    <p className="text-gray-600 text-sm sm:text-base line-clamp-3 mb-3">
+                      {blog.blogshortdesc}
+                    </p>
+                    {blog.tags?.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-2">
+                        {blog.tags.map((tagArray, index) => (
                           <p
                             key={index}
-                            className=" bg-primary/30  w-fit text-sm px-2 py-1 rounded-lg mb-2"
+                            className="bg-green-100 text-green-700 w-fit text-xs px-2 py-1 rounded-md"
                           >
                             {tagArray}
                           </p>
-                        ))
-                      : null}
+                        ))}
+                      </div>
+                    )}
                   </div>
 
-                  <Link
-                    href={`blogs/${blog?.slug}`}
-                    className="my-1 hover:text-green-500 line-clamp-2 font-medium"
-                  >
-                    {blog.title}
-                  </Link>
-                  <p className="line-clamp-3 text-base">{blog.blogshortdesc}</p>
+                  <div className="mt-3 text-green-600 text-sm font-medium hover:underline">
+                    Read More →
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))
           ) : (
-            <p>No Blogs Found</p>
+            <p className="text-gray-500 text-center">No Blogs Found</p>
           )}
         </div>
       </div>
