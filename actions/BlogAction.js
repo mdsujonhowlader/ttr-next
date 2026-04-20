@@ -55,7 +55,7 @@ export async function getBlogs() {
     return replaceMongoIdInArray(blogData);
   } catch (error) {
     console.log(error);
-    return { error };
+    return [];
   }
 }
 
