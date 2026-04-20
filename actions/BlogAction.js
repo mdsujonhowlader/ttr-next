@@ -45,7 +45,7 @@ export async function getBlogs() {
 
     const blogData = await blogModel
       .find({})
-      .select(["_id", "title", "slug", "imageId", "tags", "blogshortdesc"])
+      .select(["_id", "title", "slug", "imageId", "tags", "blogshortdesc", "createdAt"])
       .populate({
         path: "imageId",
         select: "url",
@@ -86,8 +86,8 @@ export async function getBlogBySlug(slug) {
 export async function deleteBlogById(id) {
   try {
     await connectMongo();
-    const deleteBlog = await blogModel.findByIdAndDelete({ id });
-    return deleteBlog;
+    await blogModel.findByIdAndDelete(id);
+    return { success: true };
   } catch (error) {
     console.error("MongoDB Error:", error);
     return { error: error.message || "Something went wrong" };

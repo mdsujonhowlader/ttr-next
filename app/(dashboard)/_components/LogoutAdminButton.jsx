@@ -1,14 +1,10 @@
 "use client";
 import { Button } from "@headlessui/react";
-import { useRouter } from "next/navigation";
-
-import { logoutAdmin } from "@/actions/loginAction";
 import { LogOut } from "lucide-react";
 export default function LogoutAdminButton() {
-  const router = useRouter();
   async function handleLogout() {
-    await logoutAdmin();
-    router.push("/login");
+    await fetch("/api/auth/logout", { method: "POST" });
+    window.location.href = "/login";
   }
   return (
     <Button

@@ -65,3 +65,15 @@ export async function getServicesById(id) {
     return { error };
   }
 }
+
+export async function deleteService(id) {
+  try {
+    await connectMongo();
+    await serviceModel.findByIdAndDelete(id);
+    revalidatePath("/dashboard/services/view-services");
+    return { success: true, msg: "Service deleted successfully" };
+  } catch (error) {
+    console.log(error);
+    return { success: false, msg: error.message };
+  }
+}

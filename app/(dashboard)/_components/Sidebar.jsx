@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   Disclosure,
   DisclosureButton,
@@ -7,144 +8,208 @@ import {
 } from "@headlessui/react";
 import {
   ChevronDown,
-  Eye,
-  FileImage,
-  FolderCog,
   LayoutDashboard,
-  Plus,
   Settings,
+  FileImage,
+  Newspaper,
+  Plus,
+  Eye,
+  Wrench,
+  LogOut,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-const sideMenu = [
+import { useSidebar } from "./SidebarContext";
+
+const menuItems = [
   {
-    id: 1,
-    menuName: "Dashboard",
-    href: "/dashboard",
-    icon: <LayoutDashboard className="size-5 stroke-2" aria-hidden />,
-    children: [],
-  },
-  {
-    id: 2,
-    menuName: "Services",
-    href: "/dashboard/services",
-    icon: <FolderCog className="size-5 stroke-2" aria-hidden />,
-    children: [
+    title: "Overview",
+    items: [
       {
-        id: 50,
-        menuName: "Add Service",
-        href: "/dashboard/services/add-service",
-        icon: <Plus size="15" className="stroke-2" />,
-      },
-      {
-        id: 51,
-        menuName: "View Services",
-        href: "/dashboard/services/view-services",
-        icon: <Eye size="15" />,
+        name: "Dashboard",
+        href: "/dashboard",
+        icon: LayoutDashboard,
       },
     ],
   },
   {
-    id: 3,
-    menuName: "Settings",
-    href: "/dashboard/settings",
-    icon: <Settings className="size-5 stroke-2" aria-hidden />,
-    children: [],
-  },
-  {
-    id: 4,
-    menuName: "Upload Files",
-    href: "/dashboard/upload-files",
-    icon: <FileImage className="size-5 stroke-2" aria-hidden />,
-    children: [],
-  },
-  {
-    id: 5,
-    menuName: "Blogs",
-    icon: <FolderCog className="size-5 stroke-2" aria-hidden />,
-    children: [
+    title: "Manage",
+    items: [
       {
-        id: 52,
-        menuName: "Create Blogs",
-        href: "/dashboard/blogs/create-blog",
-        icon: <Plus size="15" className="stroke-2" />,
+        name: "Services",
+        icon: Wrench,
+        children: [
+          { name: "Add Service", href: "/dashboard/services/add-service", icon: Plus },
+          { name: "View Services", href: "/dashboard/services/view-services", icon: Eye },
+        ],
       },
       {
-        id: 53,
-        menuName: "View Blogs",
-        href: "/dashboard/blogs/view-blogs",
-        icon: <Eye size="15" className="stroke-2" />,
+        name: "Projects",
+        icon: Settings,
+        href: "/dashboard/projects",
+      },
+      {
+        name: "Blogs",
+        icon: Newspaper,
+        children: [
+          { name: "Create Blog", href: "/dashboard/blogs/create-blog", icon: Plus },
+          { name: "View Blogs", href: "/dashboard/blogs/view-blogs", icon: Eye },
+        ],
+      },
+      {
+        name: "Upload Files",
+        icon: FileImage,
+        href: "/dashboard/upload-files",
+      },
+      {
+        name: "Settings",
+        icon: Settings,
+        href: "/dashboard/settings",
       },
     ],
   },
 ];
-export default function Sidebar() {
-  return (
-    <div
-      className="hidden w-1/5 bg-white
-     md:flex flex-col space-y-5  shadow-sm"
-    >
-      {/* Logo */}
-      <div className="p-4">
-        <Link href="/dashboard">
-          <Image
-            className="w-30 object-cover"
-            src="/logo-light.png"
-            width={900}
-            height={300}
-            alt="Brand"
-            priority
-          />
-        </Link>
-      </div>
 
-      {/* Navigation */}
-      <ul className="space-y-2 px-4 pb-6">
-        {sideMenu.map((menu) => {
-          return (
-            <li key={menu.id} className="transition-colors duration-300 ">
-              {menu.children.length > 0 ? (
-                <Disclosure>
-                  <DisclosureButton className="group flex justify-between items-center w-full py-2 text-left transition-transform duration-500 font-medium hover:text-primary overflow-hidden focus:outline-none">
-                    <div className="font-medium tracking-tight flex items-center gap-2">
-                      {menu.icon}
-                      {menu.menuName}
-                    </div>
-                    <ChevronDown className="size-5 transition-transform duration-500 group-data-open:rotate-180" />
-                  </DisclosureButton>
-                  <DisclosurePanel
-                    transition
-                    as="ul"
-                    className="ml-4 pl-2 border-l-2 border-primary space-y-2  transition duration-500 ease-out data-closed:-translate-y-6 data-closed:opacity-0"
-                  >
-                    <li className="transition-colors duration-300 ">
-                      {menu.children.map((child) => (
-                        <Link
-                          key={child.id}
-                          href={child.href}
-                          className="block py-1 font-medium hover:text-primary"
-                        >
-                          <span className="flex items-center gap-2">
-                            {child.icon} {child.menuName}
-                          </span>
-                        </Link>
-                      ))}
-                    </li>
-                  </DisclosurePanel>
-                </Disclosure>
-              ) : (
-                <Link
-                  href={menu.href}
-                  className="flex items-center gap-2 font-medium tracking-tight py-2 hover:text-primary"
-                >
-                  {menu.icon}
-                  {menu.menuName}
-                </Link>
+export default function Sidebar() {
+  const { open, width } = useSidebar();
+  const pathname = usePathname();
+
+  const isActive = (href) => {
+    if (!href) return false;
+    return pathname === href || pathname.startsWith(href + "/");
+  };
+
+  return (
+    <aside
+      className="hidden md:flex flex-col h-screen fixed left-0 top-0 z-40 border-r border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800"
+      style={{ width: `${width}px` }}
+    >
+      <div className="flex flex-col h-full">
+        {/* Logo */}
+        <div className="h-16 flex items-center px-4 border-b border-gray-100 dark:border-gray-700">
+          <Link href="/dashboard" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/30">
+              <span className="text-white font-bold text-xl">T</span>
+            </div>
+            {open && (
+              <span className="font-bold text-lg text-gray-800 dark:text-white">
+                TechResol
+              </span>
+            )}
+          </Link>
+        </div>
+
+        {/* Menu */}
+        <div className="flex-1 overflow-y-auto py-4">
+          {menuItems.map((section, sectionIdx) => (
+            <div key={section.title} className="px-3 mb-4">
+              {open && (
+                <p className="px-3 mb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                  {section.title}
+                </p>
               )}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+              <ul className="space-y-1">
+                {section.items.map((item) => {
+                  const Icon = item.icon;
+                  const active = isActive(item.href);
+                  const hasActiveChild = item.children?.some((child) => isActive(child?.href));
+
+                  if (item.children) {
+                    return (
+                      <li key={item.name}>
+                        <Disclosure defaultOpen={hasActiveChild}>
+                          <DisclosureButton
+                            className={`group w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                              hasActiveChild
+                                ? "bg-primary/10 text-primary"
+                                : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
+                            }`}
+                          >
+                            <div
+                              className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                                hasActiveChild
+                                  ? "bg-primary text-white"
+                                  : "bg-gray-100 dark:bg-gray-700 group-hover:bg-primary/10 group-hover:text-primary"
+                              }`}
+                            >
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            {open && (
+                              <>
+                                <span className="flex-1 text-left">{item.name}</span>
+                                <ChevronDown className="w-4 h-4 transition-transform duration-200 group-data-open:rotate-180" />
+                              </>
+                            )}
+                          </DisclosureButton>
+                          {open && (
+                            <DisclosurePanel className="ml-4 pl-4 mt-1 space-y-1 border-l-2 border-gray-100 dark:border-gray-700">
+                              {item.children.map((child) => {
+                                const ChildIcon = child.icon;
+                                const childActive = isActive(child.href);
+                                return (
+                                  <Link
+                                    key={child.name}
+                                    href={child.href}
+                                    className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                                      childActive
+                                        ? "text-primary bg-primary/10"
+                                        : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
+                                    }`}
+                                  >
+                                    <ChildIcon className="w-4 h-4" />
+                                    <span>{child.name}</span>
+                                  </Link>
+                                );
+                              })}
+                            </DisclosurePanel>
+                          )}
+                        </Disclosure>
+                      </li>
+                    );
+                  }
+
+                  return (
+                    <li key={item.name}>
+                      <Link
+                        href={item.href}
+                        className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                          active
+                            ? "bg-primary text-white shadow-lg shadow-primary/25"
+                            : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
+                        }`}
+                      >
+                        <div
+                          className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                            active
+                              ? "bg-white/20"
+                              : "bg-gray-100 dark:bg-gray-700 group-hover:bg-primary/10 group-hover:text-primary"
+                          }`}
+                        >
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        {open && <span>{item.name}</span>}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer */}
+        <div className="p-3 border-t border-gray-100 dark:border-gray-700">
+          <Link
+            href="/login"
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors ${
+              !open && "justify-center"
+            }`}
+          >
+            <LogOut className="w-5 h-5" />
+            {open && <span>Logout</span>}
+          </Link>
+        </div>
+      </div>
+    </aside>
   );
 }

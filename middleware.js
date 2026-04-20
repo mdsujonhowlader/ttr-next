@@ -1,14 +1,33 @@
 import { NextResponse } from "next/server";
 
 export async function middleware(request) {
-  const auth = await request.cookies.get("admin-auth")?.value;
+  const response = NextResponse.next();
 
-  if (!auth) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  if (request.nextUrl.pathname.startsWith("/api") || request.nextUrl.pathname.startsWith("/dashboard")) {
+    return response;
   }
-  return NextResponse.next();
+
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0] 
+    || request.headers.get("x-real-ip") 
+    || "unknown";
+  
+  const userAgent = request.headers.get("user-agent") || "";
+
+  try {
+    await fetch(`${request.nextUrl.origin}/api/analytics/track`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ip: ip.substring(0, 50),
+        userAgent: userAgent.substring(0, 200),
+        page: request.nextUrl.pathname,
+      }),
+    });
+  } catch {}
+
+  return response;
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: "/((?!api|_next/static|_next/image|favicon.ico).*)",
 };

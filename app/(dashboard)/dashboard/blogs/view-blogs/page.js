@@ -1,68 +1,69 @@
 import { getBlogs } from "@/actions/BlogAction";
-import Image from "next/image";
 import Link from "next/link";
+import { Plus } from "lucide-react";
+import BlogFilters from "./_components/BlogFilters";
+
+function serializeBlogs(blogs) {
+  return blogs.map((blog) => ({
+    _id: blog._id?.toString(),
+    title: blog.title,
+    slug: blog.slug,
+    blogshortdesc: blog.blogshortdesc,
+    tags: blog.tags || [],
+    createdAt: blog.createdAt?.toString(),
+    imageId: blog.imageId ? {
+      _id: blog.imageId._id?.toString(),
+      url: blog.imageId.url,
+    } : null,
+  }));
+}
 
 export default async function BlogsPage() {
   const blogs = await getBlogs();
+  const serializedBlogs = serializeBlogs(blogs);
 
   return (
-    <>
-      <div className="flex flex-col justify-center items-center my-10 px-4">
-        <div className="bg-green-400/20 px-4 py-4 rounded-md border-2 border-green-500 w-full flex justify-center items-center shadow-sm">
-          <h3 className="text-xl font-bold tracking-tight text-green-600">
-            Blog List
-          </h3>
+    <section className="z-20">
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+            Blogs
+          </h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-1">
+            Manage your blog posts ({blogs.length})
+          </p>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 w-full max-w-6xl">
-          {blogs.length > 0 ? (
-            blogs.map((blog) => (
-              <Link
-                key={blog.id}
-                href={`blogs/${blog?.slug}`}
-                className="flex bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="w-2/5 h-40 sm:h-auto relative">
-                  <Image
-                    src={blog?.imageId?.url}
-                    alt={`${blog.title} blog`}
-                    fill
-                    className="object-cover object-center"
-                  />
-                </div>
-                <div className="w-3/5 p-4 flex flex-col justify-between">
-                  <div>
-                    <div className="block my-1 text-base sm:text-lg font-semibold hover:text-green-600 line-clamp-2">
-                      {blog.title}
-                    </div>
-                    <p className="text-gray-600 text-sm sm:text-base line-clamp-3 mb-3">
-                      {blog.blogshortdesc}
-                    </p>
-                    {blog.tags?.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-2">
-                        {blog.tags.map((tagArray, index) => (
-                          <p
-                            key={index}
-                            className="bg-green-100 text-green-700 w-fit text-xs px-2 py-1 rounded-md"
-                          >
-                            {tagArray}
-                          </p>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="mt-3 text-green-600 text-sm font-medium hover:underline">
-                    Read More →
-                  </div>
-                </div>
-              </Link>
-            ))
-          ) : (
-            <p className="text-gray-500 text-center">No Blogs Found</p>
-          )}
-        </div>
+        <Link
+          href="/dashboard/blogs/create-blog"
+          className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          <Plus className="w-4 h-4" />
+          Add Blog
+        </Link>
       </div>
-    </>
+
+      {blogs.length > 0 ? (
+        <BlogFilters initialBlogs={serializedBlogs} />
+      ) : (
+        <div className="flex flex-col items-center justify-center py-20">
+          <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
+            <Plus className="w-8 h-8 text-gray-400" />
+          </div>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+            No Blogs Yet
+          </h3>
+          <p className="text-gray-500 dark:text-gray-400 mb-6">
+            Get started by creating your first blog post
+          </p>
+          <Link
+            href="/dashboard/blogs/create-blog"
+            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            Create Blog
+          </Link>
+        </div>
+      )}
+    </section>
   );
 }

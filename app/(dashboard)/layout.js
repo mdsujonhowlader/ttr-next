@@ -3,6 +3,7 @@ import { Jost } from "next/font/google";
 import "../globals.css";
 import Header from "./_components/Header";
 import Sidebar from "./_components/Sidebar";
+import { SidebarProvider } from "./_components/SidebarContext";
 
 const jostSans = Jost({
   variable: "--font-jost-sans",
@@ -21,17 +22,18 @@ export default function DashboardRootLayout({ children }) {
         className={`${jostSans.variable}  antialiased bg-slate-100`}
         cz-shortcut-listen="true"
       >
-        <div className="h-screen w-full flex flex-row">
-          <Sidebar />
-          <div className="flex flex-col w-full md:w-4/5 overflow-hidden">
-            <Header />
-            <main className="overflow-y-auto  h-full shrink-0 ">
-              {/* <Toaster position="bottom-right" /> */}
-              <ToastAlertProvider position="bottom-right" />
-              {children}
-            </main>
+        <SidebarProvider>
+          <div className="min-h-screen">
+            <Sidebar />
+            <div className="transition-all duration-300 md:ml-64">
+              <Header />
+              <main className="p-6">
+                <ToastAlertProvider position="bottom-right" />
+                {children}
+              </main>
+            </div>
           </div>
-        </div>
+        </SidebarProvider>
       </body>
     </html>
   );

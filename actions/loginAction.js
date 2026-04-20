@@ -2,7 +2,6 @@
 
 import connectMongo from "@/lib/mongoose";
 import Admin from "@/model/admin";
-import { cookies } from "next/headers";
 
 export async function loginAdmin(formData) {
   const email = formData.get("email");
@@ -20,14 +19,6 @@ export async function loginAdmin(formData) {
       return { error: "Invalid password" };
     }
 
-    await cookies().set({
-      name: "admin-auth",
-      value: "true",
-      httpOnly: true,
-      path: "/",
-
-      maxAge: 60 * 60 * 24,
-    });
     return { success: true };
   } catch (error) {
     console.error("Login action failed:", error);
@@ -36,5 +27,5 @@ export async function loginAdmin(formData) {
 }
 
 export async function logoutAdmin() {
-  await cookies().delete("admin-auth");
+  return { logout: true };
 }
