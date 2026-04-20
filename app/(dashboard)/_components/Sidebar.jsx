@@ -45,8 +45,11 @@ const menuItems = [
       },
       {
         name: "Projects",
-        icon: Settings,
-        href: "/dashboard/projects",
+        icon: Wrench,
+        children: [
+          { name: "Add Category", href: "/dashboard/projects/add-project", icon: Plus },
+          { name: "View Projects", href: "/dashboard/projects/view-projects", icon: Eye },
+        ],
       },
       {
         name: "Blogs",

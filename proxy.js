@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function middleware(request) {
+export async function proxy(request) {
   const response = NextResponse.next();
 
   if (request.nextUrl.pathname.startsWith("/api") || request.nextUrl.pathname.startsWith("/dashboard")) {

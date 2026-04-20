@@ -1,5 +1,5 @@
 import { getImages } from "@/actions/gellaryAction";
-import ServiceFormWrapper from "../../../_components/services/ServiceFormWrapper";
+import AddProjectWrapper from "./_components/AddProjectWrapper";
 
 function serializeImages(images) {
   return (images || []).map((img) => ({
@@ -9,8 +9,8 @@ function serializeImages(images) {
   }));
 }
 
-export default async function ServiceLayout() {
+export default async function AddProjectPage() {
   const images = await getImages();
 
-  return <ServiceFormWrapper safeImages={serializeImages(images)} />;
+  return <AddProjectWrapper safeImages={serializeImages(images)} />;
 }

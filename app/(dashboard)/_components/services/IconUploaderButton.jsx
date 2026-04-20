@@ -1,8 +1,9 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { Button, Field, Input, Label } from "@headlessui/react";
+
+import { Input } from "@headlessui/react";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { X, Layers } from "lucide-react";
 import AllFileGellary from "../gallery/AllFileGellary";
 
 export default function IconUploaderButton({
@@ -10,60 +11,66 @@ export default function IconUploaderButton({
   selectedIcon,
   setSelectedIcon,
 }) {
-  const iconUploadRef = useRef(null);
   const [showGallery, setShowGallery] = useState(false);
 
-  const handleOpenGallery = (e) => {
-    e.preventDefault();
-    setShowGallery(true);
-  };
-
-  const handleIconSelect = (image) => {
+  function handleImageSelect(image) {
     setSelectedIcon(image);
     setShowGallery(false);
-  };
+  }
+
+  function handleClear() {
+    setSelectedIcon(null);
+  }
 
   return (
     <>
       <AllFileGellary
         images={safeImages}
         setShowGallery={setShowGallery}
-        onSelect={handleIconSelect}
+        onSelect={handleImageSelect}
         showGallery={showGallery}
       />
 
-      <Field as="div" className="flex flex-col w-full mb-5">
-        <Label className="text-sm/6 font-medium text-gray-500">
-          Service Image
-        </Label>
-        <Button
-          type="button"
-          className={cn(
-            "mt-1 block w-full rounded-lg border-none bg-black/5 px-3 py-2 text-md text-gray-600",
-            "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-primary"
-          )}
-          onClick={handleOpenGallery}
-        >
-          Choose from gallery
-        </Button>
-        {selectedIcon ? (
-          <div className="mt-2 border border-primary w-1/4 rounded-lg">
-            <Image
-              src={selectedIcon.url}
-              alt={selectedIcon.filename}
-              width={300}
-              height={300}
-              className="w-full h-[100px] object-cover rounded-lg"
-            />
+      {selectedIcon ? (
+        <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-700 rounded-xl overflow-hidden border-2 border-dashed border-gray-200 dark:border-gray-600">
+          <Image
+            src={selectedIcon.url}
+            alt={selectedIcon.filename}
+            fill
+            className="object-contain p-4"
+          />
+          <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+            <button
+              type="button"
+              onClick={() => setShowGallery(true)}
+              className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg backdrop-blur-sm text-white text-sm"
+            >
+              Change
+            </button>
+            <button
+              type="button"
+              onClick={handleClear}
+              className="p-2 bg-red-500/80 hover:bg-red-600 rounded-lg"
+            >
+              <X className="w-4 h-4 text-white" />
+            </button>
           </div>
-        ) : null}
-        <Input
-          ref={iconUploadRef}
-          name="iconId"
-          type="hidden"
-          value={selectedIcon?._id || ""}
-        />
-      </Field>
+          <Input
+            name="iconId"
+            type="hidden"
+            value={selectedIcon._id}
+          />
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setShowGallery(true)}
+          className="w-full h-48 flex flex-col items-center justify-center gap-3 bg-gray-50 dark:bg-gray-700 rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-600 hover:border-primary hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+        >
+          <Layers className="w-10 h-10 text-gray-400" />
+          <span className="text-sm text-gray-500">Click to select icon</span>
+        </button>
+      )}
     </>
   );
 }
