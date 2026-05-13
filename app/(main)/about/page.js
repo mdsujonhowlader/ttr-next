@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "About Us - The Tech Resolver",
+  description: "Learn about The Tech Resolver - a professional software company delivering innovative digital solutions.",
+};
+
 import ReviewSection from "@/components/ReviewSection";
 import { Award, Blocks, ListTodo, Users } from "lucide-react";
 import Image from "next/image";

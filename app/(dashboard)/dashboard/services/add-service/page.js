@@ -1,4 +1,4 @@
-import { getImages } from "@/actions/gellaryAction";
+import { getImages } from "@/actions/galleryAction";
 import ServiceFormWrapper from "../../../_components/services/ServiceFormWrapper";
 
 function serializeImages(images) {

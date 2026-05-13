@@ -1,4 +1,4 @@
-import { getImages } from "@/actions/gellaryAction";
+import { getImages } from "@/actions/galleryAction";
 import BlogdFromClient from "@/app/(dashboard)/_components/blogs/BlogFormClient";
 
 export default async function CreateBlogPage() {

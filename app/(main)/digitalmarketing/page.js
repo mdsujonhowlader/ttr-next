@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Digital Marketing - The Tech Resolver",
+  description: "Boost your online presence with our comprehensive digital marketing services including SEO, social media, and PPC.",
+};
+
 import Image from "next/image";
 import Link from "next/link";
 import { 

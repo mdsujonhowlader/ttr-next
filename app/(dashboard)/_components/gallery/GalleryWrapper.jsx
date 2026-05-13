@@ -1,9 +1,9 @@
 "use client";
 
-import { getImages } from "@/actions/gellaryAction";
+import { getImages } from "@/actions/galleryAction";
 import { Button } from "@headlessui/react";
 import { useEffect, useState, useMemo } from "react";
-import FullScreeenLoading from "../ui-common/FullScreeenLoading";
+import FullscreenLoader from "../ui-common/FullscreenLoader";
 import Gallery from "./Gallery";
 import UploadButton from "./UploadButton";
 import { Search, Filter, Grid3X3, LayoutGrid } from "lucide-react";
@@ -64,7 +64,7 @@ export default function GalleryWrapper() {
   }, [images, search, sortBy]);
 
   if (loading) {
-    return <FullScreeenLoading />;
+    return <FullscreenLoader />;
   }
 
   return (

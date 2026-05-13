@@ -1,5 +1,5 @@
 import { getAppearances } from "@/actions/appearanceAction";
-import { getImages } from "@/actions/gellaryAction";
+import { getImages } from "@/actions/galleryAction";
 import SettingsWrapper from "../../_components/settings/SettingsWrapper";
 
 function serializeImages(images) {

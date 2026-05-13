@@ -1,6 +1,16 @@
 import { getServicesById } from "@/actions/servicAction";
 import Image from "next/image";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const service = await getServicesById(id);
+  if (!service) return { title: "Service Not Found - The Tech Resolver" };
+  return {
+    title: `${service.title} - The Tech Resolver`,
+    description: service.shortdescription,
+  };
+}
+
 export default async function SingleServicePage({ params }) {
   const { id } = await params;
   const service = await getServicesById(id);

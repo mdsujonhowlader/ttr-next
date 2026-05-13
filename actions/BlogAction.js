@@ -7,6 +7,7 @@ import {
   replaceMongoIdInObject,
 } from "@/utils/data-utils";
 import { blogSchema } from "@/validation/validationSchema";
+import { generateSlug } from "@/utils/slugUtils";
 
 export async function createBlog(formData) {
   const tags = JSON.parse(formData.get("tags") || "[]");
@@ -35,7 +36,7 @@ export async function createBlog(formData) {
     return { success: true, msg: "Blog Created Successfully" };
   } catch (err) {
     console.error("blog failed:", err);
-    return { success: false, message: "Blog add failed" };
+    return { success: false, msg: "Blog add failed" };
   }
 }
 
@@ -59,6 +60,13 @@ export async function getBlogs() {
   }
 }
 
+function ensureBlogSlug(blog) {
+  if (blog.slug) return blog.slug;
+  const id = blog._id?.toString();
+  const suffix = id ? id.slice(-6) : Math.random().toString(36).slice(2, 8);
+  return generateSlug(blog.title || "blog") + "-" + suffix;
+}
+
 export async function getBlogBySlug(slug) {
   try {
     await connectMongo();
@@ -72,14 +80,29 @@ export async function getBlogBySlug(slug) {
       })
       .lean();
 
-    if (!blogData) {
-      return { error: "Blog not found" };
+    if (blogData) {
+      return replaceMongoIdInObject(blogData);
     }
 
-    return replaceMongoIdInObject(blogData);
+    const allBlogs = await blogModel
+      .find({})
+      .populate({
+        path: "imageId",
+        select: "url",
+        model: imageModel,
+      })
+      .lean();
+
+    for (const blog of allBlogs) {
+      if (ensureBlogSlug(blog) === slug) {
+        return replaceMongoIdInObject(blog);
+      }
+    }
+
+    return { success: false, error: "Blog not found" };
   } catch (error) {
     console.error("MongoDB Error:", error);
-    return { error: error.message || "Something went wrong" };
+    return { success: false, error: error.message || "Something went wrong" };
   }
 }
 
@@ -87,9 +110,9 @@ export async function deleteBlogById(id) {
   try {
     await connectMongo();
     await blogModel.findByIdAndDelete(id);
-    return { success: true };
+    return { success: true, msg: "Blog deleted successfully" };
   } catch (error) {
     console.error("MongoDB Error:", error);
-    return { error: error.message || "Something went wrong" };
+    return { success: false, error: error.message || "Something went wrong" };
   }
 }

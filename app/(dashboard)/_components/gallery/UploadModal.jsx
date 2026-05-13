@@ -1,5 +1,5 @@
 "use client";
-import { uploadImages } from "@/actions/gellaryAction";
+import { uploadImages } from "@/actions/galleryAction";
 import { toastify } from "@/lib/toastalert";
 import {
   Dialog,

@@ -5,10 +5,21 @@ import LoadingFullApp from "../../loading";
 
 export const dynamic = "force-dynamic";
 
-export default async function BlogPage({ params }) {
-  const blog = await getBlogBySlug(params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const blog = await getBlogBySlug(slug);
+  if (!blog || blog.error) return { title: "Blog Not Found - The Tech Resolver" };
+  return {
+    title: `${blog.title} - The Tech Resolver`,
+    description: blog.blogshortdesc,
+  };
+}
 
-  if (!blog) return <p>Blog not found</p>;
+export default async function BlogPage({ params }) {
+  const { slug } = await params;
+  const blog = await getBlogBySlug(slug);
+
+  if (!blog || blog.error) return <p>Blog not found</p>;
 
   const plainBlog = {
     ...blog,

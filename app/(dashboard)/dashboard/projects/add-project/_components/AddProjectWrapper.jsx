@@ -1,6 +1,6 @@
 "use client";
 
-import { createProject } from "@/actions/projectsAction";
+import { createProjectTab } from "@/actions/projectsAction";
 import { Button, Field, Input, Label, Textarea } from "@headlessui/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -21,7 +21,7 @@ export default function AddProjectWrapper({ safeImages }) {
   async function handleSubmit(formDataSubmit) {
     setSaving(true);
     formDataSubmit.append("tabIcon", selectedIcon?._id || "");
-    const res = await createProject(formDataSubmit);
+    const res = await createProjectTab(formDataSubmit);
     if (res.success) {
       toast.success(res.msg);
     } else {

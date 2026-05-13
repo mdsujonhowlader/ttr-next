@@ -1,5 +1,5 @@
 "use client";
-import { deleteImageAction } from "@/actions/gellaryAction";
+import { deleteImageAction } from "@/actions/galleryAction";
 import ConfirmModal from "@/components/common/ConfirmModal";
 import { toastify } from "@/lib/toastalert";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";

@@ -15,11 +15,10 @@ export default function LoginPage() {
     const formData = new FormData(e.currentTarget);
     const res = await loginAdmin(formData);
     setLoading(false);
-    if (res.error) {
+    if (!res.success) {
       toast.error(res.error);
-    } else if (res.success) {
+    } else {
       toast.success("Login successfully");
-      await fetch("/api/auth/set-cookie", { method: "POST", cache: "no-store" });
       window.location.href = "/dashboard";
     }
   }

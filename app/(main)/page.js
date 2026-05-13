@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "The Tech Resolver - Digital Agency",
+  description: "Full-service web and digital agency helping businesses grow through custom websites, marketing, and tech automation.",
+};
+
 import { getAppearances } from "@/actions/appearanceAction";
 import BrandCompany from "@/components/BrandCompany";
 import HeroSection from "@/components/HeroSection";

@@ -48,7 +48,7 @@ export async function updateAppearance(data) {
     } else {
       return {
         success: false,
-        message:
+        msg:
           "Invalid data format. Expected FormData or an object with type and value.",
       };
     }
@@ -56,7 +56,7 @@ export async function updateAppearance(data) {
     if (!operations || operations.length === 0) {
       return {
         success: false,
-        message: "No data to update.",
+        msg: "No data to update.",
       };
     }
 
@@ -67,10 +67,10 @@ export async function updateAppearance(data) {
       data: JSON.parse(JSON.stringify(result)),
     };
   } catch (err) {
-    console.error("Failed to update/create appearance:", err.message);
+    console.error("Failed to update/create appearance:", err.msg);
     return {
       success: false,
-      message: err.message,
+      msg: err.msg,
     };
   }
 }
@@ -91,10 +91,10 @@ export async function updateAppearance(data) {
 //       success: true,
 //     };
 //   } catch (err) {
-//     console.error("Failed to save appearance:", err.message);
+//     console.error("Failed to save appearance:", err.msg);
 //     return {
 //       success: false,
-//       message: err.message,
+//       msg: err.msg,
 //     };
 //   }
 // }
@@ -107,5 +107,6 @@ export async function getAppearances() {
     return replaceMongoIdInArray(appearances);
   } catch (e) {
     console.log(e);
+    return [];
   }
 }
