@@ -48,7 +48,7 @@ export default async function ViewProjectsPage() {
         <div className="space-y-8">
           {serializedTabs.map((tab) => (
             <div
-              key={tab._id}
+              key={tab.id}
               className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"
             >
               <div className="p-5 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">

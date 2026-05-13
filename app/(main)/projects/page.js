@@ -4,19 +4,29 @@ import Link from "next/link";
 import { Eye, ArrowRight } from "lucide-react";
 
 function serializeTabs(tabs) {
-  return (tabs || []).map((tab) => ({
-    _id: tab._id?.toString(),
-    tabName: tab.tabName,
-    tabShortDes: tab.tabShortDes,
-    tabIcon: tab.tabIcon
-      ? { _id: tab.tabIcon._id?.toString(), url: tab.tabIcon.url }
-      : null,
-    projects: (tab.projects || []).map((p) => ({
-      projectImage: p.projectImage?.url,
-      projectName: p.projectName,
-      projectShortDesc: p.projectShortDesc,
-    })),
-  }));
+  if (!tabs || !Array.isArray(tabs)) return [];
+
+  return tabs.map((tab, tabIndex) => {
+    const tabId = tab.id || (tab._id && (typeof tab._id === 'string' ? tab._id : tab._id.toString())) || `tab-${tabIndex}`;
+
+    return {
+      id: tabId,
+      tabName: tab.tabName,
+      tabShortDes: tab.tabShortDes,
+      tabIcon: tab.tabIcon
+        ? { _id: tab.tabIcon._id?.toString(), url: tab.tabIcon.url }
+        : null,
+      projects: (tab.projects || []).map((p, pIndex) => {
+        const projectId = p._id?.toString() || `project-${tabIndex}-${pIndex}`;
+        return {
+          id: projectId,
+          projectImage: p.projectImage?.url,
+          projectName: p.projectName,
+          projectShortDesc: p.projectShortDesc,
+        };
+      }),
+    };
+  });
 }
 
 export default async function ProjectsPage() {
@@ -59,7 +69,7 @@ export default async function ProjectsPage() {
                 ) : null;
                 return (
                   <Link
-                    key={tab._id}
+                    key={tab.id}
                     href={`#${tab.tabName.toLowerCase().replace(/\s+/g, "-")}`}
                     className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full hover:border-primary hover:text-primary transition-colors"
                   >
@@ -76,7 +86,7 @@ export default async function ProjectsPage() {
             {/* Projects by Category */}
             {serializedTabs.map((tab) => (
               <div
-                key={tab._id}
+                key={tab.id}
                 id={tab.tabName.toLowerCase().replace(/\s+/g, "-")}
                 className="mb-16"
               >
@@ -103,9 +113,9 @@ export default async function ProjectsPage() {
 
                 {tab.projects?.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {tab.projects.map((project, index) => (
+                    {tab.projects.map((project) => (
                       <div
-                        key={index}
+                        key={project.id}
                         className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group"
                       >
                         <div className="relative h-56 bg-gray-100 dark:bg-gray-700">

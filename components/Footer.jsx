@@ -32,7 +32,7 @@ const services = [
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: Facebook,  href:"https://facebook.com/thetechresolver", label: "Facebook" },
   { icon: Twitter, href: "#", label: "Twitter" },
   { icon: Instagram, href: "#", label: "Instagram" },
   { icon: Linkedin, href: "#", label: "LinkedIn" },
@@ -41,7 +41,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="border-t  border-gray-600 text-black dark:text-gray-400">
       {/* Main Footer */}
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -53,7 +53,7 @@ export default function Footer() {
               </div>
               <span className="text-xl font-bold">The Tech Resolver</span>
             </Link>
-            <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+            <p className="text-black dark:text-gray-400 text-sm mb-6 leading-relaxed">
               We are a professional software company dedicated to delivering 
               innovative digital solutions that help businesses grow and succeed 
               in the modern world.
@@ -66,7 +66,7 @@ export default function Footer() {
                     key={index}
                     href={social.href}
                     aria-label={social.label}
-                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                    className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
                   >
                     <Icon className="w-5 h-5" />
                   </a>
@@ -83,7 +83,7 @@ export default function Footer() {
                 <li key={index}>
                   <Link 
                     href={link.href} 
-                    className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2"
+                    className="text-black dark:text-gray-400 hover:text-primary transition-colors flex items-center gap-2"
                   >
                     <ArrowRight className="w-4 h-4" />
                     {link.name}
@@ -101,7 +101,7 @@ export default function Footer() {
                 <li key={index}>
                   <Link 
                     href={link.href} 
-                    className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2"
+                    className="text-black dark:text-gray-400 hover:text-primary transition-colors flex items-center gap-2"
                   >
                     <ArrowRight className="w-4 h-4" />
                     {link.name}
@@ -115,23 +115,23 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-6">Get in Touch</h3>
             <div className="space-y-4 mb-6">
-              <div className="flex items-start gap-3 text-gray-400">
-                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-3 text-black dark:text-gray-400">
+                <MapPin className="w-5 h-5 mt-0.5 shrink-0" />
                 <p className="text-sm leading-relaxed">
-                  2nd Floor, Banasree Block-D,<br />
-                  Dhaka-1219, Bangladesh.
+                 Badda, Dhaka, Bangladesh, 1207<br />
+                 
                 </p>
               </div>
-              <div className="flex items-center gap-3 text-gray-400">
-                <Mail className="w-5 h-5 flex-shrink-0" />
+              <div className="flex items-center gap-3 text-black dark:text-gray-400">
+                <Mail className="w-5 h-5 shrink-0" />
                 <a href="mailto:info@techresolver.com" className="hover:text-primary transition-colors">
                   info@techresolver.com
                 </a>
               </div>
-              <div className="flex items-center gap-3 text-gray-400">
-                <Phone className="w-5 h-5 flex-shrink-0" />
+              <div className="flex items-center gap-3 text-black dark:text-gray-400">
+                <Phone className="w-5 h-5 shrink-0" />
                 <a href="tel:+8801234567890" className="hover:text-primary transition-colors">
-                  +880 1234 567 890
+                  +880 1797-125469
                 </a>
               </div>
             </div>
@@ -139,12 +139,12 @@ export default function Footer() {
             {/* Newsletter */}
             <div>
               <h4 className="font-medium mb-3">Newsletter</h4>
-              <p className="text-gray-400 text-sm mb-3">Subscribe for latest updates.</p>
+              <p className="text-black dark:text-gray-400 text-sm mb-3">Subscribe for latest updates.</p>
               <form className="flex">
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="flex-1 px-4 py-3 bg-gray-800 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                  className="flex-1 px-4 py-3 outline-0 border dark:bg-gray-800 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                 />
                 <button
                   type="submit"

@@ -140,7 +140,7 @@ export default function ContactPage() {
                     Phone
                   </h4>
                   <p className="text-sm  text-gray-500 dark:text-gray-300">
-                    +880-198989899
+                    +880 1797-125469
                   </p>
                 </div>
               </div>
@@ -195,7 +195,7 @@ export default function ContactPage() {
               </div>
               <div className="flex gap-4">
                 <Link
-                  href="https://facebook.com"
+                  href="https://facebook.com/thetechresolver"
                   target="_blank"
                   className="w-8 h-8 bg-green-100  dark:bg-green-900/40 rounded-lg inline-flex justify-center items-center transform hover:scale-110 transition duration-300 ease-in-out"
                 >
@@ -233,7 +233,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-        <div className="w-full h-[400px] rounded-md overflow-hidden shadow-md">
+        <div className="w-full h-100 rounded-md overflow-hidden shadow-md">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d116818.17319103966!2d90.42195359999997!3d23.798396199999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1751821993479!5m2!1sen!2sbd"
             width="600"
