@@ -1,4 +1,4 @@
-"use client";
+
 import {
   Dialog,
   DialogPanel,
@@ -16,8 +16,6 @@ export default function AllFileGellary({
   showGallery,
   setShowGallery,
 }) {
-
-  
   return (
     <Transition as={Fragment} show={showGallery}>
       <Dialog

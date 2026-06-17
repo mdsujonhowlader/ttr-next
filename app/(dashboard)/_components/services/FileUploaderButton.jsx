@@ -22,7 +22,6 @@ export default function FileUploaderButton({
     setSelectedImage(null);
   }
 
-  console.log(safeImages);
   
   return (
     <>
