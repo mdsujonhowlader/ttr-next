@@ -37,7 +37,7 @@ export async function uploadImages(formData) {
       public_id: uploadResult.public_id,
     });
 
-    revalidatePath("/");
+    revalidatePath("/dashboard");
 
     return { success: true, url: uploadResult.secure_url };
   } catch (e) {

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getImages } from "@/actions/galleryAction";
 import BlogdFromClient from "@/app/(dashboard)/_components/blogs/BlogFormClient";
 
