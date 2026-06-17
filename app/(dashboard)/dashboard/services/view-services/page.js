@@ -4,21 +4,10 @@ import Link from "next/link";
 import { Edit, Plus } from "lucide-react";
 import DeleteServiceButton from "./_components/DeleteServiceButton";
 
-function serializeServices(services) {
-  return services.map((service) => ({
-    _id: service._id?.toString(),
-    title: service.title,
-    shortdescription: service.shortdescription,
-    iconId: service.iconId ? {
-      _id: service.iconId._id?.toString(),
-      url: service.iconId.url,
-    } : null,
-  }));
-}
 
 export default async function ServicesPage() {
   const services = await getServices();
-  const serializedServices = serializeServices(services);
+ 
 
   return (
     <section className="mt-10 px-4 z-20">
@@ -44,7 +33,7 @@ export default async function ServicesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service) => (
             <div
-              key={service._id}
+              key={service.id}
               className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
             >
               <div className="relative h-40 bg-gray-100 dark:bg-gray-700">
@@ -52,7 +41,8 @@ export default async function ServicesPage() {
                   <Image
                     src={service.iconId.url}
                     alt={service.title}
-                    fill
+                    width={100}
+                    height={100}
                     className="object-contain p-4"
                   />
                 ) : (
