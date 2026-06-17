@@ -13,8 +13,8 @@ envContent.split("\n").forEach((line) => {
   }
 });
 
-const ADMIN_EMAIL = "admin@thetechresolver.com";
-const ADMIN_PASSWORD = crypto.randomBytes(4).toString("hex") + "-" + crypto.randomBytes(2).toString("hex");
+const ADMIN_EMAIL = "sujonhowlader@gmail.com";
+const ADMIN_PASSWORD = "admin@123";
 
 const AdminSchema = new mongoose.Schema(
   { email: { type: String, required: true }, password: { type: String, required: true } },
