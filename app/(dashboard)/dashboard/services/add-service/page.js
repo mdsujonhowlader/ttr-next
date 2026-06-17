@@ -12,7 +12,6 @@ function serializeImages(images) {
 export default async function ServiceLayout() {
   const images = await getImages();
 
-  console.log(images);
   
   return <ServiceFormWrapper safeImages={serializeImages(images)} />;
 }

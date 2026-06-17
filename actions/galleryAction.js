@@ -2,7 +2,7 @@
 import connectMongo from "@/lib/mongoose";
 import imageModel from "@/model/image";
 import { v2 as cloudinary } from "cloudinary";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, unstable_noStore } from "next/cache";
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -47,6 +47,7 @@ export async function uploadImages(formData) {
 }
 
 export async function getImages() {
+  unstable_noStore();
   try {
     await connectMongo();
     const images = await imageModel.find({}, "_id filename url").lean();
