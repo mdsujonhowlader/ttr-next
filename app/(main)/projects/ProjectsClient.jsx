@@ -41,12 +41,13 @@ export default function ProjectsClient({ projects, categories, allTags }) {
   }, [projects, filters]);
 
   return (
-    <div className="space-y-12">
+    <div className="flex flex-col gap-12">
       <ProjectFilters
         categories={categories}
         tags={allTags}
         onFilterChange={handleFilterChange}
       />
+
       <ProjectGrid projects={filtered} />
     </div>
   );

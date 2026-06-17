@@ -1,7 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { Search, X, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Search, X, SlidersHorizontal } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 export default function ProjectFilters({
   categories,
@@ -11,8 +20,6 @@ export default function ProjectFilters({
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedTag, setSelectedTag] = useState("");
-  const [focused, setFocused] = useState(false);
-  const inputRef = useRef(null);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -30,79 +37,83 @@ export default function ProjectFilters({
   const hasFilters = search || selectedCategory !== "all" || selectedTag;
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row gap-4">
-        <div
-          className={`relative flex-1 transition-all duration-200 ${
-            focused ? "ring-1 ring-primary" : "ring-0"
-          }`}
-        >
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Search projects..."
-            value={search}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-11 pr-4 py-3 bg-transparent border border-border text-foreground placeholder:text-muted-foreground/50 text-sm focus:outline-none transition-colors"
-          />
-          {search && (
-            <button
-              onClick={() => setSearch("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          )}
-        </div>
-
-        <div className="relative">
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="appearance-none px-4 py-3 pr-10 bg-transparent border border-border text-foreground text-sm focus:outline-none focus:ring-1 focus:ring-primary transition-colors min-w-[160px] cursor-pointer"
-          >
-            <option value="all">All Categories</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-        </div>
-
-        {hasFilters && (
+    <div className="flex flex-col gap-8">
+      {/* Search Row */}
+      <div className="relative max-w-md">
+        <Search className="absolute left-0 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+        <Input
+          type="text"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="pl-8 pr-8 h-10 bg-transparent border-0 border-b border-border rounded-none focus-visible:ring-0 focus-visible:border-b-primary transition-colors"
+        />
+        {search && (
           <button
-            onClick={clearFilters}
-            className="px-4 py-3 text-sm text-muted-foreground hover:text-foreground transition-colors border border-transparent hover:border-border"
+            onClick={() => setSearch("")}
+            className="absolute right-0 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
           >
-            Clear
+            <X className="size-3.5" />
           </button>
         )}
       </div>
 
-      {tags.length > 0 && (
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() =>
-                setSelectedTag(selectedTag === tag ? "" : tag)
-              }
-              className={`px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
-                selectedTag === tag
-                  ? "bg-foreground text-background"
-                  : "bg-transparent text-muted-foreground border border-border hover:border-foreground hover:text-foreground"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
+      {/* Category and Tags Row */}
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+        {/* Category Filter */}
+        <div className="flex items-center gap-2">
+          <SlidersHorizontal className="size-3.5 text-muted-foreground" />
+          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <SelectTrigger className="w-auto h-8 bg-transparent border-0 text-xs font-medium text-muted-foreground hover:text-foreground focus:ring-0 px-0">
+              <SelectValue placeholder="All" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              {categories.map((cat) => (
+                <SelectItem key={cat} value={cat}>
+                  {cat}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
-      )}
+
+        {/* Divider */}
+        {tags.length > 0 && (
+          <div className="hidden sm:block w-px h-4 bg-border" />
+        )}
+
+        {/* Tags */}
+        {tags.length > 0 && (
+          <div className="flex flex-wrap items-center gap-1.5">
+            {tags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSelectedTag(selectedTag === tag ? "" : tag)}
+                className={`px-2.5 py-1 text-[11px] font-medium rounded-full transition-all duration-200 ${
+                  selectedTag === tag
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/80"
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Clear */}
+        {hasFilters && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={clearFilters}
+            className="h-7 px-2 text-[11px] text-muted-foreground hover:text-foreground ml-auto"
+          >
+            Clear
+          </Button>
+        )}
+      </div>
     </div>
   );
 }
