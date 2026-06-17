@@ -1,21 +1,25 @@
-import { getProjectTabs, deleteProjectTab } from "@/actions/projectsAction";
+import { getProjectTabs } from "@/actions/projectsAction";
 import Image from "next/image";
 import Link from "next/link";
-import { Plus, Edit, Trash2, Folder } from "lucide-react";
+import { Plus, Edit, Trash2, Folder, FileImage } from "lucide-react";
 import DeleteProjectTabButton from "./_components/DeleteProjectTabButton";
+import BackfillButton from "./_components/BackfillButton";
 
 function serializeTabs(tabs) {
-  return (tabs || []).map((tab) => ({
-    _id: tab._id?.toString(),
+  if (!Array.isArray(tabs)) return [];
+  return tabs.map((tab) => ({
+    _id: tab.id || tab._id?.toString(),
     tabName: tab.tabName,
     tabShortDes: tab.tabShortDes,
     tabIcon: tab.tabIcon
       ? { _id: tab.tabIcon._id?.toString(), url: tab.tabIcon.url }
       : null,
     projects: (tab.projects || []).map((p) => ({
-      projectImage: p.projectImage?.url,
+      slug: p.slug,
+      projectImage: p.projectImage?.url || p.projectImage,
       projectName: p.projectName,
       projectShortDesc: p.projectShortDesc,
+      tags: p.tags || [],
     })),
   }));
 }
@@ -35,20 +39,30 @@ export default async function ViewProjectsPage() {
             Manage your project categories ({serializedTabs.length})
           </p>
         </div>
-        <Link
-          href="/dashboard/projects/add-project"
-          className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-        >
-          <Plus className="w-4 h-4" />
-          Add Category
-        </Link>
+        <div className="flex items-center gap-3">
+          <BackfillButton />
+          <Link
+            href="/dashboard/projects/add-project-to-tab"
+            className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+          >
+            <FileImage className="w-4 h-4" />
+            Add Project
+          </Link>
+          <Link
+            href="/dashboard/projects/add-project"
+            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            Add Category
+          </Link>
+        </div>
       </div>
 
       {serializedTabs.length > 0 ? (
         <div className="space-y-8">
           {serializedTabs.map((tab) => (
             <div
-              key={tab.id}
+              key={tab._id}
               className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"
             >
               <div className="p-5 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
@@ -92,7 +106,7 @@ export default async function ViewProjectsPage() {
                 <div className="p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                   {tab.projects.map((project, index) => (
                     <div
-                      key={index}
+                      key={project.slug || index}
                       className="relative aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden group"
                     >
                       {project.projectImage ? (
@@ -112,9 +126,18 @@ export default async function ViewProjectsPage() {
                           <p className="text-white text-sm font-medium truncate">
                             {project.projectName}
                           </p>
-                          <p className="text-white/70 text-xs line-clamp-2">
-                            {project.projectShortDesc}
-                          </p>
+                          {project.tags?.length > 0 && (
+                            <div className="flex flex-wrap gap-1 mt-1">
+                              {project.tags.slice(0, 2).map((tag) => (
+                                <span
+                                  key={tag}
+                                  className="text-[10px] px-1.5 py-0.5 bg-white/20 rounded"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

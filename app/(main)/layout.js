@@ -1,13 +1,19 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ThemeProvider from "@/components/ui/ThemeProvider";
-import { Inter } from "next/font/google";
+import { Inter, Archivo } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "../globals.css";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
   subsets: ["latin"],
+});
+
+const archivoDisplay = Archivo({
+  variable: "--font-archivo-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata = {
@@ -19,8 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${interSans.variable}  antialiased`}
-        cz-shortcut-listen="true"
+        className={`${interSans.variable} ${archivoDisplay.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"

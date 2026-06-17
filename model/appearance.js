@@ -1,6 +1,6 @@
-import mongoose, { model, models } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const AppearanceSchema = new mongoose.Schema(
+const AppearanceSchema = new Schema(
   {
     type: {
       type: String,

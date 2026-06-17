@@ -1,8 +1,13 @@
+export const metadata = {
+  title: "Blog - The Tech Resolver",
+  description: "Read our latest articles on web development, digital marketing, and technology trends.",
+};
+
 import { getBlogs } from "@/actions/BlogAction";
 import BlogHeroSection from "@/components/blog/BlogHeroSection";
 import BlogList from "@/components/blog/BlogList";
 import { Suspense } from "react";
-import LoadingFullApp from "@/app/(dashboard)/Loading";
+import LoadingFullApp from "./loading";
 
 export default async function BlogsPage() {
   const blogs = await getBlogs();

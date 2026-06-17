@@ -9,9 +9,9 @@ import {
   Instagram, 
   Linkedin, 
   Youtube,
-  Send,
   ArrowRight
 } from "lucide-react";
+import NewsletterForm from "./NewsletterForm";
 
 const quickLinks = [
   { name: "Home", href: "/" },
@@ -140,19 +140,7 @@ export default function Footer() {
             <div>
               <h4 className="font-medium mb-3">Newsletter</h4>
               <p className="text-black dark:text-gray-400 text-sm mb-3">Subscribe for latest updates.</p>
-              <form className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-3 outline-0 border dark:bg-gray-800 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-3 bg-primary rounded-r-lg hover:bg-primary/90 transition-colors"
-                >
-                  <Send className="w-5 h-5" />
-                </button>
-              </form>
+              <NewsletterForm />
             </div>
           </div>
         </div>

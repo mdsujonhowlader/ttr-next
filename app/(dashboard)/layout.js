@@ -20,7 +20,6 @@ export default function DashboardRootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${jostSans.variable}  antialiased bg-slate-100`}
-        cz-shortcut-listen="true"
       >
         <SidebarProvider>
           <div className="min-h-screen">

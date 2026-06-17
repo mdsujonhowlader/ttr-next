@@ -66,6 +66,8 @@ export default function BlogdFromClient({ safeImages }) {
             Object.values(res.errors).forEach((err) => {
               toastify.error(typeof err === "string" ? err : err.message);
             });
+          } else {
+            toastify.error(res.msg || "Failed to create blog");
           }
         }}
         className="flex flex-col justify-center items-center mx-auto w-3/4 bg-white p-4 rounded-lg"

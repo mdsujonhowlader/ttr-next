@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Disclosure,
   DisclosureButton,
@@ -48,6 +48,7 @@ const menuItems = [
         icon: Wrench,
         children: [
           { name: "Add Category", href: "/dashboard/projects/add-project", icon: Plus },
+          { name: "Add Project", href: "/dashboard/projects/add-project-to-tab", icon: Plus },
           { name: "View Projects", href: "/dashboard/projects/view-projects", icon: Eye },
         ],
       },
@@ -76,6 +77,15 @@ const menuItems = [
 export default function Sidebar() {
   const { open, width } = useSidebar();
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function handleLogout() {
+    const { logoutAdmin } = await import("@/actions/loginAction");
+    const res = await logoutAdmin();
+    if (res.success) {
+      router.push("/login");
+    }
+  }
 
   const isActive = (href) => {
     if (!href) return false;
@@ -202,15 +212,15 @@ export default function Sidebar() {
 
         {/* Footer */}
         <div className="p-3 border-t border-gray-100 dark:border-gray-700">
-          <Link
-            href="/login"
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors ${
+          <button
+            onClick={handleLogout}
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors w-full ${
               !open && "justify-center"
             }`}
           >
             <LogOut className="w-5 h-5" />
             {open && <span>Logout</span>}
-          </Link>
+          </button>
         </div>
       </div>
     </aside>

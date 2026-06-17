@@ -47,7 +47,7 @@ export async function getServices() {
     return replaceMongoIdInArray(servicedata);
   } catch (error) {
     console.log(error);
-    return { error };
+    return [];
   }
 }
 
@@ -62,7 +62,7 @@ export async function getServicesById(id) {
     return service;
   } catch (error) {
     console.log(error);
-    return { error };
+    return null;
   }
 }
 

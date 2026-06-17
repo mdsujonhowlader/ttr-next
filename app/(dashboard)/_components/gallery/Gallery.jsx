@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Copy, Trash2, ExternalLink, Check } from "lucide-react";
 import { Button } from "@headlessui/react";
 import toast from "react-hot-toast";
-import { deleteImageAction } from "@/actions/gellaryAction";
+import { deleteImageAction } from "@/actions/galleryAction";
 
 function formatBytes(bytes) {
   if (!bytes) return "0 B";

@@ -1,4 +1,4 @@
-import { getImages } from "@/actions/gellaryAction";
+import { getImages } from "@/actions/galleryAction";
 import AddProjectWrapper from "./_components/AddProjectWrapper";
 
 function serializeImages(images) {
