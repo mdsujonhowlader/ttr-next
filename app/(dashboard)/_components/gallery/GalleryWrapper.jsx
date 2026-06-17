@@ -28,6 +28,7 @@ export default function GalleryWrapper() {
       bytes: img.bytes,
       createdAt: img.createdAt?.toString(),
     }));
+    
     setImages(serialized);
     setLoading(false);
   }

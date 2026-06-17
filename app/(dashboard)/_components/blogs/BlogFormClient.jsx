@@ -46,6 +46,7 @@ export default function BlogdFromClient({ safeImages }) {
   const removeTag = (tagToRemove) => {
     setTags(tags.filter((tag) => tag !== tagToRemove));
   };
+  
   return (
     <>
       <form

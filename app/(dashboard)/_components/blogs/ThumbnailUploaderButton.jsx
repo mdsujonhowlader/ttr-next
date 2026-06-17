@@ -23,6 +23,7 @@ export default function ThumbnailUpload({
     setShowGallery(false);
   };
 
+  
   return (
     <>
       <AllFileGellary
