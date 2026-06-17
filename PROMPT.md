@@ -1,1 +1,0 @@
--Make plan for Project list page and make 10x better project list view ui ux design.here have our software thumbnail, title, tags category, description.use server action . admin can upload project in the admin panel
